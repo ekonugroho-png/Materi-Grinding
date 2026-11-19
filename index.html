@@ -1,0 +1,2909 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark" data-fs="1">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Website pembelajaran interaktif Section Tool Grinding (TGr) Politeknik ATMI Surakarta — penggerindaan alat potong dan mesin gerinda Great D1, Vitax, dan Greif.">
+<meta name="theme-color" content="#07111F">
+<title>Pembelajaran Section Tool Grinding (TGr) — Politeknik ATMI Surakarta</title>
+<link rel="icon" type="image/png" href="./assets/images/logo-atmi.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* ============================================================
+   PEMBELAJARAN SECTION TOOL GRINDING (TGr)
+   Politeknik ATMI Surakarta — statis, siap GitHub Pages
+   ============================================================ */
+:root{
+  --bg0:#07111F; --bg1:#0D1B30; --bg2:#10233D; --bg3:#152A47;
+  --glass:rgba(13,27,48,.66); --glass2:rgba(16,35,61,.55);
+  --line:rgba(148,163,184,.16); --line2:rgba(34,211,238,.28);
+  --blue:#2563EB; --cyan:#06B6D4; --neon:#22D3EE;
+  --text:#F8FAFC; --muted:#94A3B8; --soft:#CBD5E1;
+  --ok:#10B981; --warn:#F59E0B; --danger:#EF4444;
+  --grad:linear-gradient(135deg,#2563EB 0%,#06B6D4 55%,#22D3EE 100%);
+  --grad-soft:linear-gradient(135deg,rgba(37,99,235,.18),rgba(34,211,238,.10));
+  --shadow:0 10px 34px rgba(2,8,20,.55);
+  --shadow-sm:0 4px 16px rgba(2,8,20,.4);
+  --glow:0 0 0 1px rgba(34,211,238,.35),0 0 22px rgba(34,211,238,.16);
+  --r:16px; --r-sm:10px;
+  --sidebar-w:296px; --header-h:64px; --bottom-h:62px;
+}
+html[data-fs="2"]{font-size:17.5px}
+html[data-fs="3"]{font-size:19px}
+html[data-theme="light"]{
+  --bg0:#EEF3F9; --bg1:#FFFFFF; --bg2:#FFFFFF; --bg3:#F3F7FC;
+  --glass:rgba(255,255,255,.86); --glass2:rgba(255,255,255,.72);
+  --line:rgba(15,23,42,.12); --line2:rgba(37,99,235,.30);
+  --text:#0F172A; --muted:#51617A; --soft:#334155;
+  --grad-soft:linear-gradient(135deg,rgba(37,99,235,.10),rgba(6,182,212,.08));
+  --shadow:0 10px 30px rgba(15,23,42,.12);
+  --shadow-sm:0 3px 12px rgba(15,23,42,.08);
+  --glow:0 0 0 1px rgba(37,99,235,.28),0 6px 18px rgba(37,99,235,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+html{font-size:16px}
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg0); color:var(--text);
+  overflow:hidden; overflow-x:hidden;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4,.font-display{font-family:'Poppins','Inter',system-ui,sans-serif}
+img{max-width:100%;height:auto;display:block}
+button{font-family:inherit;cursor:pointer}
+select,input{font-family:inherit}
+a{color:var(--neon);text-decoration:none}
+a:hover{text-decoration:underline}
+html{scrollbar-color:rgba(148,163,184,.35) transparent}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:rgba(148,163,184,.28);border-radius:8px;border:2px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(34,211,238,.5);border:2px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-track{background:transparent}
+body{transition:background-color .3s ease,color .3s ease}
+
+/* ===================== APPLICATION SHELL ===================== */
+#app{
+  height:100vh; height:100dvh;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:var(--header-h) minmax(0,1fr) auto;
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(37,99,235,.14), transparent 60%),
+    radial-gradient(900px 420px at -10% 110%, rgba(6,182,212,.10), transparent 60%),
+    var(--bg0);
+}
+#app > *{min-width:0}
+.mid{display:grid;grid-template-columns:var(--sidebar-w) minmax(0,1fr);min-height:0}
+
+/* ===================== HEADER ===================== */
+.app-header{
+  position:relative;z-index:40;
+  display:flex;align-items:center;gap:14px;
+  padding:0 18px;height:var(--header-h);
+  background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:12px;flex:1 1 0;min-width:0;overflow:hidden}
+.brand .logo{
+  width:42px;height:42px;border-radius:12px;object-fit:contain;flex:none;
+  background:#fff;padding:3px;box-shadow:0 0 0 1px var(--line2),0 0 18px rgba(34,211,238,.25);
+}
+.brand .tt{min-width:0;flex:1 1 auto;line-height:1.15;overflow:hidden}
+.brand .tt .kicker{
+  font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap;
+}
+.brand .tt .title{font-family:'Poppins',sans-serif;font-weight:700;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.header-tools{margin-left:auto;display:flex;align-items:center;gap:10px;flex:none}
+.mod-select-wrap{position:relative}
+.mod-select{
+  appearance:none;-webkit-appearance:none;
+  background:var(--bg2);color:var(--text);
+  border:1px solid var(--line);border-radius:12px;
+  padding:9px 38px 9px 14px;font-size:.86rem;font-weight:600;max-width:250px;
+  transition:border-color .2s,box-shadow .2s;cursor:pointer;
+}
+.mod-select:focus{outline:none;border-color:var(--neon);box-shadow:var(--glow)}
+.mod-select-wrap::after{
+  content:"";position:absolute;right:14px;top:50%;width:8px;height:8px;pointer-events:none;
+  border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+  transform:translateY(-70%) rotate(45deg);
+}
+.icon-btn{
+  width:40px;height:40px;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg2);color:var(--text);display:inline-flex;align-items:center;justify-content:center;
+  transition:border-color .2s,box-shadow .2s,transform .15s;flex:none;
+}
+.icon-btn:hover{border-color:var(--neon);box-shadow:var(--glow);transform:translateY(-1px)}
+.icon-btn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn .sun{display:none}
+html[data-theme="light"] .icon-btn .sun{display:block}
+html[data-theme="light"] .icon-btn .moon{display:none}
+#btnMenu{display:none}
+#fsMenu{
+  position:absolute;top:calc(var(--header-h) - 6px);right:14px;z-index:60;
+  background:var(--bg1);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+  padding:10px;width:230px;display:none;
+}
+#fsMenu.open{display:block;animation:pop .18s ease}
+#fsMenu label{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.84rem;color:var(--muted);padding:7px 4px;font-weight:600}
+@keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar{
+  background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;min-height:0;
+}
+.side-scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding:14px 12px 10px;scrollbar-gutter:stable}
+.side-group{margin-bottom:6px}
+.side-group > button{
+  width:100%;display:flex;align-items:center;gap:9px;
+  background:none;border:none;color:var(--muted);
+  font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  padding:10px 10px 8px;border-radius:10px;transition:color .2s;text-align:left;
+}
+.side-group > button:hover{color:var(--neon)}
+.side-group > button .chev{margin-left:auto;transition:transform .22s;flex:none;width:14px;height:14px}
+.side-group.collapsed > button .chev{transform:rotate(-90deg)}
+.side-items{display:flex;flex-direction:column;gap:2px;overflow:hidden}
+.side-group.collapsed .side-items{display:none}
+.side-link{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+  padding:9px 12px;border-radius:11px;border:1px solid transparent;
+  background:none;color:var(--soft);font-size:.885rem;font-weight:500;
+  position:relative;transition:background-color .18s,color .18s,border-color .18s;
+}
+.side-link .ico{width:19px;height:19px;flex:none;opacity:.75}
+.side-link .ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.side-link:hover{background:var(--glass2);color:var(--text)}
+.side-link.active{
+  background:linear-gradient(90deg,rgba(37,99,235,.22),rgba(34,211,238,.08));
+  border-color:var(--line2);color:#fff;font-weight:700;
+}
+html[data-theme="light"] .side-link.active{color:var(--blue)}
+.side-link.active::before{
+  content:"";position:absolute;left:-1px;top:22%;bottom:22%;width:3px;border-radius:3px;
+  background:var(--grad);box-shadow:0 0 10px rgba(34,211,238,.8);
+}
+.side-link .done-dot{margin-left:auto;flex:none;width:7px;height:7px;border-radius:50%;background:var(--ok);opacity:.85;box-shadow:0 0 8px rgba(16,185,129,.7)}
+.side-foot{border-top:1px solid var(--line);padding:12px 16px 14px;flex:none}
+.side-foot .lbl{display:flex;justify-content:space-between;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.progress-track{height:7px;border-radius:6px;background:var(--bg3);overflow:hidden}
+.progress-fill{height:100%;width:0%;border-radius:6px;background:var(--grad);box-shadow:0 0 12px rgba(34,211,238,.55);transition:width .4s ease}
+#drawerOverlay{display:none}
+
+/* ===================== PANEL ===================== */
+.panel-wrap{min-width:0;display:flex;flex-direction:column;min-height:0;position:relative}
+#panel{
+  flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable;
+  padding:26px clamp(16px,3.4vw,44px) 44px;
+}
+#panel .view{max-width:1120px;margin:0 auto}
+#panel.in-f .view{animation:panelF .26s cubic-bezier(.22,.8,.36,1) both}
+#panel.in-b .view{animation:panelB .26s cubic-bezier(.22,.8,.36,1) both}
+@keyframes panelF{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+@keyframes panelB{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
+
+/* ===================== BOTTOM NAV ===================== */
+.bottom-nav{
+  min-height:var(--bottom-h);display:flex;align-items:center;gap:12px;
+  padding:10px clamp(12px,2.4vw,28px);
+  background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);z-index:30;
+}
+.nav-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 18px;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg2);color:var(--text);font-weight:700;font-size:.86rem;
+  transition:transform .16s,box-shadow .2s,border-color .2s,opacity .2s;white-space:nowrap;
+}
+.nav-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.nav-btn:hover:not(:disabled){border-color:var(--neon);box-shadow:var(--glow);transform:translateY(-1px)}
+.nav-btn:disabled{opacity:.35;cursor:not-allowed}
+.nav-btn.primary{background:var(--grad);border:none;color:#fff;box-shadow:0 6px 18px rgba(37,99,235,.35)}
+.nav-btn.primary:hover:not(:disabled){box-shadow:0 8px 24px rgba(34,211,238,.45)}
+.bottom-nav .pos{display:flex;flex-direction:column;gap:4px;min-width:120px;flex:none;overflow:hidden}
+.bottom-nav .pos .lbl{font-size:.7rem;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bottom-nav .pos .progress-track{height:5px}
+.bottom-nav .mod-select{max-width:330px;flex:1;min-width:120px}
+.bottom-nav .mod-select-wrap{min-width:0}
+@media (max-width:760px){.bottom-nav .mod-select{display:none}.bottom-nav .mod-select-wrap{display:none}.bottom-nav .pos{flex:1;min-width:0}.nav-btn .txt-full{display:none}}
+
+/* ===================== TIPOGRAFI & KONTEN ===================== */
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--neon);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:var(--grad)}
+h1.page-title{font-size:clamp(1.5rem,3vw,2.15rem);font-weight:800;letter-spacing:-.02em;line-height:1.18;margin-bottom:8px}
+p.page-sub{color:var(--muted);font-size:.99rem;line-height:1.65;max-width:75ch;margin-bottom:26px}
+.sec-title{font-size:1.22rem;font-weight:700;margin:34px 0 6px;display:flex;align-items:center;gap:10px;letter-spacing:-.01em}
+.sec-title .num{width:30px;height:30px;flex:none;border-radius:9px;background:var(--grad-soft);border:1px solid var(--line2);display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;color:var(--neon)}
+.sec-sub{color:var(--muted);font-size:.92rem;margin-bottom:18px;line-height:1.6}
+p.body-p{line-height:1.75;color:var(--soft);margin-bottom:14px;font-size:.965rem}
+p.body-p b,p.body-p strong{color:var(--text)}
+.note{
+  border-left:3px solid var(--cyan);background:var(--grad-soft);
+  padding:13px 16px;border-radius:0 12px 12px 0;margin:16px 0;font-size:.9rem;line-height:1.65;color:var(--soft);
+}
+.note b{color:var(--text)}
+.note.warn{border-left-color:var(--warn)}
+.note.ok{border-left-color:var(--ok)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:700;border:1px solid var(--line2);color:var(--neon);background:rgba(34,211,238,.08);white-space:nowrap}
+.chip.blue{color:#7CA6FF;border-color:rgba(37,99,235,.4);background:rgba(37,99,235,.12)}
+.chip.ok{color:var(--ok);border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.1)}
+.chip.warn{color:var(--warn);border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.1)}
+.chip.danger{color:var(--danger);border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.1)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.divider{height:1px;background:var(--line);margin:30px 0;border:none}
+
+/* ===================== KARTU & GRID ===================== */
+.grid{display:grid;gap:16px}
+.grid > *, .stat-row > *, .check-list > *, .flex > *, .g2 > *, .g3 > *, .g4 > *, .g-2-1 > *{min-width:0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g-2-1{grid-template-columns:2fr 1fr}
+.card{
+  background:var(--glass);border:1px solid var(--line);border-radius:var(--r);
+  padding:20px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+  transition:transform .22s ease,box-shadow .25s ease,border-color .22s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--line2)}
+.card.glow-top::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:.8}
+.card h3{font-size:1.02rem;font-weight:700;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.9rem;line-height:1.65}
+.card .cicon{width:42px;height:42px;border-radius:12px;background:var(--grad-soft);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--neon)}
+.card .cicon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.stat-row{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+.stat{flex:1;min-width:130px;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+.stat .v{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.3rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .k{font-size:.74rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
+
+/* ===================== FIGURE / GAMBAR ===================== */
+figure.fig{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:10px;box-shadow:var(--shadow-sm);margin:0}
+figure.fig img{width:100%;border-radius:11px;cursor:zoom-in;object-fit:cover}
+figure.fig figcaption{padding:10px 8px 4px;font-size:.8rem;color:var(--muted);text-align:center;line-height:1.5}
+.fig-frame{position:relative}
+.hero-photo{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line2);box-shadow:var(--shadow),0 0 40px rgba(34,211,238,.10)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,rgba(7,17,31,0) 40%,rgba(7,17,31,.55));pointer-events:none}
+.hero-photo .tag{position:absolute;left:14px;bottom:12px;z-index:2;background:rgba(7,17,31,.78);color:#E6F6FF;padding:7px 13px;border-radius:10px;font-size:.78rem;font-weight:700;backdrop-filter:blur(8px);border:1px solid rgba(34,211,238,.35)}
+.scanline{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.scanline::before{content:"";position:absolute;left:0;right:0;top:-30%;height:26%;background:linear-gradient(180deg,transparent,rgba(34,211,238,.13),transparent);animation:scan 7s linear infinite}
+@keyframes scan{0%{top:-30%}100%{top:110%}}
+
+/* ===================== TABEL ===================== */
+.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--glass);box-shadow:var(--shadow-sm);scrollbar-gutter:stable}
+table.tbl{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+table.tbl th{
+  text-align:left;padding:12px 16px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);
+  border-bottom:1px solid var(--line2);background:rgba(34,211,238,.05);white-space:nowrap;
+}
+table.tbl td{padding:11px 16px;border-bottom:1px solid var(--line);color:var(--soft);vertical-align:top;line-height:1.5}
+table.tbl tr:last-child td{border-bottom:none}
+table.tbl tr:hover td{background:rgba(34,211,238,.035)}
+table.tbl td.val{font-weight:700;color:var(--text);white-space:nowrap}
+table.tbl td.num{font-family:'Poppins',sans-serif;font-weight:700;color:var(--text)}
+
+/* ===================== TOMBOL UMUM ===================== */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:12px;
+  font-weight:700;font-size:.9rem;border:1px solid var(--line);background:var(--bg2);color:var(--text);
+  transition:transform .16s,box-shadow .2s,border-color .2s,background .2s;
+}
+.btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn:hover{border-color:var(--neon);box-shadow:var(--glow);transform:translateY(-1px)}
+.btn.primary{background:var(--grad);border:none;color:#fff;box-shadow:0 6px 18px rgba(37,99,235,.35)}
+.btn.primary:hover{box-shadow:0 8px 26px rgba(34,211,238,.45)}
+.btn.ok{border-color:rgba(16,185,129,.5);color:var(--ok)}
+.btn.sm{padding:8px 14px;font-size:.8rem;border-radius:10px}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+
+/* ===================== TABS ===================== */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{
+  padding:10px 18px;border-radius:12px;border:1px solid var(--line);background:var(--glass);
+  color:var(--muted);font-weight:700;font-size:.88rem;transition:all .2s;
+}
+.tab:hover{color:var(--text);border-color:var(--line2)}
+.tab.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(37,99,235,.3)}
+.tabpane{display:none}
+.tabpane.active{display:block;animation:fadeUp .26s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===================== CHECKLIST ===================== */
+.check-list{display:flex;flex-direction:column;gap:10px}
+.check-item{
+  display:flex;gap:13px;align-items:flex-start;padding:14px 16px;border-radius:13px;
+  background:var(--glass);border:1px solid var(--line);cursor:pointer;transition:border-color .2s,background .2s,transform .15s;
+}
+.check-item:hover{border-color:var(--line2);transform:translateX(3px)}
+.check-item input{display:none}
+.check-item .box{
+  width:22px;height:22px;border-radius:7px;border:2px solid var(--muted);flex:none;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;color:transparent;
+}
+.check-item .box svg{width:13px;height:13px;stroke-width:3.2;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.check-item input:checked ~ .box{background:var(--ok);border-color:var(--ok);color:#fff;box-shadow:0 0 12px rgba(16,185,129,.5)}
+.check-item .txt{font-size:.93rem;line-height:1.55;color:var(--soft)}
+.check-item input:checked ~ .txt{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(148,163,184,.5)}
+.check-item .txt b{color:var(--text)}
+.check-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 12px;flex-wrap:wrap}
+.check-head .st{font-size:.85rem;font-weight:700;color:var(--neon)}
+
+/* ===================== FLOWCHART ===================== */
+.flow{display:flex;flex-direction:column;align-items:center;gap:0;padding:8px 0}
+.flow-node{
+  width:min(430px,100%);background:var(--glass);border:1.5px solid var(--line2);border-radius:14px;
+  padding:15px 18px;text-align:center;position:relative;box-shadow:var(--shadow-sm);cursor:pointer;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.flow-node:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+.flow-node .fn-t{font-weight:800;font-size:.98rem;font-family:'Poppins',sans-serif}
+.flow-node .fn-d{font-size:.8rem;color:var(--muted);margin-top:5px;line-height:1.5}
+.flow-node.start{border-color:rgba(34,211,238,.65);box-shadow:0 0 18px rgba(34,211,238,.14)}
+.flow-node.final{border-color:rgba(16,185,129,.6);background:linear-gradient(135deg,rgba(16,185,129,.12),var(--glass))}
+.flow-node.repeat{border-style:dashed;border-color:rgba(245,158,11,.55)}
+.flow-node.open{border-color:var(--neon);box-shadow:var(--glow)}
+.flow-arrow{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;position:relative}
+.flow-arrow .stem{width:2px;height:26px;background:linear-gradient(180deg,var(--cyan),var(--blue));border-radius:2px}
+.flow-arrow .head{width:9px;height:9px;border-right:2px solid var(--cyan);border-bottom:2px solid var(--cyan);transform:rotate(45deg);margin-top:-6px}
+.flow-arrow .lbl{font-size:.72rem;font-weight:800;color:var(--ok);letter-spacing:.06em;text-transform:uppercase}
+.flow-arrow .lbl.no{color:var(--warn)}
+.flow-loop{
+  width:min(430px,100%);border:1.5px dashed rgba(245,158,11,.5);border-radius:12px;
+  padding:10px 16px;margin-top:10px;font-size:.8rem;color:var(--warn);line-height:1.55;background:rgba(245,158,11,.05);
+}
+.flow-note{
+  width:min(520px,100%);text-align:left;font-size:.83rem;color:var(--muted);line-height:1.6;
+  background:var(--glass2);border:1px solid var(--line);border-radius:12px;padding:12px 15px;
+}
+.flow-note b{color:var(--text)}
+.flow-detail{
+  width:min(560px,100%);margin-top:12px;display:none;text-align:left;
+  background:var(--grad-soft);border:1px solid var(--line2);border-radius:12px;padding:14px 16px;font-size:.88rem;line-height:1.65;color:var(--soft);
+}
+.flow-detail.show{display:block;animation:fadeUp .22s ease}
+.flow-detail b{color:var(--text)}
+
+/* ===================== STEPPER ===================== */
+.stepper{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);overflow:hidden}
+.stepper-top{padding:18px 22px 0}
+.stepper-top .steps-lbl{display:flex;justify-content:space-between;font-size:.78rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.stepper-top .steps-lbl b{color:var(--neon)}
+.stepper-body{padding:20px 22px;min-height:190px}
+.stepper-body .st-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.12rem;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.stepper-body .st-title .n{width:30px;height:30px;flex:none;border-radius:9px;background:var(--grad);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.88rem}
+.stepper-body .st-desc{color:var(--soft);line-height:1.75;font-size:.94rem}
+.stepper-body .st-media{margin-top:14px;display:flex;gap:12px;flex-wrap:wrap}
+.stepper-body .st-media img{width:132px;height:132px;object-fit:cover;border-radius:12px;border:1px solid var(--line);cursor:zoom-in}
+.stepper-foot{display:flex;align-items:center;gap:10px;padding:14px 22px 18px;border-top:1px solid var(--line)}
+.stepper-foot .spacer{flex:1}
+.step-dots{display:flex;gap:6px;flex-wrap:wrap}
+.step-dots .dot{width:9px;height:9px;border-radius:50%;background:var(--bg3);border:1px solid var(--line);transition:all .2s}
+.step-dots .dot.cur{background:var(--neon);box-shadow:0 0 8px rgba(34,211,238,.7)}
+.step-dots .dot.done{background:var(--ok);border-color:var(--ok)}
+
+/* ===================== SIMULATOR / FORM ===================== */
+.sim{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:22px}
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field label{display:block;font-size:.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.field input,.field select{
+  width:100%;padding:11px 14px;border-radius:11px;border:1px solid var(--line);
+  background:var(--bg2);color:var(--text);font-size:.95rem;font-weight:600;transition:border-color .2s,box-shadow .2s;
+}
+.field input:focus,.field select:focus{outline:none;border-color:var(--neon);box-shadow:var(--glow)}
+.field .hint{font-size:.72rem;color:var(--muted);margin-top:5px;line-height:1.4}
+.sim-result{
+  margin-top:18px;border-radius:14px;border:1px solid var(--line2);
+  background:var(--grad-soft);padding:18px 20px;
+}
+.sim-result .big{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.7rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sim-result .row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:.9rem;color:var(--soft)}
+.sim-result .row:last-child{border-bottom:none}
+.sim-result .row b{color:var(--text)}
+.formula{
+  font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(1.05rem,2.4vw,1.45rem);
+  text-align:center;padding:20px 16px;border-radius:14px;
+  background:var(--grad-soft);border:1px solid var(--line2);color:var(--text);letter-spacing:.01em;
+}
+.formula .op{color:var(--neon)}
+.formula .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 6px}
+.formula .frac .top{border-bottom:2px solid var(--neon);padding:0 10px 3px}
+.formula .frac .bot{padding:3px 10px 0}
+.formula-sub{font-size:.85rem;color:var(--muted);text-align:center;margin-top:10px;line-height:1.6}
+
+/* ===================== KUIS ===================== */
+.quiz-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.q-opt{
+  display:flex;gap:13px;align-items:flex-start;width:100%;text-align:left;
+  padding:14px 16px;border-radius:13px;border:1px solid var(--line);background:var(--glass);
+  color:var(--text);font-size:.93rem;line-height:1.55;margin-bottom:10px;transition:all .18s;
+}
+.q-opt:hover:not(:disabled){border-color:var(--neon);transform:translateX(3px)}
+.q-opt .abc{
+  width:26px;height:26px;flex:none;border-radius:8px;border:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;color:var(--neon);
+}
+.q-opt.correct{border-color:var(--ok);background:rgba(16,185,129,.12);box-shadow:0 0 14px rgba(16,185,129,.2)}
+.q-opt.correct .abc{background:var(--ok);color:#fff;border-color:var(--ok)}
+.q-opt.wrong{border-color:var(--danger);background:rgba(239,68,68,.1)}
+.q-opt.wrong .abc{background:var(--danger);color:#fff;border-color:var(--danger)}
+.q-opt:disabled{cursor:default;opacity:.92}
+.q-explain{
+  border-left:3px solid var(--ok);background:var(--grad-soft);padding:13px 16px;border-radius:0 12px 12px 0;
+  font-size:.88rem;line-height:1.65;color:var(--soft);margin:14px 0;animation:fadeUp .25s ease;
+}
+.q-explain.w{border-left-color:var(--danger)}
+.q-explain b{color:var(--text)}
+.q-cat{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--neon)}
+.score-hero{text-align:center;padding:26px 18px}
+.score-hero .big{
+  font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(2.4rem,7vw,3.6rem);
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.cat-bars{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.cat-bars .cb{display:grid;grid-template-columns:150px 1fr 44px;gap:10px;align-items:center;font-size:.8rem;color:var(--muted)}
+.cat-bars .cb .track{height:8px;border-radius:6px;background:var(--bg3);overflow:hidden}
+.cat-bars .cb .fill{height:100%;background:var(--grad);border-radius:6px}
+.cat-bars .cb b{color:var(--text);text-align:right}
+
+/* ===================== GALERI & LIGHTBOX ===================== */
+.gal-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:13px}
+.gal-item{
+  position:relative;border-radius:13px;overflow:hidden;border:1px solid var(--line);
+  background:var(--bg2);cursor:zoom-in;transition:transform .2s,box-shadow .25s,border-color .2s;aspect-ratio:4/3;
+}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.gal-item:hover{transform:translateY(-3px);border-color:var(--line2);box-shadow:var(--glow)}
+.gal-item:hover img{transform:scale(1.06)}
+.gal-item .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;font-size:.74rem;font-weight:600;color:#EAF6FF;
+  background:linear-gradient(180deg,transparent,rgba(7,17,31,.88));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+#lightbox{
+  position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+  background:rgba(4,10,20,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+#lightbox.open{display:flex;animation:lbIn .2s ease}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+#lbStage{max-width:min(1100px,94vw);max-height:78vh;position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(34,211,238,.3);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#lbImg{max-width:100%;max-height:78vh;transition:transform .25s ease;cursor:grab;transform-origin:center center;user-select:none;-webkit-user-drag:none}
+#lbImg.zoomed{cursor:grabbing}
+#lbCaption{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%);max-width:min(760px,90vw);
+  background:rgba(7,17,31,.85);border:1px solid var(--line2);color:#E6F6FF;
+  padding:11px 20px;border-radius:12px;font-size:.86rem;text-align:center;line-height:1.5;backdrop-filter:blur(8px);
+}
+.lb-btn{
+  position:fixed;z-index:102;width:46px;height:46px;border-radius:50%;
+  background:rgba(13,27,48,.85);border:1px solid var(--line2);color:#fff;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;backdrop-filter:blur(6px);
+}
+.lb-btn:hover{border-color:var(--neon);box-shadow:var(--glow)}
+.lb-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+#lbClose{top:20px;right:22px}
+#lbPrev{left:18px;top:50%;transform:translateY(-50%)}
+#lbNext{right:18px;top:50%;transform:translateY(-50%)}
+#lbZoom{position:fixed;bottom:24px;right:22px}
+#lbCount{position:fixed;top:26px;left:26px;color:#9FD9EA;font-weight:800;font-size:.85rem;letter-spacing:.08em;background:rgba(13,27,48,.8);padding:7px 14px;border-radius:999px;border:1px solid var(--line2)}
+
+/* ===================== HOTSPOT & SIMULASI SVG ===================== */
+.sim-box{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:16px}
+.sim-box svg{width:100%;height:auto;display:block;border-radius:12px;background:radial-gradient(700px 320px at 50% 0%,rgba(37,99,235,.12),transparent 70%),var(--bg1);border:1px solid var(--line)}
+.sim-controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.sim-controls .spacer{flex:1}
+.sim-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:.78rem;color:var(--muted)}
+.sim-legend .li{display:flex;align-items:center;gap:6px}
+.sim-legend .sw{width:12px;height:12px;border-radius:4px}
+.hotspot{cursor:pointer}
+.hotspot circle.dot{fill:rgba(34,211,238,.25);stroke:var(--neon);stroke-width:2;transition:all .2s}
+.hotspot text{fill:#fff;font-weight:800;font-size:11px;font-family:'Poppins',sans-serif;pointer-events:none}
+.hotspot:hover circle.dot,.hotspot.on circle.dot{fill:var(--neon);filter:drop-shadow(0 0 6px rgba(34,211,238,.9))}
+.wheel-rot{transform-origin:200px 128px;animation:spin 1.4s linear infinite;animation-play-state:paused}
+.running .wheel-rot{animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spark{opacity:0}
+.running .spark{animation:spark 1s ease-out infinite}
+.running .spark.d2{animation-delay:.33s}
+.running .spark.d3{animation-delay:.66s}
+@keyframes spark{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(46px,64px)}}
+.contact-pulse{animation:pulse 1.6s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:.95}}
+.sim-move-y{transition:transform .9s ease-in-out}
+.sim-move-x{transition:transform 1.1s ease-in-out}
+.sim-rotate{transition:transform 1s ease-in-out;transform-box:fill-box;transform-origin:center}
+.angle-plate{transition:transform .5s ease;transform-box:fill-box;transform-origin:0% 100%}
+
+/* ===================== ACCORDION ===================== */
+.acc{border:1px solid var(--line);border-radius:14px;background:var(--glass);margin-bottom:11px;overflow:hidden;transition:border-color .2s}
+.acc:hover{border-color:var(--line2)}
+.acc > button{
+  width:100%;display:flex;align-items:center;gap:13px;background:none;border:none;color:var(--text);
+  padding:15px 18px;font-weight:700;font-size:.94rem;text-align:left;
+}
+.acc > button .thumb{width:52px;height:52px;border-radius:10px;object-fit:cover;flex:none;border:1px solid var(--line)}
+.acc > button .chev{margin-left:auto;transition:transform .25s;flex:none;width:18px;height:18px}
+.acc.open > button .chev{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.acc.open .acc-body{max-height:900px}
+.acc-inner{padding:2px 18px 18px;display:grid;gap:14px;grid-template-columns:220px 1fr}
+.acc-inner img{width:100%;border-radius:11px;cursor:zoom-in;border:1px solid var(--line)}
+.acc-inner .tx p{font-size:.9rem;color:var(--soft);line-height:1.7;margin-bottom:9px}
+.acc-inner .tx p b{color:var(--text)}
+@media (max-width:640px){.acc-inner{grid-template-columns:1fr}.acc-inner img{max-width:280px}}
+
+/* ===================== PROFIL ===================== */
+.profile-card{text-align:center;padding:26px 20px}
+.profile-card .pframe{width:150px;height:150px;margin:0 auto 16px;border-radius:50%;padding:4px;background:var(--grad);box-shadow:0 0 26px rgba(34,211,238,.28)}
+.profile-card .pframe img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid var(--bg1)}
+.profile-card h3{font-size:1.08rem}
+.profile-card .role{font-size:.78rem;color:var(--neon);font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-top:4px}
+
+/* ===================== BERANDA HERO ===================== */
+.hero{position:relative;border-radius:22px;border:1px solid var(--line2);overflow:hidden;padding:clamp(26px,4.5vw,52px);margin-bottom:22px;background:
+  radial-gradient(900px 420px at 90% -20%,rgba(37,99,235,.28),transparent 60%),
+  radial-gradient(700px 380px at -10% 120%,rgba(34,211,238,.16),transparent 55%),
+  var(--glass);box-shadow:var(--shadow)}
+.hero::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(rgba(34,211,238,.05) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(34,211,238,.05) 1px,transparent 1px);
+  background-size:34px 34px;mask-image:radial-gradient(700px 380px at 30% 30%,#000 30%,transparent 75%);pointer-events:none}
+.hero .grid-in{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center;position:relative}
+.hero h1{font-size:clamp(1.7rem,3.6vw,2.7rem);font-weight:800;letter-spacing:-.02em;line-height:1.14;margin:12px 0 12px}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{color:var(--muted);font-size:1rem;line-height:1.7;max-width:56ch}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.hero .motto{margin-top:24px;display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:.85rem;color:var(--warn);background:rgba(245,158,11,.1);border:1px dashed rgba(245,158,11,.5);padding:9px 16px;border-radius:999px}
+.motto .sparkle{display:inline-block;animation:pulse 2.2s infinite}
+.quick-cards .card{cursor:pointer}
+.quick-cards .card .go{margin-top:12px;font-size:.8rem;font-weight:800;color:var(--neon);display:inline-flex;align-items:center;gap:6px;letter-spacing:.05em;transition:gap .2s}
+.quick-cards .card:hover .go{gap:10px}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width:1080px){
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero .grid-in{grid-template-columns:1fr;gap:24px}
+  .hero .hero-photo{max-width:520px}
+}
+@media (max-width:860px){
+  #btnMenu{display:inline-flex}
+  .mod-select-wrap.desktop-only{display:none}
+  .mid{grid-template-columns:minmax(0,1fr)}
+  .sidebar{
+    position:fixed;top:0;bottom:0;left:0;width:min(310px,86vw);z-index:70;
+    transform:translateX(-104%);transition:transform .28s cubic-bezier(.22,.8,.36,1);
+    background:var(--bg1);box-shadow:var(--shadow);
+  }
+  body.drawer-open .sidebar{transform:none}
+  #drawerOverlay{display:block;position:fixed;inset:0;background:rgba(4,10,20,.6);z-index:65;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(3px)}
+  body.drawer-open #drawerOverlay{opacity:1;pointer-events:auto}
+  .brand .tt .title{font-size:.86rem}
+  .g2,.g3{grid-template-columns:1fr}
+  .g-2-1{grid-template-columns:1fr}
+  .sim-grid{grid-template-columns:1fr}
+  #panel{padding:20px 16px 34px}
+}
+@media (max-width:560px){
+  .g4{grid-template-columns:1fr}
+  .brand .tt .kicker{display:none}
+  .brand .logo{width:36px;height:36px}
+  .icon-btn{width:37px;height:37px}
+  .gal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* ===================== MOTION PREFERENCES ===================== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .wheel-rot,.spark,.scanline::before,.contact-pulse{animation:none!important}
+  .spark{opacity:.6!important}
+}
+html[data-anim="off"] *,html[data-anim="off"] *::before,html[data-anim="off"] *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+html[data-anim="off"] .wheel-rot,html[data-anim="off"] .spark,html[data-anim="off"] .scanline::before,html[data-anim="off"] .contact-pulse{animation:none!important}
+html[data-anim="off"] .spark{opacity:.6!important}
+/* util */
+.mt-0{margin-top:0}.mt-1{margin-top:8px}.mt-2{margin-top:16px}.mt-3{margin-top:26px}.mb-1{margin-bottom:8px}.mb-2{margin-bottom:16px}
+.flex{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.center{text-align:center}
+.muted{color:var(--muted)}
+.small{font-size:.82rem}
+.hide{display:none!important}
+
+/* =====================================================================
+   TGr DESIGN SYSTEM / 2026 — Industrial Precision
+   Lapisan visual baru; renderer, materi dan perhitungan lama tetap utuh.
+   ===================================================================== */
+:root{
+  --bg0:#07111d; --bg1:#0e1a2b; --bg2:#111f33; --bg3:#182c43;
+  --glass:rgba(14,26,43,.94); --glass2:rgba(26,45,67,.72);
+  --line:rgba(154,181,212,.14); --line2:rgba(48,204,231,.28);
+  --blue:#3778e7; --cyan:#21b5d4; --neon:#38d5ed;
+  --text:#f3f8fc; --muted:#9caec3; --soft:#ccdae7;
+  --grad:linear-gradient(110deg,#5786f4 4%,#20c8e2 97%);
+  --grad-soft:linear-gradient(135deg,rgba(48,120,223,.14),rgba(36,196,218,.075));
+  --shadow:0 24px 64px rgba(0,4,15,.24);
+  --shadow-sm:0 6px 24px rgba(0,5,14,.14);
+  --glow:0 0 0 1px rgba(56,213,237,.32),0 8px 26px rgba(0,121,171,.13);
+  --r:18px;--r-sm:11px;--sidebar-w:312px;--header-h:76px;--bottom-h:76px;
+}
+html[data-theme="light"]{
+  --bg0:#f4f7fa;--bg1:#ffffff;--bg2:#f5f9fc;--bg3:#e6eef5;
+  --glass:rgba(255,255,255,.95);--glass2:rgba(232,242,249,.9);
+  --line:rgba(31,61,92,.12);--line2:rgba(16,119,167,.27);
+  --blue:#2563c7;--cyan:#087e9d;--neon:#087d9b;
+  --text:#122437;--muted:#53697d;--soft:#344d61;
+  --grad:linear-gradient(110deg,#2563c7 5%,#087e9d 95%);
+  --grad-soft:linear-gradient(130deg,rgba(37,99,199,.075),rgba(8,126,157,.035));
+  --shadow:0 24px 64px rgba(37,60,93,.1);
+  --shadow-sm:0 6px 24px rgba(34,60,93,.055);
+  --glow:0 0 0 1px rgba(16,119,167,.26),0 8px 26px rgba(16,119,167,.1);
+}
+body{letter-spacing:-.008em}
+h1,h2,h3,h4,.font-display,.brand .tt .title{font-family:'Space Grotesk','Poppins','Inter',sans-serif}
+button:focus-visible,select:focus-visible,input:focus-visible,[tabindex="0"]:focus-visible{
+  outline:2px solid var(--neon);outline-offset:3px;
+}
+#app{
+  background:radial-gradient(800px 600px at 95% -20%,rgba(34,145,193,.075),transparent 64%),var(--bg0);
+}
+.app-header{padding:0 clamp(16px,2.15vw,32px);gap:17px;background:var(--glass);box-shadow:0 1px 0 rgba(255,255,255,.015)}
+.brand{gap:14px}
+.brand .logo{width:46px;height:46px;border-radius:12px;padding:4px;box-shadow:0 0 0 1px var(--line2)}
+.brand .tt .kicker{font-size:.655rem;letter-spacing:.13em;color:var(--muted);background:none;-webkit-background-clip:initial;background-clip:initial;font-weight:700;margin-bottom:5px}
+.brand .tt .title{font-size:clamp(.92rem,1.1vw,1.1rem);letter-spacing:-.025em;line-height:1.15}
+.header-identity{display:flex;align-items:center;gap:9px;margin-left:auto;padding:9px 13px;border-radius:100px;background:var(--bg2);border:1px solid var(--line);color:var(--muted);font-size:.62rem;font-weight:800;letter-spacing:.13em;white-space:nowrap}
+.header-identity b{color:var(--neon);font-size:.69rem;letter-spacing:.05em;border-left:1px solid var(--line);padding-left:9px}
+.identity-dot{height:7px;width:7px;border-radius:50%;background:#2cd4ba;box-shadow:0 0 0 3px rgba(44,212,186,.1)}
+.header-tools{margin-left:0;gap:8px}
+.icon-btn{width:41px;height:41px;border-radius:11px;background:var(--bg2);border-color:var(--line);box-shadow:none}
+.icon-btn:hover{transform:none;background:var(--bg3)}
+.mod-select{border-radius:11px;font-size:.82rem;background:var(--bg2);max-width:230px;height:41px}
+#fsMenu{top:calc(var(--header-h) - 4px);right:25px;background:var(--bg1)}
+.sidebar{background:var(--bg1);border-right:1px solid var(--line)}
+.sidebar-top{padding:24px 17px 13px;border-bottom:1px solid var(--line)}
+.sidebar-label{display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:800;font-size:.66rem;letter-spacing:.115em;margin-bottom:16px;white-space:nowrap}
+.sidebar-label-dot{display:inline-block;width:8px;height:8px;border:2px solid var(--neon);border-radius:3px;transform:rotate(45deg)}
+.sidebar-total{margin-left:auto;font-size:.62rem;color:var(--neon);letter-spacing:.065em}
+.sidebar-search{display:flex;align-items:center;gap:10px;padding:0 12px;height:43px;border:1px solid var(--line);border-radius:11px;background:var(--bg2);transition:border .2s}
+.sidebar-search:focus-within{border-color:var(--neon);box-shadow:var(--glow)}
+.sidebar-search svg{width:17px;height:17px;flex:none;fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round}
+.sidebar-search input{color:var(--text);background:none;border:0;outline:none!important;min-width:0;flex:1;font-size:.85rem;font-weight:500;width:100%}
+.sidebar-search input::-webkit-search-cancel-button{cursor:pointer}
+.sidebar-search input::placeholder{color:var(--muted);opacity:.86}
+.sidebar-search kbd{color:var(--muted);font-size:.69rem;font-family:inherit;border:1px solid var(--line);border-radius:5px;min-width:19px;text-align:center;padding:2px}
+.search-count{font-size:.71rem;color:var(--neon);line-height:1.5;display:none;margin:9px 2px 0}
+.search-count.active{display:block}
+.side-scroll{padding:13px 10px 20px;scrollbar-gutter:stable}
+.side-group{margin:3px 0 6px}
+.side-group[hidden],.side-link[hidden]{display:none!important}
+.side-group>button{padding:12px 12px 9px;color:var(--muted);font-size:.67rem;letter-spacing:.09em;gap:8px}
+.side-group>button:hover{color:var(--text)}
+.side-group .group-count{margin-left:auto;font-size:.64rem;min-width:20px;text-align:center;padding:3px 5px;background:var(--bg3);color:var(--muted);border-radius:5px;letter-spacing:0}
+.side-group>button .chev{margin-left:0;width:13px;height:13px}
+.side-link{min-height:43px;padding:9px 13px;margin:0 0 3px;border-radius:10px;font-size:.85rem;line-height:1.35;gap:11px}
+.side-link .ico{width:17px;height:17px;opacity:.78}
+.side-link:hover{background:var(--bg2);color:var(--text)}
+.side-link.active{color:#e6fbff;background:rgba(26,148,181,.14);border-color:rgba(56,213,237,.22);box-shadow:inset 0 0 0 1px rgba(56,213,237,.045)}
+html[data-theme="light"] .side-link.active{color:#086986;background:rgba(8,126,157,.085)}
+.side-link.active .ico{opacity:1;color:var(--neon)}
+.side-link.active::before{width:3px;top:8px;bottom:8px;box-shadow:none}
+.side-link .done-dot{height:6px;width:6px;box-shadow:none;opacity:.78}
+.side-foot{padding:16px 22px 19px;background:var(--bg1)}
+.side-foot .lbl{font-size:.71rem;letter-spacing:.025em;color:var(--soft);text-transform:none;align-items:center}
+.side-foot .lbl small{color:var(--muted);font-size:.67rem;margin-left:3px}
+.progress-track{height:5px;background:var(--bg3)}
+.progress-fill{box-shadow:none}
+#panel{padding:31px clamp(20px,4.6vw,72px) 52px;scrollbar-gutter:stable}
+#panel .view{max-width:1190px}
+.page-context + .eyebrow{display:none}
+.page-context{display:flex;align-items:center;gap:12px;margin-bottom:22px;font-weight:800;letter-spacing:.115em;font-size:.665rem;color:var(--muted);text-transform:uppercase}
+.page-context-group{color:var(--neon)}
+.page-context-divider{color:var(--line2)}
+.page-context-module{font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.68rem;letter-spacing:.15em;margin-bottom:11px;font-weight:800}
+.eyebrow::before{width:17px}
+.page-title{font-size:clamp(1.55rem,2.9vw,2.35rem)!important;line-height:1.16!important;letter-spacing:-.04em!important;margin-bottom:11px!important}
+p.page-sub{max-width:72ch;font-size:.96rem;line-height:1.76;margin-bottom:27px}
+.sec-title{font-size:clamp(1.1rem,1.6vw,1.35rem);letter-spacing:-.025em;margin-top:34px;gap:11px}
+.sec-title .num{height:30px;width:30px;border-radius:9px;font-size:.86rem}
+.sec-sub{font-size:.91rem;color:var(--muted);line-height:1.62}
+p.body-p{line-height:1.78}
+.card,.sim,.stepper,.sim-box,figure.fig,.table-scroll,.acc{background:var(--bg1);border-color:var(--line);box-shadow:var(--shadow-sm)}
+.card{padding:clamp(18px,2.2vw,24px);border-radius:16px}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--line2)}
+.card.glow-top::before{opacity:.65;height:2px}
+.card h3{font-size:1.02rem;letter-spacing:-.015em;line-height:1.38}
+.card p{line-height:1.72}
+.card .cicon{height:43px;width:43px;border-radius:11px;margin-bottom:15px}
+.grid{gap:15px}
+.stat-row{gap:12px;margin:18px 0 30px}
+.stat{min-width:150px;padding:17px 19px;border-radius:13px;background:var(--bg1);border-color:var(--line);box-shadow:none}
+.stat .v{font-family:'Space Grotesk','Inter',sans-serif;font-size:1.66rem;line-height:1.2;letter-spacing:-.06em;font-weight:700}
+.stat .k{font-size:.69rem;letter-spacing:.055em;margin-top:6px}
+.hero{border-radius:22px;border-color:var(--line);padding:clamp(27px,4.15vw,57px);box-shadow:var(--shadow-sm);margin-bottom:18px;
+  background:radial-gradient(800px 450px at 95% -10%,rgba(26,163,207,.17),transparent 65%),linear-gradient(125deg,var(--bg1),var(--bg2))}
+.hero::before{background-size:42px 42px;opacity:.43}
+.hero .grid-in{grid-template-columns:1.06fr .94fr;gap:clamp(24px,4.2vw,54px)}
+.hero-kicker-badge{border:1px solid var(--line2);border-radius:7px;padding:7px 10px;letter-spacing:.09em;color:var(--neon);background:rgba(34,177,211,.075)}
+.hero .eyebrow::before{display:none}
+.hero h1{font-family:'Space Grotesk','Poppins',sans-serif;font-size:clamp(2.08rem,3.3vw,3.65rem);letter-spacing:-.065em;line-height:1.1;margin:21px 0 20px}
+.hero h1 .grad{color:var(--neon);background:var(--grad);background-clip:text;-webkit-background-clip:text}
+.hero .hero-h1-suffix{font-size:.62em;color:var(--muted);letter-spacing:-.02em;white-space:nowrap}
+.hero .sub{color:var(--soft);line-height:1.85;font-size:.94rem;max-width:58ch}
+.hero .cta{gap:10px;margin-top:26px}
+.hero .motto{background:transparent;border:0;border-left:2px solid var(--warn);color:var(--soft);padding:3px 0 3px 11px;border-radius:0;margin-top:24px;font-size:.75rem;letter-spacing:.03em}
+.hero .motto .sparkle{color:var(--warn)}
+.hero-photo{border-radius:15px;border-color:var(--line2);box-shadow:0 17px 46px rgba(0,5,14,.19);background:radial-gradient(circle at center,rgba(45,154,185,.24),var(--bg3))}
+.hero-photo img{aspect-ratio:5/4;object-fit:cover}
+.hero-photo .tag{left:15px;bottom:15px;font-size:.75rem;border-radius:7px;background:rgba(8,19,33,.84)}
+.scanline::before{opacity:.5}
+.section-intro{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:33px 0 17px}
+.section-intro .eyebrow{margin-bottom:9px}
+.section-intro .sec-title{margin:0 0 6px}
+.section-intro .sec-sub{margin:0}
+.section-counter{border:1px solid var(--line);color:var(--muted);border-radius:7px;padding:8px 11px;font-size:.7rem;letter-spacing:.08em;font-weight:800;white-space:nowrap}
+.quick-cards .card{min-height:202px;cursor:pointer;display:flex;flex-direction:column}
+.quick-cards .card .go{margin-top:auto;padding-top:16px;letter-spacing:.025em}
+.quick-cards .card:hover .go{gap:6px}
+.note{border-radius:0 11px 11px 0;background:var(--grad-soft)}
+.chip{border-radius:7px;font-size:.76rem}
+.btn,.nav-btn{border-radius:10px;letter-spacing:-.012em}
+.btn.primary,.nav-btn.primary{background:var(--grad);box-shadow:none;color:#fff}
+.btn.primary:hover,.nav-btn.primary:hover:not(:disabled){box-shadow:0 9px 24px rgba(14,142,187,.2)}
+.btn:hover,.nav-btn:hover:not(:disabled){transform:translateY(-1px)}
+.tab{border-radius:9px}
+.tab.active{box-shadow:none}
+.table-scroll{border-radius:13px}
+table.tbl th{background:var(--grad-soft);font-size:.7rem}
+table.tbl td{line-height:1.65}
+.sim-result,.formula{background:var(--grad-soft)}
+figure.fig{padding:9px}
+figure.fig img{object-fit:contain;background:var(--bg2)}
+.zoom-hint{display:block;position:absolute;right:10px;bottom:10px;background:rgba(7,17,29,.82);border:1px solid rgba(56,213,237,.25);color:#e7fafe;border-radius:6px;padding:5px 8px;font-size:.68rem;pointer-events:none}
+.ph-missing{padding:35px 15px;text-align:center;color:var(--muted);border:1px dashed var(--line2);border-radius:10px}
+.bottom-nav{padding:12px clamp(16px,2.3vw,30px);min-height:var(--bottom-h);background:var(--bg1)}
+.bottom-nav .pos{min-width:140px;flex-basis:clamp(140px,19vw,250px)}
+.bottom-nav .pos .lbl{text-transform:none;letter-spacing:0;font-size:.73rem;font-weight:700}
+.bottom-nav .mod-select{height:42px}
+.bottom-nav .mod-select-wrap{max-width:400px;margin:auto}
+.nav-btn{min-height:43px}
+.nav-btn .txt-short{display:none}
+@media (max-width:1200px){
+  .header-identity{display:none}
+  .hero .grid-in{grid-template-columns:1fr 1fr;gap:22px}
+  .hero h1{font-size:clamp(2rem,3.5vw,3.25rem)}
+}
+@media (max-width:1080px){
+  .hero .grid-in{grid-template-columns:1fr;gap:25px}
+  .hero .hero-photo{max-width:600px}
+}
+@media (max-width:860px){
+  :root{--header-h:70px;--bottom-h:69px}
+  .sidebar{background:var(--bg1);width:min(340px,89vw);padding-top:env(safe-area-inset-top)}
+  .sidebar-top{padding-top:18px}
+  .app-header{padding:0 14px;gap:10px}
+  .brand .logo{width:40px;height:40px}
+  .brand .tt .title{font-size:.86rem}
+  .header-tools{gap:6px}
+  #panel{padding:22px clamp(17px,4.5vw,32px) 42px}
+  .bottom-nav .pos{flex:1 1 0;min-width:90px}
+  .bottom-nav .mod-select-wrap{display:none!important}
+  .nav-btn .txt-short{display:inline}
+  .bottom-nav{padding-bottom:max(10px,env(safe-area-inset-bottom));gap:8px}
+  .nav-btn{min-height:41px;padding:9px 12px}
+  .page-context{margin-bottom:17px}
+}
+@media (max-width:560px){
+  :root{--header-h:67px}
+  .brand{gap:9px}
+  .brand .logo{width:35px;height:35px;border-radius:9px}
+  .brand .tt .title{font-size:.8rem;line-height:1.28;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .brand .tt .kicker{display:none}
+  .header-tools{gap:5px}
+  #btnFull{display:none}
+  .icon-btn{width:34px;height:36px;border-radius:9px}
+  .icon-btn svg{width:17px;height:17px}
+  #panel{padding:20px 16px 37px}
+  .hero{padding:25px 20px;border-radius:16px}
+  .hero h1{font-size:clamp(1.9rem,8vw,2.65rem)}
+  .hero .sub{font-size:.9rem;line-height:1.7}
+  .hero .cta{flex-direction:column;align-items:stretch}
+  .hero .cta .btn{justify-content:center}
+  .hero-photo img{aspect-ratio:5/3}
+  .stat-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat{min-width:0;padding:13px}
+  .stat .v{font-size:1.4rem}
+  .stat .k{font-size:.62rem;line-height:1.35}
+  .section-counter{display:none}
+  .section-intro{margin:29px 0 15px}
+  .quick-cards .card{min-height:unset}
+  .bottom-nav{gap:7px;padding:9px 12px}
+  .bottom-nav .pos{min-width:68px;flex:1}
+  .bottom-nav .pos .lbl{font-size:.65rem;line-height:1.28;max-width:135px}
+  .nav-btn{padding:9px 10px;font-size:.74rem;gap:4px}
+  .nav-btn svg{width:14px;height:14px}
+  .page-context{font-size:.59rem;gap:8px}
+}
+@media (max-width:390px){
+  .quickfind-btn{display:none}
+  .brand .tt .title{font-size:.75rem}
+  .bottom-nav .pos{min-width:56px}
+  .nav-btn{padding:9px 8px}
+}
+
+
+/* Fallback visual untuk repo yang belum memiliki asset gambar */
+.brand .logo-shell{width:46px;height:46px;flex:none;display:flex;align-items:center;justify-content:center}
+.brand .logo-shell .logo{flex:none}
+.logo-fallback{display:none;align-items:center;justify-content:center;width:46px;height:46px;border-radius:11px;background:linear-gradient(125deg,#1e58ad,#119bb5);color:#fff;font-size:.77rem;font-weight:800;letter-spacing:-.02em;border:1px solid rgba(125,229,244,.3)}
+.hero-photo{aspect-ratio:5/4;min-height:260px;isolation:isolate}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;z-index:1}
+.hero-photo img.image-unavailable{display:none!important}
+.hero-photo .scanline{z-index:2}
+.hero-photo .tag{z-index:3}
+.machine-fallback{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+  background:radial-gradient(circle at 53% 32%,rgba(28,169,195,.14),transparent 55%),linear-gradient(135deg,#0e2137,#122940)}
+.machine-fallback::before{content:"";position:absolute;inset:0;opacity:.16;background-image:linear-gradient(rgba(80,194,226,.24) 1px,transparent 1px),linear-gradient(90deg,rgba(80,194,226,.24) 1px,transparent 1px);background-size:29px 29px}
+.machine-fallback svg{width:78%;max-height:67%;opacity:.85;filter:drop-shadow(0 3px 14px rgba(18,200,234,.18))}
+.machine-fallback-label{margin-top:-5px;display:flex;flex-direction:column;align-items:center;gap:3px}
+.machine-fallback-label strong{font-family:'Space Grotesk',sans-serif;font-size:1rem;letter-spacing:.2em;color:#9fe7f0}
+.machine-fallback-label span{font-size:.55rem;letter-spacing:.14em;font-weight:700;color:#649fbc}
+@media (max-width:860px){
+  .brand .logo-shell,.logo-fallback{width:40px;height:40px}
+  .hero .grid-in{grid-template-columns:minmax(0,1fr)}
+  .hero .grid-in > *{min-width:0}
+  .hero .hero-photo{width:100%;min-width:0}
+}
+@media (max-width:560px){
+  .brand .logo-shell,.logo-fallback{width:35px;height:35px}
+  .logo-fallback{font-size:.65rem}
+  .hero-photo{aspect-ratio:5/3;min-height:0}
+  .machine-fallback svg{max-height:65%}
+}
+
+</style>
+</head>
+
+<body>
+<div id="app">
+
+  <!-- ================= HEADER TETAP ================= -->
+  <header class="app-header">
+    <button id="btnMenu" class="icon-btn" aria-label="Buka menu navigasi" title="Menu">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="brand">
+      <div class="logo-shell"><img class="logo" src="./assets/images/logo-atmi.png" alt="Logo Politeknik ATMI Surakarta" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-fallback" aria-hidden="true">ATMI</span></div>
+      <div class="tt">
+        <div class="kicker">Politeknik ATMI Surakarta</div>
+        <div class="title">Pembelajaran Section Tool Grinding (TGr)</div>
+      </div>
+    </div>
+    <div class="header-identity" aria-label="Platform pembelajaran">
+      <span class="identity-dot"></span><span>INTERACTIVE LEARNING</span><b>TGr</b>
+    </div>
+    <div class="header-tools">
+      <button id="btnQuickFind" class="icon-btn quickfind-btn" aria-label="Cari materi (Ctrl+K)" title="Cari materi · Ctrl+K">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      </button>
+      <div class="mod-select-wrap desktop-only">
+        <select id="selHeader" class="mod-select" aria-label="Pilih materi"></select>
+      </div>
+      <button id="btnFs" class="icon-btn" aria-label="Pengaturan tampilan" title="Pengaturan tampilan">
+        <svg viewBox="0 0 24 24"><path d="M4 21v-7m0 0v-6m0 0a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6m0 0v7M4 14h16"/><circle cx="9" cy="10" r="1.6"/><circle cx="15" cy="10" r="1.6"/></svg>
+      </button>
+      <button id="btnTheme" class="icon-btn" aria-label="Ganti mode terang/gelap" title="Mode terang / gelap">
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button id="btnFull" class="icon-btn" aria-label="Layar penuh" title="Layar penuh">
+        <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+    </div>
+    <div id="fsMenu" role="menu">
+      <label>Ukuran teks
+        <span><button class="btn sm" data-fs="1" style="margin-right:6px">A</button><button class="btn sm" data-fs="2" style="margin-right:6px">A+</button><button class="btn sm" data-fs="3">A++</button></span>
+      </label>
+      <label style="cursor:pointer">Animasi visuals <input type="checkbox" id="chkMotion" checked></label>
+    </div>
+  </header>
+
+  <!-- ================= TENGAH: SIDEBAR + PANEL ================= -->
+  <div class="mid">
+    <div id="drawerOverlay"></div>
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi modul">
+      <div class="sidebar-top">
+        <div class="sidebar-label"><span class="sidebar-label-dot"></span> LEARNING DIRECTORY <span class="sidebar-total">27 MODUL</span></div>
+        <label class="sidebar-search" for="moduleSearch">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <input id="moduleSearch" type="search" placeholder="Cari materi..." autocomplete="off" aria-label="Cari materi pembelajaran">
+          <kbd>/</kbd>
+        </label>
+        <div id="searchCount" class="search-count" role="status" aria-live="polite"></div>
+      </div>
+      <div class="side-scroll" id="sideScroll"></div>
+      <div class="side-foot">
+        <div class="lbl"><span>Materi dikunjungi <small id="sideProgressDetail">0/27</small></span><span id="sideProgressTxt">0%</span></div>
+        <div class="progress-track"><div class="progress-fill" id="sideProgressFill"></div></div>
+      </div>
+    </aside>
+
+    <main class="panel-wrap">
+      <div id="panel" role="main"><div class="view" id="panelView"></div></div>
+    </main>
+  </div>
+
+  <!-- ================= NAVIGASI BAWAH TETAP ================= -->
+  <nav class="bottom-nav" aria-label="Navigasi materi">
+    <button id="btnPrev" class="nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      <span class="txt-full">Sebelumnya</span><span class="txt-short">Prev</span>
+    </button>
+    <div class="pos">
+      <div class="lbl" id="navPosLbl">Modul 1 / 27</div>
+      <div class="progress-track"><div class="progress-fill" id="navProgressFill"></div></div>
+    </div>
+    <div class="mod-select-wrap" style="flex:1;display:flex">
+      <select id="selBottom" class="mod-select" style="width:100%" aria-label="Pilih modul"></select>
+    </div>
+    <button id="btnNext" class="nav-btn primary">
+      <span class="txt-full">Berikutnya</span><span class="txt-short">Next</span>
+      <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </nav>
+</div>
+
+<!-- ================= LIGHTBOX GAMBAR ================= -->
+<div id="lightbox" role="dialog" aria-label="Pratinjau gambar">
+  <div id="lbCount">1 / 1</div>
+  <div id="lbStage"><img id="lbImg" src="" alt=""></div>
+  <div id="lbCaption"></div>
+  <button class="lb-btn" id="lbClose" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lb-btn" id="lbPrev" aria-label="Sebelumnya"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button class="lb-btn" id="lbNext" aria-label="Berikutnya"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+  <button class="lb-btn" id="lbZoom" aria-label="Perbesar / perkecil"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M8 11h6M11 8v6"/></svg></button>
+</div>
+
+<noscript>
+  <div style="position:fixed;inset:0;z-index:999;background:#07111F;color:#F8FAFC;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;font-family:sans-serif">
+    <div><h2 style="margin-bottom:10px">JavaScript diperlukan</h2>
+    <p>Website pembelajaran ini membutuhkan JavaScript untuk navigasi materi, simulasi, dan kuis.<br>Aktifkan JavaScript pada browser Anda lalu muat ulang halaman.</p></div>
+  </div>
+</noscript>
+
+<script>
+/* =====================================================================
+   DATA 1 — Konten Modul 1–7 (sumber: TOOL GRINDING CT.pptx & Mesin Gerinda Great D1.pptx)
+   ===================================================================== */
+'use strict';
+
+const IMG = './assets/images/';
+
+/* ---------- Ikon SVG kecil ---------- */
+const ICONS = {
+  home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+  clipboard:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2"/><path d="m8.5 13 2 2 4-4.5"/>',
+  shield:'<path d="M12 3 5 6v5c0 5 3 8.5 7 10 4-1.5 7-5 7-10V6z"/><path d="m9 12 2 2 4-4"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/>',
+  book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h13"/>',
+  cog:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10 2.1 2.1M4.9 19.1l2.1-2.1m10-10 2.1-2.1"/>',
+  ruler:'<path d="m3 17 14-14 4 4L7 21z"/><path d="m7.5 12.5 2 2m2-6 2 2m2-6 2 2"/>',
+  wrench:'<path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3z"/>',
+  flow:'<rect x="3" y="3" width="7" height="6" rx="1.5"/><rect x="14" y="15" width="7" height="6" rx="1.5"/><path d="M10 6h4a3 3 0 0 1 3 3v6"/>',
+  chart:'<path d="M4 20V4"/><path d="M4 20h16"/><rect x="7" y="12" width="3" height="5"/><rect x="12" y="8" width="3" height="9"/><rect x="17" y="5" width="3" height="12"/>',
+  percent:'<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
+  calc:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>',
+  alert:'<path d="M12 3 2 20h20z"/><path d="M12 9v5m0 3h.01"/>',
+  image:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m4 19 6-6 4 4 3-3 3 3"/>',
+  quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.6 2.2c-.8.4-1.1 1-1.1 1.8"/><path d="M12 17h.01"/>',
+  wheel:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v6m0 6v6M3 12h6m6 0h6"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+  play:'<path d="M7 4.5v15l13-7.5z"/>',
+  pause:'<path d="M7 4h3v16H7zM14 4h3v16h-3z"/>',
+  reset:'<path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/>',
+  check:'<path d="m4.5 12.5 5 5L20 6.5"/>',
+  spark:'<path d="M12 2v4m0 12v4M2 12h4m12 0h4M5 5l2.5 2.5M16.5 16.5 19 19M5 19l2.5-2.5M16.5 7.5 19 5"/>',
+  gem:'<path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3 7.5 9 12 21l4.5-12L15 3"/>'
+};
+function ico(name, cls){ return '<span class="ico '+(cls||'')+'"><svg viewBox="0 0 24 24">'+(ICONS[name]||ICONS.book)+'</svg></span>'; }
+
+/* ---------- Aturan Section (verbatim PPT) ---------- */
+const ATURAN = [
+  { t:'<b>Kerapian sebelum masuk section.</b> Mahasiswa masuk section gerinda sudah mandi dan rapi. Kalau tidak rapi → pulang.', tag:'Kerapian' },
+  { t:'<b>Briefing 5 menit</b> sebelum jam masuk.', tag:'Briefing' },
+  { t:'<b>Cleaning harian:</b> menyapu lantai workshop setiap hari.', tag:'Cleaning' },
+  { t:'<b>Cleaning mingguan:</b> mengepel lantai workshop setiap hari <b>Jumat</b>.', tag:'Cleaning' },
+  { t:'<b>Cleaning kantor:</b> menyapu dan mengepel lantai kantor setiap hari <b>Rabu</b>.', tag:'Cleaning' },
+  { t:'<b>Kaca kantor:</b> mengelap kaca kantor setiap hari <b>Rabu</b>.', tag:'Cleaning' },
+  { t:'<b>Inventaris</b> setiap hari <b>Senin</b> dengan scan barcode.', tag:'Inventaris' },
+  { t:'<b>Wajib membawa APD</b> setiap praktik.', tag:'APD' },
+  { t:'<b>Ketidakhadiran:</b> apabila mahasiswa tidak masuk, wajib telepon Kabeng. Tidak telepon = <b>minus ×2</b>.', tag:'Kehadiran' },
+  { t:'<b>Hemat energi:</b> matikan mesin, lampu, blower, dan kipas angin ketika istirahat dan pulang.', tag:'Energi' },
+  { t:'<b>Kewenangan instruktur:</b> instruktur berhak menegur dan mengambil tindakan apabila terdapat ketidaksesuaian.', tag:'Disiplin' }
+];
+
+/* ---------- APD & K3 ---------- */
+const APD = [
+  { i:'user', t:'Wearpack & Name Tag', d:'Memakai wearpack dengan name tag sesuai — rapi dan bersih.' },
+  { i:'shield', t:'Safety Shoes', d:'Memakai safety shoes untuk melindungi kaki dari material jatuh dan serpihan logam.' },
+  { i:'gem', t:'Kacamata Safety', d:'Menggunakan kacamata safety agar mata terlindung dari serpihan saat penggerindaan.' },
+  { i:'shield', t:'Masker', d:'Membawa dan menggunakan masker untuk menghindari menghirup debu hasil gerinda.' },
+  { i:'clipboard', t:'Kerapian Diri', d:'Kuku dan rambut harus pendek. Rambut berwarna hitam (sesuai aturan section).' },
+  { i:'cog', t:'Pemasangan Batu Gerinda Diamond', d:'Pemasangan batu gerinda diamond dengan benar pada mesin Great D1.' }
+];
+
+/* ---------- Capaian prodi ---------- */
+const CAPAIAN = {
+  tpm: {
+    judul:'Program TPM & PM',
+    chips:['Durasi: 2 minggu (efektif 10 hari)','Rolling mesin mulai hari Selasa setelah overlapping awal'],
+    poin:[
+      'Mahasiswa rolling mesin yang berbeda, dimulai pada hari <b>Selasa</b> setelah <b>overlapping awal</b>.',
+      'Pembagian waktu mesin: <b>2 hari Vitax, 3 hari Grief, 4 hari Great D1</b>.',
+      'Menyelesaikan <b>2 Kompetensi GD 1</b> dan <b>2 Produksi</b> di setiap mesin.'
+    ],
+    rolling:[{m:'Overlapping Awal',d:'2 hari',c:'blue'},{m:'Vitax',d:'2 hari',c:'neon'},{m:'Grief',d:'3 hari',c:'neon'},{m:'Great D1',d:'4 hari',c:'ok'}]
+  },
+  tmi: {
+    judul:'Program TMI–RTM & TMK–TRMK',
+    chips:['Durasi: 1 minggu (efektif 4 hari)','Hanya mesin Great D1'],
+    poin:[
+      'Mahasiswa hanya mempelajari <b>mesin Great D1</b> saja.',
+      'Menyelesaikan <b>2 nilai produksi</b>, yaitu <b>ISO 6</b> dan <b>ISO 2</b>.'
+    ],
+    rolling:[{m:'Great D1',d:'4 hari efektif',c:'ok'}]
+  }
+};
+
+/* ---------- Spesifikasi Great D1 (verbatim PPT) ---------- */
+const SPEK = [
+  { k:'Kapasitas Kerja', r:[
+    ['Maksimum diameter cutter antara 2 center','130 mm'],
+    ['Maksimum jarak center','250 mm'],
+    ['Maksimum diameter cutter waktu fly mounted','320 mm'],
+    ['Lubang tirus spindel kepala pembagi','MT4 / ISO 4'],
+    ['Kapasitas maksimum collet','MT4 / ISO 40, 22/24 mm'],
+    ['Tinggi center kepala pembagi','95 mm']
+  ]},
+  { k:'Ukuran dan Berat Mesin', r:[
+    ['Tinggi mesin','1450 mm'],
+    ['Luas lantai untuk mesin dan pendingin','1500 × 850 mm²'],
+    ['Berat standar','350 kg']
+  ]},
+  { k:'Spindel Batu Gerinda', r:[
+    ['Tenaga spindel motor','0,75 HP'],
+    ['Angka putaran motor','1400 rpm'],
+    ['Angka putaran spindel penghubung','3750 rpm']
+  ]},
+  { k:'Jangkauan Penyetelan dan Jarak Tempuh', r:[
+    ['Jarak jangkau meja mesin','250 mm'],
+    ['Jarak penyetelan pengikat benda','200 mm'],
+    ['Jarak jangkau eretan melintang','50 mm'],
+    ['Jarak jangkau eretan vertikal','50 mm'],
+    ['Sudut putar meja vertikal','360°'],
+    ['Sudut putar column pencekam benda','360°'],
+    ['Jarak jangkau slide maksimum','100 mm'],
+    ['Panjang alur spiral (min–maks)','60–100 mm']
+  ]}
+];
+
+/* ---------- Bagian-bagian mesin (teks PPT) ---------- */
+const BAGIAN = [
+  { n:1, id:'kepala-gerinda', nama:'Kepala Gerinda',
+    fungsi:'Kepala gerinda merupakan tempat spindel utama dan juga lampu penerangan. Posisi kepala gerinda tetap.',
+    img:'bagian-kepala-gerinda.jpg' },
+  { n:2, id:'spindel', nama:'Spindel Utama',
+    fungsi:'Merupakan bagian yang paling penting dari mesin Great D1 karena sebagai tempat berputarnya batu gerinda.',
+    img:'bagian-spindel-utama.jpg' },
+  { n:3, id:'lampu', nama:'Lampu Penerang',
+    fungsi:'Sebagai penerangan di tempat kerja. Lampu di mesin GD 1 memiliki kriteria tegangan 12 Volt dengan daya 55 watt.',
+    img:'bagian-lampu-penerang.jpg' },
+  { n:4, id:'kepala-lepas', nama:'Kepala Lepas',
+    fungsi:'Kepala lepas memiliki 3 bagian utama, yaitu sumbu putar atas, sumbu putar tengah, dan sumbu putar bawah.',
+    img:'bagian-sumbu-putar.jpg' },
+  { n:5, id:'stoper-eretan', nama:'Stoper & Eretan',
+    fungsi:'Stoper untuk membatasi gerak meja / kedudukan sumbu bawah secara radial sumbu spindel. Eretan sebagai penggerak untuk pemakanan secara axial sumbu spindel dan secara vertikal.',
+    img:'bagian-stoper-eretan.jpg' },
+  { n:6, id:'bed-mesin', nama:'Bed Mesin',
+    fungsi:'Berfungsi sebagai landasan luncur kepala lepas. Bed mesin juga berfungsi sebagai referensi kesejajaran saat gerinda cutter.',
+    img:null },
+  { n:7, id:'unit-pengendali', nama:'Unit Pengendali',
+    fungsi:'Memuat: tombol darurat, tombol mematikan putaran spindel, spindel berputar searah jarum jam, spindel berputar berlawanan arah jarum jam, saklar dan tombol penyedot debu, saklar dan tombol pendingin, serta saklar utama.',
+    img:null },
+  { n:8, id:'transmisi', nama:'Transmisi Sabuk',
+    fungsi:'Merupakan bagian mesin yang menghubungkan motor penggerak dengan yang digerakkan. Pada mesin Great D1 menggunakan transmisi sabuk.',
+    img:'bagian-transmisi-sabuk.jpg' },
+  { n:9, id:'motor', nama:'Motor Listrik (Spindel & Blower)',
+    fungsi:'Motor spindel berfungsi sebagai penggerak spindel utama, sedangkan motor blower sebagai motor penggerak blower.',
+    img:'bagian-motor-spindel-blower.jpg' }
+];
+
+/* ---------- Sumbu putar (teks PPT) ---------- */
+const SUMBU = [
+  { id:'atas', nama:'Sumbu Putar Atas',
+    d:'Terdapat pada landasan sebagai tempat alat pencekam benda.',
+    p:'Sumbu ini menjadi acuan peletakan alat pencekam benda kerja pada kepala lepas.' },
+  { id:'tengah', nama:'Sumbu Putar Tengah',
+    d:'Dapat digerakkan ke arah vertikal dengan menggunakan eretan.',
+    p:'Pergerakan vertikal inilah yang mengatur pemakanan benda kerja terhadap batu gerinda.' },
+  { id:'bawah', nama:'Sumbu Putar Bawah',
+    d:'Berada di meja yang bisa bergerak maju mundur yang dilengkapi dengan stoper. Posisi sumbu putar bawah juga bisa diubah dengan mengendorkan baut penyetel, sepanjang meja.',
+    p:'Gerak maju-mundur meja digunakan untuk pemakanan sepanjang sumbu spindel; stoper membatasi geraknya.' }
+];
+
+/* ---------- Batu gerinda ---------- */
+const BATU = [
+  { nama:'Cup Grinding Wheel', img:['batu-cup-1.jpg','batu-cup-2.jpg'],
+    d:'Untuk melakukan penggerindaan alat-alat potong seperti cutter, pahat bubut, dan sebagainya.',
+    p:'Permukaan gerindanya berada pada ujung (muka) batu berbentuk cangkir, sehingga cocok untuk menajamkan bidang singkap alat potong secara datar.' },
+  { nama:'Dish Grinding Wheel', img:['batu-dish-1.jpg','batu-dish-2.jpg'],
+    d:'Untuk melakukan penggerindaan profil pada cutter.',
+    p:'Bentuknya tipis menyerupai piring sehingga dapat masuk ke celah dan membentuk profil tertentu pada cutter.' }
+];
+
+/* ---------- Jenis alat potong ---------- */
+const ALAT = [
+  { nama:'ISO 6', img:'alat-iso-6.jpg', d:'Salah satu jenis alat potong (pahat) yang dihasilkan oleh penggerindaan di mesin Great D1.' },
+  { nama:'ISO 2', img:'alat-iso-2.jpg', d:'Alat potong dengan tuntutan sudut tertentu, menjadi target produksi pada mesin Great D1.' },
+  { nama:'ISO 9', img:'alat-iso-9.jpg', d:'Contoh lain jenis alat potong yang dihasilkan.' },
+  { nama:'Pahat Ulir Metris HSS 600', img:'alat-pahat-ulir-metris.jpg', d:'Pahat ulir metris dari material HSS.' },
+  { nama:'Pahat Undercut', img:'alat-pahat-undercut.jpg', d:'Pahat undercut untuk alur tertentu.' },
+  { nama:'End Mill Cutter Roughing & Finishing', img:'alat-end-mill-roughing.jpg', img2:'alat-end-mill-finishing.jpg', d:'End mill cutter jenis roughing (alur kasar) dan finishing (alur halus).' },
+  { nama:'Shell End Mill Cutter Roughing & Finishing', img:'alat-shell-end-mill.jpg', d:'Shell end mill cutter jenis roughing dan finishing.' }
+];
+
+/* ---------- Perlengkapan mesin (17 item, teks PPT) ---------- */
+const PERK = [
+  { nama:'Vice', img:'perk-vice.jpg',
+    f:'Berfungsi untuk mencekam benda kerja dengan permukaan yang datar, seperti gagang ISO 2, ISO 6, tool holder pahat alur dan ulir.' },
+  { nama:'Bevel Transfer', img:'perk-bevel-transfer.jpg',
+    f:'Alat bantu untuk memeriksa sudut benda kerja sudah benar atau belum.' },
+  { nama:'Wheel Mounting', img:'perk-wheel-mounting.jpg',
+    f:'Berfungsi untuk mencekam batu gerinda dengan lubang berdiameter tertentu, menggunakan as dengan ring dan baut serta menghubungkan batu gerinda dengan spindel mesin.' },
+  { nama:'Bevel Protractor', img:'perk-bevel-protractor.jpg',
+    f:'Untuk mengukur berapa besar sudut benda kerja, juga bisa sebagai alat untuk setting bevel transfer.' },
+  { nama:'Parallel Block', img:'perk-parallel-block.jpg',
+    f:'Berfungsi membantu saat pengukuran, sebagai bidang referensi.' },
+  { nama:'Indexing Head', img:'perk-indexing-head.jpg',
+    f:'Berfungsi untuk memegang collet dan membagi sudut posisi penyayatan.' },
+  { nama:'Indexing Ring', img:'perk-indexing-ring.jpg',
+    f:'Berfungsi untuk membantu dalam menentukan pembagian sudut. Tiap indexing ring memiliki jumlah pembagi yang berbeda, paling kecil 12 dan paling besar 24.' },
+  { nama:'Centre Guide', img:'perk-centre-guide.jpg',
+    f:'Untuk mengatur kesejajaran benda kerja terhadap bed mesin.' },
+  { nama:'Tilting Plate', img:'perk-tilting-plate.jpg',
+    f:'Landasan bersudut, membantu dalam setting sudut benda kerja.' },
+  { nama:'Generating Disc Kit', img:'perk-generating-disc-kit.jpg',
+    f:'Berfungsi untuk membantu gerakan penyayatan cutter agar memiliki panjang spiral yang sesuai. Alat ini menghubungkan gerakan berputar indexing head dan pita/senar baja.' },
+  { nama:'Auxiliary Change Gear System', img:null,
+    f:'Berfungsi untuk membantu gerakan penyayatan cutter agar memiliki panjang spiral yang sesuai. Alat ini menghubungkan gerakan berputar indexing head dan indexing ring.' },
+  { nama:'Spiral Grinding Attachment', img:'perk-spiral-attachment.jpg',
+    f:'Berfungsi sebagai alat bantu penggerindaan spiral dalam menghubungkan gerakan memanjang sliding eretan dan berputarnya indexing.' },
+  { nama:'Spanner', img:'perk-spanner.jpg', img2:'perk-spanner-2.jpg',
+    f:'Untuk mengencangkan dan mengendorkan baut saat setting sudut dan posisi.' },
+  { nama:'Taper Adaptor Sleeve', img:'perk-taper-adaptor-sleeve.jpg',
+    f:'Berfungsi untuk memegang benda kerja yang bertangkai konus pada penggunaan indexing. Contohnya TD.' },
+  { nama:'Taper Adaptor Arbor', img:'perk-taper-adaptor-arbor.jpg',
+    f:'Berfungsi untuk memegang shell end mill pada penggunaan indexing.' },
+  { nama:'Spring Collet', img:'perk-spring-collet.jpg',
+    f:'Berfungsi untuk memegang benda-benda yang berbentuk silindris. Ukuran collet mulai dari diameter 0,25 – 25 mm. Spring collet juga ada yang untuk memegang benda square.' },
+  { nama:'Adjustable Wheel Guard', img:'perk-wheel-guard.jpg',
+    f:'Untuk menutup batu gerinda agar dapat mengurangi kecelakaan kerja akibat batu gerinda yang berputar.' }
+];
+
+/* ---------- Mesin section ---------- */
+const MESIN_SECTION = [
+  { nama:'Mesin Vitax Twistdrill', img:'mesin-vitax-twistdrill.jpg',
+    f:'Digunakan untuk penggerindaan twist drill (bor). Twistdrill latihan berasal dari instruktur dan twistdrill produksi dari kamar alat.',
+    alur:'alur-vitax', alurT:'Lihat alur Vitax' },
+  { nama:'Mesin Vitax Roughing', img:'mesin-vitax-roughing.jpg',
+    f:'Salah satu mesin yang digunakan dalam Section Tool Grinding sesuai daftar mesin pada PPT. Detail alur pengerjaan untuk mesin ini belum dijelaskan pada materi sumber.',
+    alur:null, alurT:null },
+  { nama:'Mesin Great D1', img:'mesin-great-d1.jpg',
+    f:'Mesin gerinda untuk pengerindaan alat potong yang memiliki tuntutan sudut tertentu. Contoh: ISO 2, ISO 6, cutter.',
+    alur:'alur-gd1', alurT:'Lihat alur Great D1' },
+  { nama:'Mesin Greif', img:'mesin-greif.jpg',
+    f:'Digunakan untuk latihan dan produksi pahat R20 (ISO 2 R2020 dan ISO 6 R2020) dengan setting bevel transfer 45° dan 10°.',
+    alur:'alur-greif', alurT:'Lihat alur Greif' }
+];
+
+/* ---------- Hal-hal yang perlu diperhatikan (PPT) ---------- */
+const PERHATIAN = [
+  { i:'alert', t:'Wajib lapor ketika meninggalkan mesin.', c:'warn' },
+  { i:'gem', t:'Boleh membawa air minum, diletakkan pada tempatnya.', c:'ok' },
+  { i:'wheel', t:'Cek batu gerinda di awal dan akhir; jika ada yang gempil silahkan lapor.', c:'danger' },
+  { i:'calc', t:'Perhitungan kompensasi di hari Senin setelah praktik selesai.', c:'blue' },
+  { i:'clock', t:'Maksimal penyelesaian nilai praktik 1 bulan setelah praktik berakhir.', c:'warn' },
+  { i:'alert', t:'Dilarang menggunakan HP tanpa ijin.', c:'danger' },
+  { i:'clipboard', t:'Pengumpulan logbook pada hari Jumat akhir minggu (isi sudah lengkap sesuai contoh).', c:'ok' }
+];
+
+</script>
+<script>
+/* =====================================================================
+   DATA 2 — Alur, Penilaian, Kompensasi, Galeri, Kuis
+   ===================================================================== */
+
+/* ---------- ALUR VITAX ---------- */
+const ALUR_VITAX = {
+  langkah:[
+    'Mempersiapkan <b>angle gauge</b> dan bor yang sudah disediakan.',
+    '<b>Twistdrill produksi</b> dari kamar alat, <b>twistdrill latihan</b> dari instruktur.',
+    'Mencatat ukuran awal dan <b>lapor start</b> kepada instruktur.',
+    'Mengerjakan <b>latihan sesuai standard</b>.',
+    'Estimasi produksi <b>25 menit</b>.'
+  ],
+  foto:[
+    ['alur-angle-gauge.jpg','Angle Gauge — alat bantu setting sudut pada mesin Vitax'],
+    ['alur-twistdrill-latihan.jpg','Twistdrill Latihan — bor latihan dari instruktur'],
+    ['alur-twistdrill-produksi.jpg','Twistdrill Produksi — bor produksi dari kamar alat']
+  ],
+  flow:[
+    { t:'Latihan 1 Twist Drill', d:'Mengerjakan tanpa estimasi · dengan tuntutan sesuai standard', cls:'start',
+      detail:'Latihan dikerjakan tanpa estimasi waktu dengan tuntutan sesuai standard. Twistdrill latihan berasal dari instruktur. Jika hasil belum sesuai standard, ulangi latihan (jalur "Tidak").' },
+    { t:'Produksi Twist Drill', d:'Mengerjakan dengan estimasi 25 menit · tuntutan sesuai standard', cls:'final',
+      detail:'Setelah latihan dinyatakan sesuai standard (jalur "Ya"), mahasiswa mengerjakan produksi twist drill dengan estimasi 25 menit menggunakan twistdrill produksi dari kamar alat.' }
+  ],
+  fcImg:'flowchart-vitax.jpg', fcCaption:'Flowchart asli PPT — Alur penggerindaan mesin Vitax'
+};
+
+/* ---------- ALUR GREAT D1 ---------- */
+const ALUR_GD1 = {
+  langkah:[
+    'Mempersiapkan <b>hairline</b>; pahat dari <b>kamar alat</b> untuk latihan dan produksi.',
+    'Mengukur bidang lebar <b>ISO 6 R1616 WAJIB dengan parallel block</b>; mengukur <b>ISO 2 R1616 dengan bevel transfer</b> — diukur bagian yang bercahaya.',
+    'Mencatat ukuran awal dan <b>lapor start</b> kepada instruktur.',
+    'Jika ingin kompetensi: <b>sumbu putar Atas, Tengah, dan Bawah harus posisi 0°</b>.',
+    'Mengerjakan <b>latihan sesuai standard</b>.',
+    'Estimasi produksi <b>ISO 6 R1616 = 40 menit</b>, <b>ISO 2 = 60 menit</b> (minimal 2 pcs).'
+  ],
+  foto:[
+    ['alur-hairline.jpg','Hairline — alat bantu pengukuran'],
+    ['alur-parallel-block.jpg','Parallel Block — wajib untuk pengukuran ISO 6 R1616'],
+    ['alur-pahat-kamar-alat.jpg','Pahat Kamar Alat — untuk latihan dan produksi'],
+    ['alur-pahat-kompetensi.jpg','Pahat Kompetensi — pahat untuk uji kompetensi']
+  ],
+  flow:[
+    { t:'Latihan 1 — ISO 6 R16', d:'Pahat kamar alat R16, mengerjakan 2 latihan · semua bidang', cls:'start',
+      detail:'Mengerjakan 2 latihan dengan pahat kamar alat R16, mengerjakan semua bidang. Pengukuran bidang lebar ISO 6 R1616 wajib menggunakan parallel block. Belum sesuai standard → ulangi (jalur "Tidak").' },
+    { t:'Kompetensi 1 — ISO 6 R16', d:'Pahat instruktur R16', cls:'',
+      detail:'Setelah latihan 1 sesuai standard (jalur "Ya"), uji kompetensi 1 untuk ISO 6 R16 menggunakan pahat instruktur R16.' },
+    { t:'Latihan 2 — ISO 2 R16', d:'Pahat kamar alat R16, mengerjakan 2 latihan · semua bidang', cls:'',
+      detail:'Lanjut ke latihan 2 untuk ISO 2 R16: mengerjakan 2 latihan dengan pahat kamar alat R16, semua bidang. Pengukuran ISO 2 R1616 menggunakan bevel transfer pada bagian yang bercahaya.' },
+    { t:'Kompetensi 2 — ISO 2 R16', d:'Pahat instruktur R16', cls:'',
+      detail:'Uji kompetensi 2 untuk ISO 2 R16 menggunakan pahat instruktur R16 setelah latihan 2 dinyatakan sesuai standard.' },
+    { t:'Produksi ISO 6 & ISO 2', d:'Mengerjakan semua bidang · ISO 6: 40 menit · ISO 2: 60 menit · minimal 2 pcs', cls:'final',
+      detail:'Setelah kedua kompetensi lulus, mengerjakan produksi ISO 6 dan ISO 2 (mengerjakan semua bidang). Estimasi: ISO 6 R1616 = 40 menit, ISO 2 = 60 menit, minimal 2 pcs.' }
+  ],
+  fcImg:'flowchart-great-d1.jpg', fcCaption:'Flowchart asli PPT — Alur penggerindaan mesin Great D1 (Latihan 1 → C1 → Latihan 2 → C2 → Produksi)'
+};
+
+/* ---------- ALUR GREIF ---------- */
+const ALUR_GREIF = {
+  langkah:[
+    'Mempersiapkan <b>hairline</b>; pahat dari <b>kamar alat</b> untuk produksi.',
+    'Setting <b>bevel transfer 45° untuk ISO 2 R2020</b> dan <b>10° untuk ISO 6 R2020</b>.',
+    'Mengukur bidang lebar <b>ISO 6 R2020 WAJIB dengan parallel block</b>.',
+    'Mencatat ukuran awal dan <b>lapor start</b> kepada instruktur.',
+    'Mengerjakan <b>latihan sesuai standard</b>.',
+    'Estimasi produksi <b>ISO 6 R2020 = 40 menit</b>, <b>ISO 2 = 40 menit</b> (minimal 2 pcs).'
+  ],
+  foto:[
+    ['alur-hairline.jpg','Hairline — alat bantu pengukuran'],
+    ['alur-pahat-r20.jpg','Pahat R20 — benda kerja latihan/produksi mesin Greif'],
+    ['alur-bevel-45.jpg','Bevel Transfer 45° — untuk ISO 2 R2020'],
+    ['alur-bevel-10.jpg','Bevel Transfer 10° — untuk ISO 6 R2020']
+  ],
+  flow:[
+    { t:'Latihan 1 — ISO 2 R20', d:'Mengerjakan 2 bidang saja (Lebar dan Panjang Luar)', cls:'start',
+      detail:'Latihan pertama: ISO 2 R20 dengan mengerjakan 2 bidang saja, yaitu Lebar dan Panjang Luar. Belum sesuai standard → ulangi latihan (jalur "Tidak").' },
+    { t:'Latihan 2 — ISO 6 R20', d:'Mengerjakan 2 bidang saja (Panjang dan Lebar)', cls:'',
+      detail:'Latihan kedua: ISO 6 R20 dengan mengerjakan 2 bidang saja, yaitu Panjang dan Lebar. Pengukuran bidang lebar ISO 6 R2020 wajib dengan parallel block.' },
+    { t:'Produksi Greif R16', d:'2 ISO 6 dan 2 ISO 2 (kamar alat R16) · masing-masing estimasi 40 menit · minimal 2 pcs', cls:'final',
+      detail:'Setelah kedua latihan sesuai standard, mengerjakan produksi: 2 ISO 6 dan 2 ISO 2 menggunakan pahat kamar alat R16. Estimasi produksi ISO 6 R2020 = 40 menit dan ISO 2 = 40 menit.' }
+  ],
+  fcImg:'flowchart-greif.jpg', fcCaption:'Flowchart asli PPT — Alur penggerindaan mesin Greif'
+};
+
+/* ---------- Toleransi & nilai (verbatim PPT) ---------- */
+const TOLERANSI = {
+  ukuran: [ ['Umum','10, 4, 1'], ['Khusus','10, 1'], ['ISO','10, 0'] ],
+  kehalusan: [ ['Umum','10, 5, 1'], ['Khusus','10, 1'], ['ISO','10, 1'] ],
+  imgs:[
+    ['toleransi-umum.png','Toleransi Umum'],
+    ['toleransi-khusus.png','Toleransi Khusus'],
+    ['toleransi-iso.png','Toleransi ISO']
+  ]
+};
+
+/* ---------- Struktur terbaca pada form penilaian (gambar PPT) ---------- */
+const FORM_STRUKTUR = [
+  ['Measuring Table & Measuring Point (MP)','Tabel pengukuran dan poin pengukuran pada form.'],
+  ['Execution (E) & Performance (P)','Hasil eksekusi dan performa (form, surface perfor., std.nr.).'],
+  ['Execution Point (EP)','= 0,7 × E + 0,3 × P'],
+  ['Competency Point (CP)','= 0,7 × MP + 0,3 × EP'],
+  ['Reduction Point (RP)','= (Used − Est) / Est'],
+  ['Pre Final Point (FP)','= CP − RP'],
+  ['Preparation Point (PP)','(WP, tools, dsb.)'],
+  ['Final Point (FP)','= 0,8 × FP + 0,2 × PP']
+];
+
+/* ---------- Bobot & rumus ---------- */
+const BOBOT = {
+  tpm:{ komp:70, prod:30 },
+  tmi:{ prod:100 }
+};
+
+/* ---------- Kompensasi (verbatim PPT) ---------- */
+const KOMPENSASI = {
+  gd1: {
+    nama:'Great D1',
+    latihan:{ sumber:'Pahat dari kamar alat R16', sama:true },
+    produksi:{ sumber:'Pahat dari kamar alat R16' },
+    ranges:[
+      { label:'Pengurangan kurang dari 0,3 mm', jam:'FREE', t:'free' },
+      { label:'Pengurangan 0,3 – 0,8 mm', jam:'−1 jam', t:'minus' },
+      { label:'Pengurangan 0,8 – 1 mm', jam:'−1 jam', t:'minus' }
+    ],
+    batas:'Batas pengurangan tebal, lebar, dan panjang <b>1 mm</b>. Pengurangan lebih dari 1 mm: <b>−5 jam</b>, berlaku kelipatannya.'
+  },
+  greif: {
+    nama:'Greif',
+    latihan:{ sumber:'Pahat dari instruktur R20', sama:false },
+    produksi:{ sumber:'Pahat dari kamar alat R16' },
+    latihanRanges:[
+      { label:'Pengurangan kurang dari 0,5 mm', jam:'FREE', t:'free' },
+      { label:'Pengurangan 0,5 – 1 mm', jam:'−1 jam', t:'minus' },
+      { label:'Pengurangan 1 – 1,5 mm', jam:'−1 jam', t:'minus' },
+      { label:'Pengurangan 1,5 – 2 mm', jam:'−1 jam', t:'minus' }
+    ],
+    latihanBatas:'Batas pengurangan <b>panjang 2 mm</b> dan batas pengurangan <b>lebar 1,5 mm</b>. Pengurangan lebih dari batas: <b>−7 jam</b>.',
+    prodRanges:[
+      { label:'Pengurangan kurang dari 0,3 mm', jam:'FREE', t:'free' },
+      { label:'Pengurangan 0,3 – 0,8 mm', jam:'−1 jam', t:'minus' },
+      { label:'Pengurangan 0,8 – 1 mm', jam:'−1 jam', t:'minus' }
+    ],
+    prodBatas:'Batas pengurangan tebal, lebar, dan panjang <b>1 mm</b>. Pengurangan lebih dari 1 mm: <b>−5 jam</b>, berlaku kelipatannya.'
+  },
+  vitax: {
+    nama:'Vitax',
+    latihan:{ sumber:'Twistdrill dari instruktur', sama:false },
+    latihanRanges:[ { label:'Twistdrill latihan dari instruktur', jam:'FREE kompensasi (boleh dihabiskan)', t:'free' } ],
+    produksi:{ sumber:'Twistdrill dari kamar alat' },
+    prodRanges:[ { label:'FREE pengurangan 5 mm pertama', jam:'FREE', t:'free' } ],
+    prodBatas:'Pengurangan lebih dari 5 mm: <b>per 3 mm-nya −1 jam</b>.'
+  }
+};
+
+/* ---------- Galeri ---------- */
+const GALERI = [
+  { g:'Aktivitas Praktikum', items:[
+    ['aktivitas-praktikum-01.jpg','Mahasiswa mengoperasikan mesin gerinda di workshop'],
+    ['aktivitas-praktikum-02.jpg','Suasana praktikum section tool grinding'],
+    ['benda-kerja-pahat.jpg','Benda kerja pahat sebelum pengerindaan'],
+    ['cutter-shell-endmill.jpg','Cutter shell end mill hasil pengerjaan']
+  ]},
+  { g:'Mesin Gerinda', items:[
+    ['mesin-great-d1-depan.jpg','Mesin gerinda Great D1 (tampak depan)'],
+    ['mesin-great-d1.jpg','Mesin Great D1 di workshop'],
+    ['mesin-vitax-twistdrill.jpg','Mesin Vitax Twistdrill'],
+    ['mesin-vitax-roughing.jpg','Mesin Vitax Roughing'],
+    ['mesin-greif.jpg','Mesin Greif']
+  ]},
+  { g:'Bagian Mesin', items:[
+    ['bagian-kepala-gerinda.jpg','Kepala gerinda — tempat spindel utama dan lampu penerangan'],
+    ['bagian-spindel-utama.jpg','Spindel utama — tempat berputarnya batu gerinda'],
+    ['bagian-lampu-penerang.jpg','Lampu penerang (12 V, 55 W)'],
+    ['bagian-sumbu-putar.jpg','Sumbu putar dengan skala derajat'],
+    ['bagian-stoper-eretan.jpg','Stoper dan eretan meja'],
+    ['bagian-transmisi-sabuk.jpg','Transmisi sabuk penghubung motor'],
+    ['bagian-motor-spindel-blower.jpg','Motor spindel dan motor blower']
+  ]},
+  { g:'Batu Gerinda', items:[
+    ['batu-cup-1.jpg','Cup grinding wheel — untuk alat potong (cutter, pahat bubut)'],
+    ['batu-cup-2.jpg','Cup grinding wheel (tampak atas)'],
+    ['batu-dish-1.jpg','Dish grinding wheel — untuk profil cutter'],
+    ['batu-dish-2.jpg','Dish grinding wheel']
+  ]},
+  { g:'Alat Potong', items:[
+    ['alat-iso-6.jpg','Pahat ISO 6'],
+    ['alat-iso-2.jpg','Pahat ISO 2'],
+    ['alat-iso-9.jpg','Pahat ISO 9'],
+    ['alat-pahat-ulir-metris.jpg','Pahat ulir metris HSS 600'],
+    ['alat-pahat-undercut.jpg','Pahat undercut'],
+    ['alat-end-mill-roughing.jpg','End mill cutter roughing'],
+    ['alat-end-mill-finishing.jpg','End mill cutter finishing'],
+    ['alat-shell-end-mill.jpg','Shell end mill cutter']
+  ]},
+  { g:'Perlengkapan', items:[
+    ['perk-vice.jpg','Vice'], ['perk-bevel-transfer.jpg','Bevel transfer'],
+    ['perk-wheel-mounting.jpg','Wheel mounting'], ['perk-bevel-protractor.jpg','Bevel protractor'],
+    ['perk-parallel-block.jpg','Parallel block'], ['perk-indexing-head.jpg','Indexing head'],
+    ['perk-indexing-ring.jpg','Indexing ring'], ['perk-centre-guide.jpg','Centre guide'],
+    ['perk-tilting-plate.jpg','Tilting plate'], ['perk-generating-disc-kit.jpg','Generating disc kit'],
+    ['perk-spiral-attachment.jpg','Spiral grinding attachment'], ['perk-spanner.jpg','Spanner'],
+    ['perk-taper-adaptor-sleeve.jpg','Taper adaptor sleeve'], ['perk-taper-adaptor-arbor.jpg','Taper adaptor arbor'],
+    ['perk-spring-collet.jpg','Spring collet'], ['perk-wheel-guard.jpg','Adjustable wheel guard']
+  ]},
+  { g:'Diagram & Referensi', items:[
+    ['diagram-prinsip-gerinda.jpg','Skema prinsip kerja penggerindaan (wheel, coolant, work)'],
+    ['flowchart-vitax.jpg','Flowchart alur mesin Vitax'],
+    ['flowchart-great-d1.jpg','Flowchart alur mesin Great D1'],
+    ['flowchart-greif.jpg','Flowchart alur mesin Greif'],
+    ['form-penilaian.jpg','Lembar penilaian praktek kompetensi gerinda'],
+    ['toleransi-umum.png','Toleransi umum'], ['toleransi-khusus.png','Toleransi khusus'],
+    ['toleransi-iso.png','Toleransi ISO']
+  ]}
+];
+
+/* ---------- Kuis (25 soal) ---------- */
+const QUIZ = [
+  { c:'Pengenalan Mesin', q:'Mesin gerinda adalah mesin perkakas dengan mata potong…', o:['Tunggal yang sangat besar','Jamak yang berjumlah sangat banyak','Jamak yang berjumlah dua','Tunggal yang berputar cepat'], a:1,
+    w:'Sesuai PPT: mesin gerinda adalah mesin perkakas dengan mata potong jamak, yang berjumlah sangat banyak, digunakan untuk mengasah/memotong benda kerja.' },
+  { c:'Pengenalan Mesin', q:'Prinsip kerja mesin gerinda adalah…', o:['Batu gerinda diam, benda kerja berputar sendiri','Batu gerinda berputar bersentuhan dengan benda kerja sehingga terjadi pengikisan, penajaman, pengasahan, atau pemotongan','Benda kerja dilebur oleh batu gerinda','Batu gerinda dipukulkan ke benda kerja'], a:1,
+    w:'Batu gerinda berputar bersentuhan dengan benda kerja sehingga terjadi pengikisan, penajaman, pengasahan, atau pemotongan.' },
+  { c:'Pengenalan Mesin', q:'Tujuan menggerinda alat potong adalah…', o:['Menghasilkan alat potong yang tajam sesuai tuntutan','Mengubah warna alat potong','Memperbesar ukuran alat potong','Mengeraskan alat potong'], a:0,
+    w:'Menghasilkan alat potong yang tajam sehingga bila digunakan untuk pemotongan/penyayatan bisa menghasilkan benda kerja yang sesuai tuntutan.' },
+  { c:'Mesin Great D1', q:'Mesin Great D1 berfungsi untuk…', o:['Mengebor pelat','Menggerinda alat potong dengan tuntutan sudut tertentu','Menggerinda permukaan meja','Menyayat logam tebal'], a:1,
+    w:'Great D1 berfungsi sebagai pengerindaan alat potong yang memiliki tuntutan sudut tertentu. Contoh: ISO 2, ISO 6, cutter.' },
+  { c:'Spesifikasi Great D1', q:'Maksimum diameter cutter antara 2 center pada mesin Great D1 adalah…', o:['250 mm','320 mm','130 mm','95 mm'], a:2,
+    w:'Maksimum diameter cutter antara 2 center = 130 mm.' },
+  { c:'Spesifikasi Great D1', q:'Maksimum jarak center mesin Great D1 adalah…', o:['130 mm','250 mm','200 mm','100 mm'], a:1,
+    w:'Maksimum jarak center = 250 mm.' },
+  { c:'Spesifikasi Great D1', q:'Tenaga spindel motor Great D1 sebesar…', o:['0,75 HP','1,5 HP','0,5 HP','2 HP'], a:0,
+    w:'Tenaga spindel motor = 0,75 HP, dengan angka putaran motor 1400 rpm dan spindel penghubung 3750 rpm.' },
+  { c:'Spesifikasi Great D1', q:'Angka putaran spindel penghubung mesin Great D1 adalah…', o:['1400 rpm','2800 rpm','3750 rpm','1000 rpm'], a:2,
+    w:'Angka putaran spindel penghubung = 3750 rpm.' },
+  { c:'Bagian Mesin', q:'Bagian yang paling penting dari mesin Great D1 karena menjadi tempat berputarnya batu gerinda adalah…', o:['Bed mesin','Kepala lepas','Spindel utama','Unit pengendali'], a:2,
+    w:'Spindel utama merupakan bagian paling penting karena sebagai tempat berputarnya batu gerinda.' },
+  { c:'Bagian Mesin', q:'Kepala lepas memiliki 3 bagian utama, yaitu…', o:['Stoper, eretan, dan meja','Sumbu putar atas, tengah, dan bawah','Motor, sabuk, dan puli','Vice, collet, dan indexing'], a:1,
+    w:'Kepala lepas memiliki 3 bagian utama: sumbu putar atas, sumbu putar tengah, dan sumbu putar bawah.' },
+  { c:'Bagian Mesin', q:'Sumbu putar tengah dapat digerakkan ke arah…', o:['Horisontal dengan stoper','Vertikal dengan menggunakan eretan','Melingkar dengan motor blower','Diagonal dengan transmisi sabuk'], a:1,
+    w:'Sumbu putar tengah dapat digerakkan arah vertikal dengan menggunakan eretan.' },
+  { c:'Bagian Mesin', q:'Fungsi bed mesin pada Great D1 adalah…', o:['Landasan luncur kepala lepas dan referensi kesejajaran saat gerinda cutter','Tempat penyimpanan collet','Penggerak utama spindel','Pendingin batu gerinda'], a:0,
+    w:'Bed mesin berfungsi sebagai landasan luncur kepala lepas dan referensi kesejajaran saat gerinda cutter.' },
+  { c:'Bagian Mesin', q:'Lampu penerang pada mesin Great D1 memiliki kriteria…', o:['Tegangan 12 Volt, daya 55 watt','Tegangan 220 Volt, daya 55 watt','Tegangan 12 Volt, daya 12 watt','Tegangan 24 Volt, daya 100 watt'], a:0,
+    w:'Lampu penerang mesin GD 1 memiliki tegangan 12 Volt dengan daya 55 watt.' },
+  { c:'Bagian Mesin', q:'Transmisi yang digunakan pada mesin Great D1 adalah…', o:['Transmisi roda gigi','Transmisi rantai','Transmisi sabuk','Transmisi hidrolik'], a:2,
+    w:'Pada mesin Great D1 menggunakan transmisi sabuk yang menghubungkan motor penggerak dengan yang digerakkan.' },
+  { c:'Batu Gerinda', q:'Cup grinding wheels pada mesin GD 1 digunakan untuk…', o:['Penggerindaan profil pada cutter','Penggerindaan alat-alat potong seperti cutter dan pahat bubut','Memotong batang besi','Mengepolasi permukaan'], a:1,
+    w:'Cup wheels untuk penggerindaan alat-alat potong seperti cutter, pahat bubut, dan sebagainya; dish grinding wheels untuk penggerindaan profil pada cutter.' },
+  { c:'Perlengkapan', q:'Perlengkapan yang wajib digunakan untuk mengukur bidang lebar ISO 6 R1616 pada mesin Great D1 adalah…', o:['Bevel protractor','Parallel block','Generating disc kit','Spanner'], a:1,
+    w:'Pengukuran bidang lebar ISO 6 R1616 WAJIB dengan parallel block.' },
+  { c:'Perlengkapan', q:'Alat bantu untuk memeriksa sudut benda kerja sudah benar atau belum adalah…', o:['Vice','Bevel transfer','Wheel mounting','Centre guide'], a:1,
+    w:'Bevel transfer adalah alat bantu untuk memeriksa sudut benda kerja sudah benar atau belum.' },
+  { c:'Perlengkapan', q:'Rentang ukuran spring collet pada mesin Great D1 adalah diameter…', o:['0,25 – 25 mm','1 – 50 mm','5 – 30 mm','0,5 – 12 mm'], a:0,
+    w:'Ukuran collet mulai dari diameter 0,25 – 25 mm; spring collet juga ada yang untuk memegang benda square.' },
+  { c:'Alur Praktik', q:'Untuk uji kompetensi di mesin Great D1, kedudukan sumbu putar atas, tengah, dan bawah harus…', o:['45°','10°','90°','0°'], a:3,
+    w:'Jika ingin kompetensi, sumbu putar atas, tengah, dan bawah harus posisi 0°.' },
+  { c:'Alur Praktik', q:'Estimasi produksi di mesin Great D1 adalah…', o:['ISO 6: 25 menit, ISO 2: 40 menit','ISO 6: 40 menit, ISO 2: 60 menit (minimal 2 pcs)','ISO 6: 60 menit, ISO 2: 40 menit','ISO 6 dan ISO 2: 25 menit'], a:1,
+    w:'Estimasi produksi ISO 6 R1616 = 40 menit dan ISO 2 = 60 menit, minimal 2 pcs.' },
+  { c:'Alur Praktik', q:'Pada mesin Greif, setting bevel transfer untuk ISO 2 R2020 dan ISO 6 R2020 berturut-turut adalah…', o:['45° dan 10°','10° dan 45°','30° dan 60°','0° dan 90°'], a:0,
+    w:'Setting bevel transfer 45° untuk ISO 2 R2020 dan 10° untuk ISO 6 R2020.' },
+  { c:'Alur Praktik', q:'Twistdrill latihan dan twistdrill produksi pada mesin Vitax berasal dari…', o:['Keduanya dari kamar alat','Keduanya dari instruktur','Latihan dari instruktur, produksi dari kamar alat','Latihan dari kamar alat, produksi dari instruktur'], a:2,
+    w:'Twistdrill produksi dari kamar alat, twistdrill latihan dari instruktur.' },
+  { c:'Kompensasi', q:'Pada kompensasi Great D1, pengurangan lebih dari batas 1 mm dikenakan…', o:['−1 jam','−5 jam, berlaku kelipatannya','−7 jam','Bebas kompensasi'], a:1,
+    w:'Batas pengurangan tebal, lebar, dan panjang 1 mm. Pengurangan lebih dari 1 mm: −5 jam, berlaku kelipatannya.' },
+  { c:'Kompensasi', q:'Kompensasi latihan twist drill pada mesin Vitax adalah…', o:['FREE kompensasi (boleh dihabiskan)','−1 jam','−5 jam','−7 jam'], a:0,
+    w:'Twistdrill latihan dari instruktur: FREE kompensasi (boleh dihabiskan). Untuk produksi: 5 mm pertama FREE, lebih dari 5 mm per 3 mm-nya −1 jam.' },
+  { c:'Penilaian', q:'Bobot penilaian section gerinda prodi TPM–PM (NHP) adalah…', o:['Kompetensi 70%, Produksi 30%','Kompetensi 30%, Produksi 70%','Produksi 100%','Kompetensi 50%, Produksi 50%'], a:0,
+    w:'TPM–PM: nilai kompetensi 70% dan nilai produksi 30%. Untuk TMI–RTM: nilai produksi 100%. Perbaikan nilai hanya untuk nilai produksi (kuantitas dan nilainya).' }
+];
+
+</script>
+<script>
+/* =====================================================================
+   APP CORE — Shell SPA, navigasi tetap, komponen interaktif
+   ===================================================================== */
+'use strict';
+
+/* ---------- Util ---------- */
+const $ = (s, el) => (el || document).querySelector(s);
+const $$ = (s, el) => Array.from((el || document).querySelectorAll(s));
+const LS = {
+  get(k, d){ try{ const v = localStorage.getItem('tgr-'+k); return v===null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem('tgr-'+k, JSON.stringify(v)); }catch(e){} }
+};
+function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+/* ---------- Lightbox ---------- */
+const Lightbox = {
+  list: [], idx: 0, zoom: 1, panX: 0, panY: 0, drag: null,
+  open(src, cap, list){
+    this.list = list && list.length ? list : [{src, cap: cap||''}];
+    this.idx = this.list.findIndex(x => x.src === src);
+    if (this.idx < 0) this.idx = 0;
+    $('#lbPrev').style.display = $('#lbNext').style.display = this.list.length > 1 ? '' : 'none';
+    this.render();
+    $('#lightbox').classList.add('open');
+  },
+  render(){
+    const it = this.list[this.idx];
+    const img = $('#lbImg');
+    this.zoom = 1; this.panX = 0; this.panY = 0;
+    img.classList.remove('zoomed');
+    img.style.transform = '';
+    img.style.left = ''; img.style.top = '';
+    img.src = it.src; img.alt = it.cap || '';
+    $('#lbCaption').textContent = it.cap || '';
+    $('#lbCount').textContent = (this.idx+1) + ' / ' + this.list.length;
+  },
+  close(){ $('#lightbox').classList.remove('open'); },
+  nav(d){ this.idx = (this.idx + d + this.list.length) % this.list.length; this.render(); },
+  toggleZoom(){
+    this.zoom = this.zoom > 1 ? 1 : 2.2;
+    if (this.zoom === 1){ this.panX = 0; this.panY = 0; }
+    $('#lbImg').style.transform = 'translate('+this.panX+'px,'+this.panY+'px) scale('+this.zoom+')';
+    $('#lbImg').classList.toggle('zoomed', this.zoom > 1);
+  }
+};
+function bindLightbox(){
+  $('#lbClose').onclick = () => Lightbox.close();
+  $('#lbPrev').onclick = () => Lightbox.nav(-1);
+  $('#lbNext').onclick = () => Lightbox.nav(1);
+  $('#lbZoom').onclick = () => Lightbox.toggleZoom();
+  $('#lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') Lightbox.close(); });
+  const img = $('#lbImg');
+  img.addEventListener('dblclick', e => { e.preventDefault(); Lightbox.toggleZoom(); });
+  img.addEventListener('wheel', e => {
+    e.preventDefault();
+    Lightbox.zoom = Math.min(4, Math.max(1, Lightbox.zoom + (e.deltaY < 0 ? .35 : -.35)));
+    if (Lightbox.zoom === 1){ Lightbox.panX = 0; Lightbox.panY = 0; }
+    img.style.transform = 'translate('+Lightbox.panX+'px,'+Lightbox.panY+'px) scale('+Lightbox.zoom+')';
+    img.classList.toggle('zoomed', Lightbox.zoom > 1);
+  }, {passive:false});
+  img.addEventListener('pointerdown', e => {
+    if (Lightbox.zoom <= 1) return;
+    Lightbox.drag = {x: e.clientX, y: e.clientY, px: Lightbox.panX, py: Lightbox.panY};
+    img.setPointerCapture(e.pointerId);
+  });
+  img.addEventListener('pointermove', e => {
+    if (!Lightbox.drag) return;
+    Lightbox.panX = Lightbox.drag.px + (e.clientX - Lightbox.drag.x);
+    Lightbox.panY = Lightbox.drag.py + (e.clientY - Lightbox.drag.y);
+    img.style.transform = 'translate('+Lightbox.panX+'px,'+Lightbox.panY+'px) scale('+Lightbox.zoom+')';
+  });
+  img.addEventListener('pointerup', () => Lightbox.drag = null);
+  document.addEventListener('keydown', e => {
+    if (!$('#lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') Lightbox.close();
+    if (e.key === 'ArrowLeft') Lightbox.nav(-1);
+    if (e.key === 'ArrowRight') Lightbox.nav(1);
+  });
+}
+
+/* ---------- Komponen HTML ---------- */
+function figImg(src, cap, extra){
+  return '<figure class="fig"><div class="fig-frame"><img src="'+IMG+src+'" alt="'+(cap||'')+'" loading="lazy" data-zoom data-cap="'+(cap||'')+'">'
+    + '<span class="zoom-hint">Klik untuk perbesar</span></div>' + (cap ? '<figcaption>'+cap+'</figcaption>' : '') + '</figure>';
+}
+function checklistHtml(key, items, title){
+  const saved = LS.get('chk-'+key, []);
+  let html = '<div class="check-head"><span class="st" data-chk-st="'+key+'"></span><button class="btn sm" data-chk-reset="'+key+'">Atur ulang</button></div>';
+  html += '<div class="check-list" data-chk="'+key+'">';
+  items.forEach((it, i) => {
+    html += '<label class="check-item"><input type="checkbox" data-chk-i="'+i+'"'+(saved.includes(i)?' checked':'')+'><span class="box"><svg viewBox="0 0 24 24"><path d="m4.5 12.5 5 5L20 6.5"/></svg></span><span class="txt">'+it+'</span></label>';
+  });
+  html += '</div>';
+  return html;
+}
+function bindChecklist(root){
+  $$('[data-chk]', root).forEach(list => {
+    const key = list.getAttribute('data-chk');
+    const update = () => {
+      const boxes = $$('input', list);
+      const on = boxes.filter(b => b.checked).length;
+      const st = $('[data-chk-st="'+key+'"]', root);
+      if (st) st.textContent = on + ' / ' + boxes.length + ' terpenuhi' + (on === boxes.length ? ' — lengkap! ✓' : '');
+      LS.set('chk-'+key, boxes.map((b,i) => b.checked ? i : -1).filter(i => i >= 0));
+    };
+    list.addEventListener('change', update);
+    const rb = $('[data-chk-reset="'+key+'"]', root);
+    if (rb) rb.onclick = () => { $$('input', list).forEach(b => b.checked = false); update(); };
+    update();
+  });
+}
+function tabsHtml(id, tabs){
+  let h = '<div class="tabs" data-tabs="'+id+'">';
+  tabs.forEach((t, i) => { h += '<button class="tab'+(i===0?' active':'')+'" data-tab-i="'+i+'">'+t+'</button>'; });
+  return h + '</div>';
+}
+function bindTabs(root){
+  $$('[data-tabs]', root).forEach(w => {
+    w.addEventListener('click', e => {
+      const b = e.target.closest('[data-tab-i]'); if (!b) return;
+      const wrap = w.parentElement;
+      $$('.tab', w).forEach(t => t.classList.remove('active'));
+      b.classList.add('active');
+      $$('.tabpane', wrap).forEach((p, i) => p.classList.toggle('active', i === +b.getAttribute('data-tab-i')));
+    });
+  });
+}
+function accordionHtml(items, opts){
+  opts = opts || {};
+  return items.map((it, i) => {
+    let thumb = it.img ? '<img class="thumb" src="'+IMG+it.img+'" alt="">' :
+      '<span class="thumb" style="display:flex;align-items:center;justify-content:center;background:var(--grad-soft);color:var(--neon);font-weight:800">'+(i+1)+'</span>';
+    const imgs = [];
+    if (it.img) imgs.push(figImg(it.img, it.nama));
+    if (it.img2) imgs.push(figImg(it.img2, it.nama + ' (varian lain)'));
+    const media = imgs.length ? '<div>'+(it.img?imgs.join(''):'')+'</div>' : '<div class="ph-missing">Foto belum tersedia</div>';
+    return '<div class="acc" id="'+(opts.id||'acc')+'-'+i+'">'
+      + '<button type="button" data-acc>'+thumb+'<span>'+it.nama+'</span>'
+      + '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>'
+      + '<div class="acc-body"><div class="acc-inner">'+media
+      + '<div class="tx"><p><b>Fungsi:</b> '+it.f+'</p></div></div></div></div>';
+  }).join('');
+}
+
+/* ---------- Animasi prinsip penggerindaan ---------- */
+function grindSimHtml(){
+  return '' +
+  '<div class="sim-box" id="grindSim">' +
+  '<svg viewBox="0 0 640 360" role="img" aria-label="Animasi prinsip penggerindaan">' +
+    '<defs><radialGradient id="gw" cx="40%" cy="35%" r="75%">' +
+    '<stop offset="0%" stop-color="#3b4a63"/><stop offset="55%" stop-color="#22344e"/><stop offset="100%" stop-color="#142338"/></radialGradient></defs>' +
+    /* meja */
+    '<rect x="230" y="240" width="330" height="16" rx="4" fill="#1b2c46"/>' +
+    '<rect x="250" y="256" width="20" height="60" fill="#16253c"/><rect x="520" y="256" width="20" height="60" fill="#16253c"/>' +
+    '<rect x="0" y="316" width="640" height="44" fill="#0e1c30"/>' +
+    /* roda */
+    '<g class="wheel-rot">' +
+      '<circle cx="200" cy="128" r="78" fill="url(#gw)" stroke="#22D3EE" stroke-width="2.5"/>' +
+      '<circle cx="200" cy="128" r="16" fill="#0d1b30" stroke="#22D3EE" stroke-width="2"/>' +
+      '<line x1="200" y1="56" x2="200" y2="112" stroke="#33496b" stroke-width="5"/>' +
+      '<line x1="200" y1="144" x2="200" y2="200" stroke="#33496b" stroke-width="5"/>' +
+      '<line x1="128" y1="128" x2="184" y2="128" stroke="#33496b" stroke-width="5"/>' +
+      '<line x1="216" y1="128" x2="272" y2="128" stroke="#33496b" stroke-width="5"/>' +
+      '<line x1="150" y1="78" x2="188" y2="116" stroke="#2b3f5e" stroke-width="3"/>' +
+      '<line x1="250" y1="78" x2="212" y2="116" stroke="#2b3f5e" stroke-width="3"/>' +
+      '<line x1="150" y1="178" x2="188" y2="140" stroke="#2b3f5e" stroke-width="3"/>' +
+      '<line x1="250" y1="178" x2="212" y2="140" stroke="#2b3f5e" stroke-width="3"/>' +
+    '</g>' +
+    /* panah arah putaran */
+    '<path d="M 200 30 A 98 98 0 0 1 288 90" fill="none" stroke="#22D3EE" stroke-width="3" stroke-dasharray="6 5"/>' +
+    '<path d="M 288 90 l -12 -2 m 12 2 l -5 10" fill="none" stroke="#22D3EE" stroke-width="3"/>' +
+    /* benda kerja */
+    '<rect x="255" y="184" width="185" height="56" rx="7" fill="#233d5f" stroke="#5f7ba6" stroke-width="2"/>' +
+    '<line x1="255" y1="184" x2="440" y2="184" stroke="#7ea3d4" stroke-width="2"/>' +
+    /* panah gerak benda */
+    '<line x1="300" y1="168" x2="268" y2="168" stroke="#F59E0B" stroke-width="3"/>' +
+    '<path d="M 262 168 l 12 -6 m -12 6 l 12 6" fill="none" stroke="#F59E0B" stroke-width="3"/>' +
+    /* area kontak */
+    '<circle class="contact-pulse" cx="256" cy="185" r="13" fill="rgba(34,211,238,.55)"/>' +
+    /* percikan */
+    '<g class="spark"><line x1="262" y1="196" x2="276" y2="212" stroke="#FDBA74" stroke-width="3" stroke-linecap="round"/><line x1="268" y1="190" x2="288" y2="200" stroke="#F59E0B" stroke-width="2.4" stroke-linecap="round"/></g>' +
+    '<g class="spark d2"><line x1="262" y1="196" x2="272" y2="216" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/><line x1="270" y1="192" x2="292" y2="204" stroke="#FDBA74" stroke-width="2.2" stroke-linecap="round"/></g>' +
+    '<g class="spark d3"><line x1="264" y1="198" x2="280" y2="222" stroke="#FB923C" stroke-width="2.6" stroke-linecap="round"/></g>' +
+    /* label */
+    '<g font-family="Poppins,sans-serif" font-weight="700" font-size="14" fill="#F8FAFC">' +
+      '<text x="60" y="132">Batu Gerinda</text>' +
+      '<text x="60" y="30">Arah Putaran</text>' +
+      '<text x="368" y="146">Benda Kerja</text>' +
+      '<text x="330" y="212">Area Kontak</text>' +
+      '<text x="330" y="278">Material terikis</text>' +
+    '</g>' +
+    '<g stroke="#94A3B8" stroke-width="1.4" stroke-dasharray="3 4" fill="none">' +
+      '<line x1="118" y1="126" x2="96" y2="126"/>' +
+      '<line x1="368" y1="150" x2="412" y2="170"/>' +
+      '<line x1="268" y1="196" x2="328" y2="206"/>' +
+      '<line x1="292" y1="214" x2="348" y2="266"/>' +
+    '</g>' +
+  '</svg>' +
+  '<div class="sim-controls">' +
+    '<button class="btn sm primary" data-sim="play"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg>Putar</button>' +
+    '<button class="btn sm" data-sim="pause"><svg viewBox="0 0 24 24"><path d="M7 4h3v16H7zM14 4h3v16h-3z"/></svg>Jeda</button>' +
+    '<button class="btn sm" data-sim="reset"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Reset</button>' +
+    '<span class="spacer"></span><span class="small muted">Visualisasi edukatif — bukan pengganti pelatihan mesin sesungguhnya.</span>' +
+  '</div></div>';
+}
+function bindGrindSim(root){
+  const box = $('#grindSim', root); if (!box) return;
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-sim]'); if (!b) return;
+    const a = b.getAttribute('data-sim');
+    if (a === 'play') box.classList.add('running');
+    if (a === 'pause') box.classList.remove('running');
+    if (a === 'reset'){
+      box.classList.remove('running');
+      const w = $('.wheel-rot', box);
+      w.style.animation = 'none'; void w.getBoundingClientRect(); w.style.animation = '';
+    }
+  });
+}
+
+/* ---------- Simulasi sumbu Great D1 ---------- */
+function sumbuSimHtml(){
+  return '' +
+  '<div class="sim-box" id="sumbuSim">' +
+  '<svg viewBox="0 0 640 400" role="img" aria-label="Simulasi sumbu putar dan pergerakan mesin Great D1">' +
+    '<rect x="0" y="366" width="640" height="34" fill="#0e1c30"/>' +
+    /* bed mesin */
+    '<rect x="40" y="304" width="470" height="42" rx="6" fill="#1b2c46" stroke="#33496b"/>' +
+    /* meja + kepala lepas (grup gerak X) */
+    '<g id="simTable">' +
+      '<rect x="90" y="256" width="300" height="48" rx="5" fill="#23405f" stroke="#4c6f9d"/>' +
+      '<rect x="96" y="248" width="12" height="10" fill="#F59E0B"/><rect x="372" y="248" width="12" height="10" fill="#F59E0B"/>' +
+      '<text x="150" y="242" font-size="11" fill="#F59E0B" font-family="Poppins,sans-serif" font-weight="700">stoper</text>' +
+      '<g id="simHead">' +
+        '<rect x="150" y="168" width="130" height="88" rx="6" fill="#2a4a6e" stroke="#5f86b8"/>' +
+        '<g id="simChuck">' +
+          '<rect x="176" y="138" width="78" height="30" rx="4" fill="#315b85" stroke="#6d97cc"/>' +
+          '<circle cx="215" cy="122" r="16" fill="none" stroke="#22D3EE" stroke-width="2.5"/>' +
+          '<line x1="215" y1="106" x2="215" y2="138" stroke="#22D3EE" stroke-width="2"/>' +
+        '</g>' +
+        '<text x="163" y="218" font-size="11" fill="#cfe4ff" font-family="Poppins,sans-serif" font-weight="600">Kepala Lepas</text>' +
+      '</g>' +
+      '<text x="118" y="286" font-size="11" fill="#9fd9ea" font-family="Poppins,sans-serif" font-weight="600">Meja (sumbu bawah)</text>' +
+    '</g>' +
+    /* panah gerak meja */
+    '<line x1="120" y1="330" x2="420" y2="330" stroke="#22D3EE" stroke-width="2" stroke-dasharray="7 6"/>' +
+    '<path d="M 420 330 l -12 -6 m 12 6 l -12 6" fill="none" stroke="#22D3EE" stroke-width="2"/>' +
+    '<path d="M 120 330 l 12 -6 m -12 6 l 12 6" fill="none" stroke="#22D3EE" stroke-width="2"/>' +
+    '<text x="238" y="350" font-size="11" fill="#9fd9ea" font-family="Poppins,sans-serif">gerak maju–mundur (eretan)</text>' +
+    /* panah vertikal eretan */
+    '<line x1="308" y1="150" x2="308" y2="256" stroke="#F59E0B" stroke-width="2" stroke-dasharray="6 5"/>' +
+    '<path d="M 308 150 l -6 11 m 6 -11 l 6 11" fill="none" stroke="#F59E0B" stroke-width="2"/>' +
+    '<path d="M 308 256 l -6 -11 m 6 11 l 6 -11" fill="none" stroke="#F59E0B" stroke-width="2"/>' +
+    '<text x="318" y="205" font-size="11" fill="#F59E0B" font-family="Poppins,sans-serif">eretan vertikal</text>' +
+    /* kolom + kepala gerinda */
+    '<rect x="500" y="60" width="56" height="286" rx="6" fill="#1b2c46" stroke="#33496b"/>' +
+    '<rect x="390" y="84" width="112" height="64" rx="7" fill="#274a6d" stroke="#5f86b8"/>' +
+    '<text x="398" y="140" font-size="11" fill="#cfe4ff" font-family="Poppins,sans-serif" font-weight="600">Kepala Gerinda (tetap)</text>' +
+    '<rect x="336" y="106" width="56" height="18" rx="4" fill="#315b85"/>' +
+    '<g id="simWheel"><circle cx="312" cy="115" r="34" fill="#22344e" stroke="#22D3EE" stroke-width="2.5"/><circle cx="312" cy="115" r="7" fill="#0d1b30" stroke="#22D3EE"/></g>' +
+    /* lampu */
+    '<line x1="416" y1="84" x2="392" y2="58" stroke="#94A3B8" stroke-width="2.5"/><circle cx="388" cy="54" r="8" fill="#FDBA74"/>' +
+    '<text x="330" y="40" font-size="11" fill="#e8d7b5" font-family="Poppins,sans-serif">Lampu penerang</text>' +
+    /* unit pengendali */
+    '<rect x="432" y="196" width="64" height="86" rx="7" fill="#152a45" stroke="#4c6f9d"/>' +
+    '<circle cx="464" cy="216" r="6" fill="#EF4444"/><circle cx="464" cy="236" r="6" fill="#10B981"/><circle cx="464" cy="256" r="6" fill="#2563EB"/><circle cx="464" cy="276" r="6" fill="#F59E0B"/>' +
+    '<text x="410" y="300" font-size="10.5" fill="#9fb6d4" font-family="Poppins,sans-serif">Unit pengendali</text>' +
+    /* motor + transmisi */
+    '<rect x="560" y="170" width="26" height="66" rx="4" fill="#22344e" stroke="#33496b"/>' +
+    '<rect x="556" y="240" width="66" height="62" rx="7" fill="#1f3a5c" stroke="#4c6f9d"/>' +
+    '<text x="548" y="160" font-size="10.5" fill="#9fb6d4" font-family="Poppins,sans-serif">Transmisi sabuk</text>' +
+    '<text x="540" y="322" font-size="10.5" fill="#9fb6d4" font-family="Poppins,sans-serif">Motor</text>' +
+    /* label sumbu atas */
+    '<text x="130" y="112" font-size="11" fill="#22D3EE" font-family="Poppins,sans-serif" font-weight="700">Sumbu putar atas</text>' +
+    '<line x1="200" y1="116" x2="176" y2="128" stroke="#22D3EE" stroke-width="1.2" stroke-dasharray="3 3"/>' +
+    '<text x="120" y="76" font-size="11" fill="#22D3EE" font-family="Poppins,sans-serif" font-weight="700">Sumbu putar tengah</text>' +
+    '<line x1="200" y1="80" x2="220" y2="150" stroke="#22D3EE" stroke-width="1.2" stroke-dasharray="3 3"/>' +
+  '</svg>' +
+  '<div class="sim-controls">' +
+    '<button class="btn sm" data-sumbu="atas">⟳ Sumbu Atas</button>' +
+    '<button class="btn sm" data-sumbu="tengah">↕ Sumbu Tengah</button>' +
+    '<button class="btn sm" data-sumbu="bawah">⇄ Sumbu Bawah</button>' +
+    '<span class="spacer"></span><button class="btn sm" data-sumbu="reset">Reset</button>' +
+  '</div>' +
+  '<div class="note" id="sumbuInfo" style="margin-bottom:0">Pilih salah satu tombol sumbu untuk melihat simulasi gerakannya.</div>' +
+  '<style>@keyframes simY{from{transform:translateY(0)}to{transform:translateY(-18px)}}@keyframes simX{from{transform:translateX(-26px)}to{transform:translateX(26px)}}@keyframes simR{to{transform:rotate(360deg)}}</style>' +
+  '</div>';
+}
+function bindSumbuSim(root){
+  const box = $('#sumbuSim', root); if (!box) return;
+  const info = $('#sumbuInfo', box);
+  const setAnim = (el, cls) => { el.style.animation = 'none'; void el.getBoundingClientRect(); el.style.animation = ''; el.classList.remove('anim-y','anim-x','anim-rot'); if (cls) el.classList.add(cls); };
+  const CLEAR = () => { setAnim($('#simHead', box)); setAnim($('#simChuck', box)); setAnim($('#simTable', box)); };
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-sumbu]'); if (!b) return;
+    const w = b.getAttribute('data-sumbu');
+    CLEAR();
+    if (w === 'atas'){
+      setAnim($('#simChuck', box), 'anim-rot');
+      $('#simChuck', box).style.animation = 'simR 3s linear infinite';
+      info.innerHTML = '<b>Sumbu putar atas</b> — terdapat pada landasan sebagai tempat alat pencekam benda.';
+    } else if (w === 'tengah'){
+      setAnim($('#simHead', box), 'anim-y');
+      $('#simHead', box).style.animation = 'simY 1.6s ease-in-out infinite alternate';
+      info.innerHTML = '<b>Sumbu putar tengah</b> — dapat digerakkan ke arah vertikal dengan menggunakan eretan.';
+    } else if (w === 'bawah'){
+      setAnim($('#simTable', box), 'anim-x');
+      $('#simTable', box).style.animation = 'simX 2.2s ease-in-out infinite alternate';
+      info.innerHTML = '<b>Sumbu putar bawah</b> — berada di meja yang bisa bergerak maju mundur dan dilengkapi stoper. Posisinya juga bisa diubah dengan mengendorkan baut penyetel, sepanjang meja.';
+    } else if (w === 'reset'){
+      info.textContent = 'Pilih salah satu tombol sumbu untuk melihat simulasi gerakannya.';
+    }
+  });
+}
+
+/* ---------- Visual sudut bevel transfer ---------- */
+function angleSimHtml(){
+  return '' +
+  '<div class="sim-box" id="angleSim">' +
+  '<svg viewBox="0 0 380 230" role="img" aria-label="Visualisasi sudut bevel transfer">' +
+    '<line x1="30" y1="190" x2="350" y2="190" stroke="#33496b" stroke-width="4"/>' +
+    '<g id="anglePlate" class="angle-plate" style="transform:rotate(-45deg)">' +
+      '<line x1="60" y1="190" x2="290" y2="190" stroke="#22D3EE" stroke-width="6" stroke-linecap="round"/>' +
+      '<rect x="60" y="176" width="120" height="9" rx="3" fill="#22D3EE" opacity=".85"/>' +
+    '</g>' +
+    '<circle cx="60" cy="190" r="7" fill="#F59E0B"/>' +
+    '<path id="angleArc" d="" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-dasharray="5 4"/>' +
+    '<text id="angleVal" x="150" y="120" font-size="26" font-weight="800" fill="#F8FAFC" font-family="Poppins,sans-serif">45°</text>' +
+    '<text x="28" y="214" font-size="11" fill="#94A3B8" font-family="Poppins,sans-serif">bidang acuan (0°)</text>' +
+  '</svg>' +
+  '<div class="sim-controls">' +
+    '<button class="btn sm" data-ang="45">45° — ISO 2 R2020 (Greif)</button>' +
+    '<button class="btn sm" data-ang="10">10° — ISO 6 R2020 (Greif)</button>' +
+    '<button class="btn sm" data-ang="0">0° — Syarat kompetensi (Great D1)</button>' +
+  '</div>' +
+  '<div class="note" style="margin-bottom:0" id="angleNote">Setting bevel transfer <b>45°</b> dipakai untuk penggerindaan <b>ISO 2 R2020</b> pada mesin Greif.</div>' +
+  '</div>';
+}
+function bindAngleSim(root){
+  const box = $('#angleSim', root); if (!box) return;
+  const NOTES = {
+    '45':'Setting bevel transfer <b>45°</b> dipakai untuk penggerindaan <b>ISO 2 R2020</b> pada mesin Greif.',
+    '10':'Setting bevel transfer <b>10°</b> dipakai untuk penggerindaan <b>ISO 6 R2020</b> pada mesin Greif.',
+    '0':'Untuk <b>kompetensi</b> di mesin Great D1, sumbu putar atas, tengah, dan bawah harus berada di posisi <b>0°</b>.'
+  };
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-ang]'); if (!b) return;
+    const a = +b.getAttribute('data-ang');
+    $('#anglePlate', box).style.transform = 'rotate(' + (-a) + 'deg)';
+    $('#angleVal', box).textContent = a + '°';
+    const r = 92, rad = a * Math.PI / 180;
+    const x = 60 + r * Math.cos(rad), y = 190 - r * Math.sin(rad);
+    $('#angleArc', box).setAttribute('d', 'M ' + (60 + r) + ' 190 A ' + r + ' ' + r + ' 0 0 0 ' + x + ' ' + y);
+    $('#angleNote', box).innerHTML = NOTES[b.getAttribute('data-ang')];
+  });
+  box.querySelector('[data-ang="45"]').click();
+}
+
+/* ---------- Hotspot bagian mesin ---------- */
+function hotspotHtml(){
+  const pts = [[445,112],[306,112],[388,52],[205,210],[240,280],[270,322],[464,238],[573,203],[590,270]];
+  let dots = pts.map((p, i) =>
+    '<g class="hotspot" data-hs="'+(i+1)+'" tabindex="0" role="button" aria-label="'+BAGIAN[i].nama+'">' +
+    '<circle class="dot" cx="'+p[0]+'" cy="'+p[1]+'" r="14"/><text x="'+p[0]+'" y="'+(p[1]+4)+'" text-anchor="middle">'+(i+1)+'</text></g>'
+  ).join('');
+  return '' +
+  '<div class="sim-box" id="hsBox">' +
+  '<svg viewBox="0 0 640 400" role="img" aria-label="Skema bagian-bagian mesin Great D1 — klik nomor untuk melihat fungsi">' +
+    '<rect x="0" y="360" width="640" height="40" fill="#0e1c30"/>' +
+    '<rect x="40" y="304" width="520" height="42" rx="6" fill="#1b2c46" stroke="#33496b"/>' +
+    '<rect x="90" y="256" width="300" height="48" rx="5" fill="#23405f" stroke="#4c6f9d"/>' +
+    '<rect x="150" y="168" width="130" height="88" rx="6" fill="#2a4a6e" stroke="#5f86b8"/>' +
+    '<rect x="176" y="140" width="78" height="28" rx="4" fill="#315b85" stroke="#6d97cc"/>' +
+    '<rect x="500" y="60" width="56" height="286" rx="6" fill="#1b2c46" stroke="#33496b"/>' +
+    '<rect x="390" y="84" width="112" height="64" rx="7" fill="#274a6d" stroke="#5f86b8"/>' +
+    '<rect x="336" y="106" width="56" height="18" rx="4" fill="#315b85"/>' +
+    '<circle cx="308" cy="115" r="34" fill="#22344e" stroke="#22D3EE" stroke-width="2.5"/><circle cx="308" cy="115" r="7" fill="#0d1b30" stroke="#22D3EE"/>' +
+    '<line x1="416" y1="84" x2="392" y2="60" stroke="#94A3B8" stroke-width="2.5"/><circle cx="388" cy="54" r="8" fill="#FDBA74"/>' +
+    '<rect x="432" y="196" width="64" height="86" rx="7" fill="#152a45" stroke="#4c6f9d"/>' +
+    '<rect x="560" y="170" width="26" height="66" rx="4" fill="#22344e" stroke="#33496b"/>' +
+    '<rect x="556" y="240" width="66" height="62" rx="7" fill="#1f3a5c" stroke="#4c6f9d"/>' +
+    '<g font-family="Poppins,sans-serif" font-size="10.5" fill="#8ba3c4">' +
+      '<text x="398" y="76">Kepala Gerinda</text><text x="128" y="132">Kepala Lepas</text>' +
+      '<text x="118" y="324">Bed Mesin</text><text x="404" y="306">Unit Pengendali</text>' +
+    '</g>' + dots +
+  '</svg>' +
+  '<div class="note" style="margin-bottom:0" id="hsDetail"><b>Petunjuk:</b> klik nomor pada skema untuk menampilkan nama dan fungsi bagian mesin.</div>' +
+  '<p class="small muted" style="margin-top:10px">Skema sederhana tampilan samping untuk pembelajaran — posisi visual disederhanakan. Foto asli tiap komponen tersedia di bawah.</p>' +
+  '</div>';
+}
+function bindHotspot(root){
+  const box = $('#hsBox', root); if (!box) return;
+  const detail = $('#hsDetail', box);
+  box.addEventListener('click', e => {
+    const h = e.target.closest('.hotspot'); if (!h) return;
+    $$('.hotspot', box).forEach(x => x.classList.remove('on'));
+    h.classList.add('on');
+    const b = BAGIAN[+h.getAttribute('data-hs') - 1];
+    detail.innerHTML = '<b>' + b.n + '. ' + b.nama + '</b><br>' + b.fungsi;
+  });
+}
+
+/* ---------- Flowchart interaktif ---------- */
+function flowHtml(nodes){
+  let h = '<div class="flow">';
+  nodes.forEach((n, i) => {
+    h += '<div class="flow-node ' + (n.cls||'') + '" data-flow>'
+      + '<div class="fn-t">' + n.t + '</div><div class="fn-d">' + (n.d||'') + '</div>'
+      + '<div class="flow-detail">' + (n.detail||'') + '</div></div>';
+    if (i < nodes.length - 1){
+      h += '<div class="flow-arrow"><span class="lbl">Ya — sesuai standard</span><span class="stem"></span><span class="head"></span></div>';
+      h += '<div class="flow-loop">↺ Jalur <b>"Tidak"</b> — hasil latihan belum sesuai standard → <b>ulangi latihan ini</b> sebelum lanjut.</div>';
+      h += '<div class="flow-arrow"><span class="stem"></span><span class="head"></span></div>';
+    }
+  });
+  h += '</div>';
+  return h;
+}
+function bindFlow(root){
+  $$('[data-flow]', root).forEach(n => {
+    n.addEventListener('click', () => {
+      const d = $('.flow-detail', n);
+      const open = d.classList.contains('show');
+      $$('.flow-detail', root).forEach(x => x.classList.remove('show'));
+      $$('.flow-node', root).forEach(x => x.classList.remove('open'));
+      if (!open){ d.classList.add('show'); n.classList.add('open'); }
+    });
+  });
+}
+
+/* ---------- Stepper alur ---------- */
+function stepperHtml(pid, steps, fotos){
+  const done = LS.get('st-'+pid, false);
+  let media = '';
+  return '<div class="stepper" data-stepper="' + pid + '">' +
+    '<div class="stepper-top"><div class="steps-lbl"><span>Tahap <b data-st-cur>1</b> / ' + steps.length + '</span><span data-st-done>' + (done ? '✓ Alur selesai ditandai' : 'Ikuti tahap demi tahap') + '</span></div>' +
+    '<div class="progress-track"><div class="progress-fill" data-st-bar style="width:0%"></div></div></div>' +
+    '<div class="stepper-body" data-st-body></div>' +
+    '<div class="stepper-foot"><button class="btn sm" data-st-prev>← Kembali</button>' +
+    '<div class="step-dots" data-st-dots>' + steps.map((_, i) => '<span class="dot"></span>').join('') + '</div>' +
+    '<span class="spacer"></span><button class="btn sm primary" data-st-next>Berikutnya →</button></div></div>';
+}
+function bindStepper(root, pid, steps, fotos){
+  const w = $('[data-stepper="' + pid + '"]', root); if (!w) return;
+  let i = 0;
+  const body = $('[data-st-body]', w), dots = $$('.dot', w), bar = $('[data-st-bar]', w), cur = $('[data-st-cur]', w), doneEl = $('[data-st-done]', w);
+  function show(){
+    const foto = fotos && fotos[i];
+    body.innerHTML = '<div class="st-title"><span class="n">' + (i+1) + '</span>' + steps[i].t + '</div><div class="st-desc">' + steps[i].d + '</div>' +
+      (foto ? '<div class="st-media"><img src="' + IMG + foto[0] + '" alt="' + foto[1] + '" data-zoom data-cap="' + foto[1] + '">' + (foto[1] ? '<span class="small muted" style="align-self:center;max-width:220px">' + foto[1] + '</span>' : '') + '</div>' : '');
+    dots.forEach((d, k) => { d.className = 'dot' + (k < i ? ' done' : '') + (k === i ? ' cur' : ''); });
+    bar.style.width = Math.round(((i+1) / steps.length) * 100) + '%';
+    cur.textContent = i + 1;
+    $('[data-st-prev]', w).disabled = i === 0;
+    $('[data-st-next]', w).textContent = i === steps.length - 1 ? '✓ Selesai' : 'Berikutnya →';
+  }
+  $('[data-st-next]', w).onclick = () => {
+    if (i < steps.length - 1){ i++; show(); }
+    else { LS.set('st-' + pid, true); doneEl.textContent = '✓ Alur selesai ditandai — simpan progres ini'; doneEl.style.color = 'var(--ok)'; }
+  };
+  $('[data-st-prev]', w).onclick = () => { if (i > 0){ i--; show(); } };
+  if (LS.get('st-' + pid, false)){ doneEl.style.color = 'var(--ok)'; }
+  show();
+}
+
+</script>
+<script>
+/* =====================================================================
+   APP PAGES — Renderer 27 halaman materi + logika SPA
+   ===================================================================== */
+'use strict';
+
+/* ===================== RENDERER ===================== */
+
+function rBeranda(){
+  const quick = [
+    ['shield','Aturan & K3','Kerapian, cleaning, APD, dan keselamatan kerja.','aturan'],
+    ['cog','Mesin Great D1','Spesifikasi, bagian mesin, sumbu putar, hingga perlengkapan.','gd1-intro'],
+    ['flow','Proses Penggerindaan','Alur praktik mesin Vitax, Great D1, dan Greif.','alur-vitax'],
+    ['chart','Penilaian Praktik','Toleransi, form penilaian, bobot, dan rumus nilai.','toleransi'],
+    ['calc','Kompensasi','Ketentuan minus jam tiga mesin + simulator.','kom-gd1'],
+    ['quiz','Evaluasi Pembelajaran','Uji pemahaman lewat kuis interaktif.','kuis']
+  ].map(q =>
+    '<div class="card glow-top quick-cards" role="button" tabindex="0" data-goto="'+q[3]+'"><div class="cicon"><svg viewBox="0 0 24 24">'+ICONS[q[0]]+'</svg></div>'+
+    '<h3>'+q[1]+'</h3><p>'+q[2]+'</p><span class="go">Jelajahi modul <span aria-hidden="true">↗</span></span></div>').join('');
+  return '' +
+  '<div class="hero"><div class="grid-in"><div>' +
+    '<div class="eyebrow"><span class="hero-kicker-badge">POLITEKNIK ATMI SURAKARTA / TGr</span></div>' +
+    '<h1>Belajar lebih terarah.<br><span class="grad">Section Tool Grinding</span></h1>' +
+    '<p class="sub">Materi Pembelajaran Penggerindaan Alat Potong dan Mesin Gerinda — dirangkum dari materi <b>Tool Grinding CT</b> dan <b>Mesin Gerinda Great D1</b> untuk pembelajaran mandiri maupun presentasi instruktur.</p>' +
+    '<div class="cta"><button class="btn primary" data-goto="pengenalan">Mulai Pembelajaran <span aria-hidden="true">↗</span></button>' +
+    '<button class="btn" data-goto="aturan">Lihat Aturan Section</button></div>' +
+    '<span class="motto"><span class="sparkle">✦</span> GERINDA ITU GAYENG — FULL SENYUM</span>' +
+  '</div><div>' +
+    '<div class="hero-photo"><div class="machine-fallback" aria-hidden="true">' +
+    '<svg viewBox="0 0 440 290" role="presentation"><g fill="none" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M84 246h284M124 218h199v28H124zM141 195h178v23H141z" stroke="#4386b3" stroke-width="4"/>' +
+      '<path d="M210 195V89h88v106M235 89V60h65" stroke="#729cba" stroke-width="7"/>' +
+      '<circle cx="253" cy="143" r="48" stroke="#39d4e8" stroke-width="8"/><circle cx="253" cy="143" r="12" stroke="#7ce5f4" stroke-width="6"/>' +
+      '<path d="M252 96v35m0 24v35m-47-47h35m24 0h35" stroke="#427da5" stroke-width="5"/>' +
+      '<path d="M87 171h104v15H87zM104 149v22m71-22v22" stroke="#8bb4cb" stroke-width="5"/>' +
+      '<path d="M179 121h23m-15-10 15 10-15 10" stroke="#2cd3e7" stroke-width="3"/>' +
+    '</g><g fill="#7ddfec" opacity=".65"><circle cx="198" cy="157" r="2"/><circle cx="191" cy="168" r="2"/><circle cx="205" cy="164" r="2"/></g></svg>' +
+    '<div class="machine-fallback-label"><strong>GREAT D1</strong><span>GRINDING MACHINE / VISUAL SCHEMATIC</span></div></div>' +
+    '<img src="'+IMG+'mesin-great-d1-depan.jpg" alt="Mesin gerinda Great D1">' +
+    '<div class="scanline"></div><span class="tag">Mesin Gerinda Great D1</span></div>' +
+  '</div></div></div>' +
+  '<div class="stat-row">' +
+    '<div class="stat"><div class="v">2</div><div class="k">Sumber PPT Materi</div></div>' +
+    '<div class="stat"><div class="v">4</div><div class="k">Mesin Section</div></div>' +
+    '<div class="stat"><div class="v">17</div><div class="k">Perlengkapan Mesin</div></div>' +
+    '<div class="stat"><div class="v">27</div><div class="k">Panel Pembelajaran</div></div>' +
+  '</div>' +
+  '<div class="section-intro"><div><div class="eyebrow">EXPLORE / MODULES</div><h2 class="sec-title"><span class="num">↗</span> Jelajahi materi</h2>' +
+  '<p class="sec-sub">Pilih salah satu jalur pembelajaran untuk memulai.</p></div><span class="section-counter">06 JALUR UTAMA</span></div>' +
+  '<div class="grid g3 quick-cards">'+quick+'</div>' +
+  '<div class="note mt-3"><b>Sumber materi:</b> seluruh isi website ini disusun dari PPT "TOOL GRINDING CT" (22 slide) dan "Mesin Gerinda Great D1" (40 slide). Angka spesifikasi, toleransi, waktu produksi, dan ketentuan penilaian dipertahankan sesuai sumber.</div>';
+}
+
+function rInstruktur(){
+  const p = [
+    ['instructor-y-oscar-andrian.jpg','Y. Oscar Andrian'],
+    ['instructor-c-widyasmara.jpg','C. Widyasmara'],
+    ['instructor-andri-wibowo.jpg','Andri Wibowo']
+  ].map(x => '<div class="card profile-card glow-top"><div class="pframe"><img src="'+IMG+x[0]+'" alt="Foto '+x[1]+'" data-zoom data-cap="Instruktur — '+x[1]+'"></div><h3>'+x[1]+'</h3><div class="role">Instruktur Section</div></div>').join('');
+  return '' +
+  '<div class="eyebrow">Modul 2</div><h1 class="page-title">Profil Instruktur</h1>' +
+  '<p class="page-sub">Instruktur Section Tool Grinding sebagaimana tercantum pada materi Tool Grinding WBS.</p>' +
+  '<div class="grid g3">'+p+'</div>' +
+  '<div class="note">Identitas instruktur ditampilkan sesuai sumber (nama pada PPT), tanpa penambahan jabatan atau data lain.</div>';
+}
+
+function rAturan(){
+  return '' +
+  '<div class="eyebrow">Modul 3 · Bagian A</div><h1 class="page-title">Aturan Section Tool Grinding</h1>' +
+  '<p class="page-sub">Seluruh ketentuan internal section sebagaimana tercantum pada PPT Tool Grinding. Gunakan daftar periksa berikut untuk memastikan kamu memahami tiap aturan — centang akan tersimpan di perangkatmu.</p>' +
+  '<div class="card">'+checklistHtml('aturan', ATURAN.map(a => a.t))+'</div>' +
+  '<h2 class="sec-title"><span class="num">!</span> Konsekuensi yang tersurat di PPT</h2>' +
+  '<div class="chips"><span class="chip danger">Tidak rapi → pulang</span><span class="chip danger">Tidak telepon Kabeng → minus ×2</span><span class="chip warn">Instruktur berhak menegur & mengambil tindakan</span></div>' +
+  '<div class="note warn"><b>Ingat:</b> aturan ini adalah ketentuan internal Section Tool Grinding. Pelanggaran berdampak langsung pada jam praktik dan nilai (ketentuan kompensasi lihat Modul Kompensasi).</div>';
+}
+
+function rK3(){
+  const cards = APD.map(a =>
+    '<div class="card glow-top"><div class="cicon"><svg viewBox="0 0 24 24">'+ICONS[a.i]+'</svg></div><h3>'+a.t+'</h3><p>'+a.d+'</p></div>').join('');
+  return '' +
+  '<div class="eyebrow">Modul 3 · Bagian B</div><h1 class="page-title">APD dan Keselamatan Kerja (K3)</h1>' +
+  '<p class="page-sub">Alat Pelindung Diri yang wajib dibawa dan digunakan, serta pengingat keselamatan di area gerinda.</p>' +
+  '<div class="grid g3">'+cards+'</div>' +
+  '<h2 class="sec-title"><span class="num">✓</span> Periksa APD sebelum praktik</h2>' +
+  '<p class="sec-sub">Centang setiap kali sebelum masuk area kerja. Progres tersimpan otomatis.</p>' +
+  '<div class="card">'+checklistHtml('apd', [
+    'Wearpack terpasang rapi dengan <b>name tag</b> sesuai',
+    '<b>Safety shoes</b> sudah dipakai',
+    '<b>Kacamata safety</b> siap digunakan',
+    '<b>Masker</b> sudah dibawa',
+    'Kuku dan rambut <b>pendek</b>, rambut berwarna hitam',
+    'Batu gerinda diamond pada Great D1 terpasang dengan <b>benar</b>'
+  ])+'</div>' +
+  '<h2 class="sec-title"><span class="num">!</span> Pengingat keselamatan area gerinda</h2>' +
+  '<div class="grid g3">' +
+    '<div class="card"><h3>Debu & serpihan</h3><p>Penggerindaan menghasilkan debu dan serpihan partikel — gunakan masker dan kacamata safety secara konsisten.</p></div>' +
+    '<div class="card"><h3>Batu gerinda berputar</h3><p>Periksa batu gerinda sebelum dan sesudah digunakan; batu yang gempil/rusak wajib dilaporkan. Gunakan adjustable wheel guard.</p></div>' +
+    '<div class="card"><h3>Area kerja</h3><p>Jaga area kerja bersih dan kering, laporkan kondisi tidak aman kepada instruktur. Wajib lapor ketika meninggalkan mesin.</p></div>' +
+  '</div>' +
+  '<div class="note"><b>Keterangan:</b> daftar APD di atas berasal dari PPT (aturan section). Kartu "Pengingat keselamatan" merupakan penjelasan pendamping yang selaras dengan isi PPT dan praktik K3 umum — bukan ketentuan baru.</div>';
+}
+
+function rCapaian(){
+  const pane = (k) => {
+    const c = CAPAIAN[k];
+    const roll = c.rolling.map(r => '<div class="stat" style="flex:none;min-width:150px"><div class="v" style="font-size:1.05rem">'+r.m+'</div><div class="k">'+r.d+'</div></div>').join('');
+    return '<div class="tabpane'+(k==='tpm'?' active':'')+'">' +
+      '<div class="chips">'+c.chips.map(x => '<span class="chip">'+x+'</span>').join('')+'</div>' +
+      '<div class="card mt-2"><h3>Poin capaian</h3>'+c.poin.map(p => '<p class="body-p">• '+p+'</p>').join('')+'</div>' +
+      '<h3 class="mt-2" style="margin-top:20px;margin-bottom:8px">Pembagian waktu</h3>' +
+      '<div class="stat-row" style="margin-top:8px">'+roll+'</div></div>';
+  };
+  return '' +
+  '<div class="eyebrow">Modul 4</div><h1 class="page-title">Capaian Pembelajaran per Program Studi</h1>' +
+  '<p class="page-sub">Pilih program studi untuk melihat durasi, mesin yang dipelajari, dan target kompetensi/produksi. Perpindahan tab tanpa memuat ulang halaman.</p>' +
+  tabsHtml('capaian', ['TPM & PM', 'TMI–RTM & TMK–TRMK']) +
+  '<div data-tabwrap>' + pane('tpm') + pane('tmi') + '</div>' +
+  '<div class="note ok"><b>Hubungan dengan penilaian:</b> capaian ini menentukan bentuk penilaian — prodi TPM–PM menyelesaikan kompetensi dan produksi, sedangkan TMI–RTM/TMK–TRMK menyelesaikan 2 nilai produksi (ISO 6 & ISO 2) di mesin Great D1. Lihat Modul Penilaian.</div>';
+}
+
+function rPengenalan(){
+  return '' +
+  '<div class="eyebrow">Modul 5</div><h1 class="page-title">Pengenalan Mesin Gerinda</h1>' +
+  '<p class="page-sub">Pengertian, prinsip kerja, dan tujuan penggerindaan alat potong — materi dasar sebelum mengenal mesin Great D1.</p>' +
+  '<div class="grid g3">' +
+    '<div class="card glow-top"><div class="cicon"><svg viewBox="0 0 24 24">'+ICONS.book+'</svg></div><h3>Pengertian Mesin Gerinda</h3><p>Mesin gerinda adalah salah satu mesin perkakas dengan <b>mata potong jamak</b> — mata potongnya berjumlah sangat banyak — yang digunakan untuk mengasah/memotong benda kerja dengan tujuan tertentu.</p></div>' +
+    '<div class="card glow-top"><div class="cicon"><svg viewBox="0 0 24 24">'+ICONS.wheel+'</svg></div><h3>Prinsip Kerja</h3><p>Batu gerinda <b>berputar</b> bersentuhan dengan benda kerja sehingga terjadi <b>pengikisan, penajaman, pengasahan, atau pemotongan</b>.</p></div>' +
+    '<div class="card glow-top"><div class="cicon"><svg viewBox="0 0 24 24">'+ICONS.target+'</svg></div><h3>Tujuan Menggerinda Alat Potong</h3><p>Menghasilkan alat potong yang <b>tajam</b> sehingga bila digunakan untuk pemotongan/penyayatan bisa menghasilkan benda kerja yang sesuai tuntutan.</p></div>' +
+  '</div>' +
+  '<h2 class="sec-title"><span class="num">▶</span> Animasi Prinsip Penggerindaan</h2>' +
+  '<p class="sec-sub">Batubatu gerinda berputar, benda kerja, arah putaran, area kontak, dan proses pengikisan material. Gunakan tombol Putar / Jeda / Reset.</p>' +
+  grindSimHtml() +
+  '<h2 class="sec-title"><span class="num">🗂</span> Skema pada materi sumber</h2>' +
+  '<p class="sec-sub">Gambar skema prinsip penggerindaan (wheel — coolant — work) sebagaimana tercantum pada PPT Mesin Gerinda.</p>' +
+  '<div class="grid g-2-1">' +
+    figImg('diagram-prinsip-gerinda.jpg','Skema prinsip kerja penggerindaan — sumber PPT (wheel, coolant, work)') +
+    '<div class="card"><h3>Istilah pada skema</h3><p class="body-p"><b>Wheel</b> — batu gerinda yang berputar.</p><p class="body-p"><b>Work</b> — benda kerja yang dikikis.</p><p class="body-p"><b>Coolant</b> — cairan pendingin pada area proses.</p><p class="small muted">Keterangan istilah sesuai gambar sumber PPT.</p></div>' +
+  '</div>';
+}
+
+function rGd1Intro(){
+  return '' +
+  '<div class="eyebrow">Modul 6 · Bagian A</div><h1 class="page-title">Mesin Gerinda Great D1 — Pengenalan</h1>' +
+  '<p class="page-sub">Great D1 adalah salah satu jenis mesin gerinda yang berfungsi sebagai <b>pengerindaan alat potong yang memiliki tuntutan sudut tertentu</b>. Contoh: <b>ISO 2, ISO 6, cutter</b>.</p>' +
+  '<div class="grid g2">' +
+    figImg('mesin-great-d1-depan.jpg','Mesin gerinda Great D1 — tampak depan') +
+    figImg('mesin-great-d1.jpg','Mesin Great D1 di workshop section') +
+  '</div>' +
+  '<h2 class="sec-title"><span class="num">✦</span> Untuk apa mesin ini dipakai?</h2>' +
+  '<p class="body-p">Pada section Tool Grinding, Great D1 menjadi mesin utama untuk menggerinda alat potong dengan <b>tuntutan sudut tertentu</b> — mulai dari pahat <b>ISO 6</b> dan <b>ISO 2</b> hingga <b>cutter</b>. Mahasiswa program TMI–RTM/TMK–TRMK mempelajari khusus mesin ini; mahasiswa TPM–PM menggunakannya 4 hari dalam rolling mesin.</p>' +
+  '<div class="chips"><span class="chip">Produksi ISO 6 R1616 — estimasi 40 menit</span><span class="chip">Produksi ISO 2 — estimasi 60 menit · minimal 2 pcs</span><span class="chip blue">Kompetensi: sumbu putar 0°</span></div>' +
+  '<h2 class="sec-title"><span class="num">→</span> Jelajahi sub-materi Great D1</h2>' +
+  '<div class="grid g3">' +
+    '<div class="card quick-cards" data-goto="gd1-spek"><h3>Spesifikasi Mesin</h3><p>Kapasitas kerja, ukuran & berat, spindel, jangkauan penyetelan.</p><span class="go">Buka →</span></div>' +
+    '<div class="card quick-cards" data-goto="gd1-bagian"><h3>Bagian-bagian Mesin</h3><p>Skema interaktif + foto komponen asli.</p><span class="go">Buka →</span></div>' +
+    '<div class="card quick-cards" data-goto="gd1-sumbu"><h3>Sumbu & Pergerakan</h3><p>Sumbu atas, tengah, bawah, eretan, dan stoper.</p><span class="go">Buka →</span></div>' +
+    '<div class="card quick-cards" data-goto="gd1-batu"><h3>Batu Gerinda</h3><p>Cup wheels dan dish grinding wheels.</p><span class="go">Buka →</span></div>' +
+    '<div class="card quick-cards" data-goto="gd1-alat"><h3>Jenis Alat Potong</h3><p>ISO 2/6/9, pahat ulir, end mill, shell end mill.</p><span class="go">Buka →</span></div>' +
+    '<div class="card quick-cards" data-goto="gd1-perk"><h3>Perlengkapan Mesin</h3><p>17 perlengkapan beserta fungsinya.</p><span class="go">Buka →</span></div>' +
+  '</div>';
+}
+
+function rGd1Spek(){
+  const groups = SPEK.map((g, gi) =>
+    '<div class="card mt-2"><h3>'+g.k+'</h3><div class="table-scroll" style="border:none;box-shadow:none;margin-top:10px">' +
+    '<table class="tbl"><thead><tr><th style="width:55%">Spesifikasi</th><th>Nilai</th></tr></thead><tbody>' +
+    g.r.map(r => '<tr><td>'+r[0]+'</td><td class="val">'+r[1]+'</td></tr>').join('') +
+    '</tbody></table></div></div>').join('');
+  return '' +
+  '<div class="eyebrow">Modul 6 · Bagian B</div><h1 class="page-title">Spesifikasi Mesin Great D1</h1>' +
+  '<p class="page-sub">Data spesifikasi dipertahankan persis dari PPT — mencakup kapasitas kerja, ukuran & berat, spindel batu gerinda, serta jangkauan penyetelan dan jarak tempuh.</p>' +
+  '<div class="stat-row">' +
+    '<div class="stat"><div class="v">130 mm</div><div class="k">Ø cutter antara 2 center</div></div>' +
+    '<div class="stat"><div class="v">250 mm</div><div class="k">Jarak center maksimum</div></div>' +
+    '<div class="stat"><div class="v">0,75 HP</div><div class="k">Tenaga spindel motor</div></div>' +
+    '<div class="stat"><div class="v">3750 rpm</div><div class="k">Putaran spindel penghubung</div></div>' +
+    '<div class="stat"><div class="v">350 kg</div><div class="k">Berat standar</div></div>' +
+  '</div>' + groups +
+  '<div class="note"><b>Catatan:</b> tidak ada spesifikasi tambahan di luar PPT. Nilai ditampilkan apa adanya, termasuk lubang tirus spindel kepala pembagi (MT4/ISO 4), kapasitas collet (MT4/ISO 40, 22/24 mm), jarak penyetelan pengikat benda (200 mm), jangkauan slide maksimum (100 mm), dan panjang alur spiral 60–100 mm.</div>';
+}
+
+function rGd1Bagian(){
+  const photos = BAGIAN.filter(b => b.img).map(b => figImg(b.img, b.n + '. ' + b.nama)).join('');
+  return '' +
+  '<div class="eyebrow">Modul 6 · Bagian C</div><h1 class="page-title">Bagian-bagian Mesin GD1</h1>' +
+  '<p class="page-sub">Klik nomor pada skema untuk menampilkan nama dan fungsi setiap komponen. Komponen utama: kepala gerinda, kepala lepas, bed mesin, unit pengendali, dan motor listrik.</p>' +
+  hotspotHtml() +
+  '<h2 class="sec-title"><span class="num">📷</span> Foto komponen asli (PPT)</h2>' +
+  '<div class="grid g3">'+photos+'</div>' +
+  '<h2 class="sec-title"><span class="num">🎛</span> Unit Pengendali</h2>' +
+  '<p class="sec-sub">Tombol dan saklar yang tersedia pada unit pengendali mesin Great D1.</p>' +
+  '<div class="grid g4">' +
+    ['Tombol darurat','Mematikan putaran spindel','Spindel berputar searah jarum jam','Spindel berputar berlawanan arah jarum jam','Saklar & tombol penyedot debu','Saklar & tombol pendingin','Saklar utama'].map(x => '<div class="card" style="padding:14px 16px"><p style="margin:0;font-weight:600;color:var(--soft)">'+x+'</p></div>').join('') +
+  '</div>' +
+  '<div class="note"><b>Detail lampu penerang:</b> tegangan 12 Volt, daya 55 watt — sebagai penerangan di tempat kerja.</div>';
+}
+
+function rGd1Sumbu(){
+  const cards = SUMBU.map((s, i) =>
+    '<div class="card glow-top"><h3>'+(i+1)+'. '+s.nama+'</h3><p class="body-p">'+s.d+'</p><p class="small muted">'+s.p+'</p></div>').join('');
+  return '' +
+  '<div class="eyebrow">Modul 6 · Bagian D</div><h1 class="page-title">Sumbu Putar & Pergerakan Mesin</h1>' +
+  '<p class="page-sub">Kepala lepas memiliki tiga sumbu putar dengan fungsi berbeda. Jalankan simulasi per sumbu — jangan tertukar arah dan fungsinya.</p>' +
+  sumbuSimHtml() +
+  '<div class="grid g3 mt-3">'+cards+'</div>' +
+  '<h2 class="sec-title"><span class="num">✦</span> Stoper & Eretan</h2>' +
+  '<div class="grid g2">' +
+    '<div class="card"><h3>Stoper</h3><p class="body-p">Untuk <b>membatasi gerak meja</b> kedudukan sumbu bawah secara radial sumbu spindel.</p></div>' +
+    '<div class="card"><h3>Eretan</h3><p class="body-p">Sebagai <b>penggerak pemakanan</b> secara axial sumbu spindel dan secara vertikal.</p></div>' +
+  '</div>' +
+  figImg('bagian-stoper-eretan.jpg','Stoper dan eretan pada meja mesin Great D1') +
+  '<div class="note warn"><b>Pengingat kompetensi:</b> jika ingin uji kompetensi di Great D1, sumbu putar atas, tengah, dan bawah harus pada posisi <b>0°</b>.</div>';
+}
+
+function rGd1Batu(){
+  const cards = BATU.map(b =>
+    '<div class="card glow-top"><h3>'+b.nama+'</h3><p class="body-p">'+b.d+'</p><p class="small muted">'+b.p+'</p>' +
+    '<div class="grid g2 mt-2">'+b.img.map(i => figImg(i, b.nama)).join('')+'</div></div>').join('');
+  return '' +
+  '<div class="eyebrow">Modul 6 · Bagian E</div><h1 class="page-title">Macam Batu Gerinda Mesin GD 1</h1>' +
+  '<p class="page-sub">Dua jenis batu gerinda yang digunakan pada mesin Great D1 dengan kegunaan yang berbeda.</p>' +
+  '<div class="grid g2">'+cards+'</div>' +
+  '<h2 class="sec-title"><span class="num">⇄</span> Perbedaan penggunaan</h2>' +
+  '<div class="table-scroll"><table class="tbl"><thead><tr><th>Jenis</th><th>Bentuk</th><th>Kegunaan (sesuai PPT)</th></tr></thead><tbody>' +
+  '<tr><td class="val">Cup Grinding Wheel</td><td>Berbentuk cangkir</td><td>Penggerindaan <b>alat-alat potong</b> seperti cutter, pahat bubut, dan sebagainya</td></tr>' +
+  '<tr><td class="val">Dish Grinding Wheel</td><td>Tipis menyerupai piring</td><td>Penggerindaan <b>profil pada cutter</b></td></tr>' +
+  '</tbody></table></div>';
+}
+
+function rGd1Alat(){
+  const cards = ALAT.map(a =>
+    '<div class="card" style="padding:12px">'+figImg(a.img, a.nama)+(a.img2?figImg(a.img2,a.nama+' — varian'):'')+'<p class="small muted" style="margin-top:8px">'+a.d+'</p></div>').join('');
+  return '' +
+  '<div class="eyebrow">Modul 6 · Bagian F</div><h1 class="page-title">Jenis Alat Potong yang Dihasilkan</h1>' +
+  '<p class="page-sub">Contoh alat potong yang dihasilkan dari penggerindaan pada section tool grinding. Klik gambar untuk memperbesar.</p>' +
+  '<div class="grid g3">'+cards+'</div>';
+}
+
+function rGd1Perk(){
+  return '' +
+  '<div class="eyebrow">Modul 6 · Bagian G</div><h1 class="page-title">Perlengkapan Mesin Great D1</h1>' +
+  '<p class="page-sub">17 perlengkapan beserta fungsi dan hubungannya dengan proses penggerindaan. Klik tiap item untuk membuka foto dan penjelasan.</p>' +
+  '<div id="perkList">'+accordionHtml(PERK.map(p => ({nama:p.nama, img:p.img, img2:p.img2, f:p.f})), {id:'perk'})+'</div>' +
+  '<div class="note"><b>Keterangan nama:</b> penulisan disesuaikan agar konsisten — "Parallel Block" (pada PPT ditulis Pararel Block) dan "Bevel Protractor" (pada PPT ditulis Bevel Protactor). Foto <b>Auxiliary Change Gear System</b> belum tersedia pada sumber; tambahkan foto di <span class="small muted">assets/images/</span> bila sudah didokumentasikan.</div>';
+}
+
+function rMesinSection(){
+  const cards = MESIN_SECTION.map(m =>
+    '<div class="card glow-top">'+figImg(m.img, m.nama)+'<h3 class="mt-1">'+m.nama+'</h3><p class="body-p">'+m.f+'</p>' +
+    (m.alur ? '<button class="btn sm" data-goto="'+m.alur+'">'+m.alurT+' →</button>' : '<span class="chip warn">Alur belum tersedia di PPT</span>')+'</div>').join('');
+  return '' +
+  '<div class="eyebrow">Modul 7</div><h1 class="page-title">Mesin-Mesin Section Tool Grinding</h1>' +
+  '<p class="page-sub">Empat mesin yang digunakan dalam section sesuai PPT: Mesin Vitax Twistdrill, Mesin Vitax Roughing, Mesin Great D1, dan Mesin Grief (pada website ditulis konsisten "Greif").</p>' +
+  '<div class="grid g2">'+cards+'</div>' +
+  '<h2 class="sec-title"><span class="num">⏱</span> Alokasi waktu rolling (prodi TPM–PM)</h2>' +
+  '<div class="stat-row">' +
+    '<div class="stat"><div class="v">2 hari</div><div class="k">Vitax</div></div>' +
+    '<div class="stat"><div class="v">3 hari</div><div class="k">Grief (Greif)</div></div>' +
+    '<div class="stat"><div class="v">4 hari</div><div class="k">Great D1</div></div>' +
+  '</div>' +
+  '<div class="note">Rolling mesin yang berbeda dimulai pada hari <b>Selasa</b> setelah <b>overlapping awal</b>. Untuk TMI–RTM/TMK–TRMK, mahasiswa hanya mempelajari <b>mesin Great D1</b>.</div>';
+}
+
+/* ---------- Alur ---------- */
+function alurPage(pid, no, judul, data){
+  const langkah = data.langkah.map((l, i) =>
+    '<div class="card" style="padding:14px 16px;display:flex;gap:12px;align-items:flex-start"><span class="chip" style="flex:none">'+(i+1)+'</span><p style="margin:0;line-height:1.6;color:var(--soft)">'+l+'</p></div>').join('');
+  const fotos = data.foto.map(f => figImg(f[0], f[1])).join('');
+  return '' +
+  '<div class="eyebrow">Modul 8 · Alur '+no+'</div><h1 class="page-title">Alur Penggerindaan Mesin '+judul+'</h1>' +
+  '<p class="page-sub">Ikuti tahapan sesuai materi PPT — mulai persiapan alat, pengukuran, pelaporan start, hingga target waktu produksi.</p>' +
+  '<h2 class="sec-title"><span class="num">1</span> Langkah persiapan & ketentuan</h2>' +
+  '<div class="grid">'+langkah+'</div>' +
+  '<h2 class="sec-title"><span class="num">2</span> Alat yang terlibat</h2>' +
+  '<div class="grid g4">'+fotos+'</div>' +
+  '<h2 class="sec-title"><span class="num">3</span> Alur interaktif tahap demi tahap</h2>' +
+  '<p class="sec-sub">Gunakan tombol Kembali / Berikutnya. Progress akan menandai tahap yang sudah dilewati.</p>' +
+  '<div id="st-container"></div>' +
+  '<h2 class="sec-title"><span class="num">4</span> Flowchart alur</h2>' +
+  '<p class="sec-sub">Klik tiap kotak untuk membaca detail. Jalur "Ya" melanjutkan alur; jalur "Tidak" mengulangi latihan.</p>' +
+  flowHtml(data.flow) +
+  '<h2 class="sec-title"><span class="num">🗂</span> Flowchart asli dari PPT</h2>' +
+  figImg(data.fcImg, data.fcCaption);
+}
+
+/* ---------- Toleransi & penilaian ---------- */
+function rToleransi(){
+  const tbl = (rows) => '<div class="table-scroll" style="border:none;box-shadow:none"><table class="tbl"><thead><tr><th>Kelompok</th><th>Nilai</th></tr></thead><tbody>' +
+    rows.map(r => '<tr><td class="val">'+r[0]+'</td><td class="num">'+r[1]+'</td></tr>').join('') + '</tbody></table></div>';
+  const imgs = TOLERANSI.imgs.map(i => figImg(i[0], i[1])).join('');
+  return '' +
+  '<div class="eyebrow">Modul 9 · Bagian A</div><h1 class="page-title">Toleransi dan Nilai</h1>' +
+  '<p class="page-sub">Kelompok angka penilaian ukuran dan kehalusan sesuai PPT — mencakup toleransi umum, khusus, dan ISO.</p>' +
+  '<div class="grid g2">' +
+    '<div class="card glow-top"><h3>UKURAN</h3>'+tbl(TOLERANSI.ukuran)+'</div>' +
+    '<div class="card glow-top"><h3>KEHALUSAN</h3>'+tbl(TOLERANSI.kehalusan)+'</div>' +
+  '</div>' +
+  '<div class="note"><b>Catatan akurasi:</b> angka-angka di atas ditampilkan apa adanya dari PPT. Sumber tidak menentukan batas numerik antar kategori — jangan mengasumsikan rentang yang tidak tercantum.</div>' +
+  '<h2 class="sec-title"><span class="num">🗂</span> Referensi gambar toleransi (PPT)</h2>' +
+  '<div class="grid g3">'+imgs+'</div>' +
+  '<h2 class="sec-title"><span class="num">📋</span> Form penilaian</h2>' +
+  '<p class="sec-sub">Contoh <b>Lembar Penilaian Praktek Kompetensi Gerinda</b> dari PPT. Klik gambar untuk memperbesar dan memeriksa detailnya.</p>' +
+  '<div class="grid g-2-1">' +
+    figImg('form-penilaian.jpg','Lembar Penilaian Praktek Kompetensi Gerinda — sumber PPT') +
+    '<div class="card"><h3>Struktur yang terbaca pada form</h3>' +
+    '<div class="table-scroll" style="border:none;box-shadow:none;margin-top:8px"><table class="tbl" style="min-width:0"><tbody>' +
+    FORM_STRUKTUR.map(f => '<tr><td style="font-weight:600;color:var(--soft)">'+f[0]+'</td><td class="val" style="white-space:normal">'+f[1]+'</td></tr>').join('') +
+    '</tbody></table></div>' +
+    '<p class="small muted">Pembacaan struktur diikuti dari gambar form pada PPT — perbesar gambar untuk memverifikasi. Penggunaan resmi tetap mengikuti form asli section.</p></div>' +
+  '</div>';
+}
+
+function rBobot(){
+  return '' +
+  '<div class="eyebrow">Modul 9 · Bagian C & D</div><h1 class="page-title">Bobot Penilaian & Rumus Nilai Section</h1>' +
+  '<p class="page-sub">Bobot NHP per program studi dan rumus NSP TGR sesuai diagram pada PPT.</p>' +
+  '<div class="grid g2">' +
+    '<div class="card glow-top"><h3>Prodi TPM–PM (NHP)</h3>' +
+      '<div class="sim-result" style="margin-top:12px"><div class="row"><span>Nilai Kompetensi</span><b>70%</b></div><div class="row"><span>Nilai Produksi</span><b>30%</b></div></div>' +
+      '<div class="progress-track mt-2" style="height:14px;display:flex"><div style="width:70%;background:var(--blue);border-radius:6px 0 0 6px"></div><div style="width:30%;background:var(--neon);border-radius:0 6px 6px 0"></div></div>' +
+      '<div class="flex small muted mt-1"><span>■ 70% Kompetensi</span><span style="color:var(--neon)">■ 30% Produksi</span></div></div>' +
+    '<div class="card glow-top"><h3>Prodi TMI–RTM (NHP)</h3>' +
+      '<div class="sim-result" style="margin-top:12px"><div class="row"><span>Nilai Produksi</span><b>100%</b></div></div>' +
+      '<div class="progress-track mt-2" style="height:14px"><div style="width:100%;background:var(--grad);border-radius:6px"></div></div>' +
+      '<div class="flex small muted mt-1"><span>■ 100% Produksi</span></div></div>' +
+  '</div>' +
+  '<div class="note warn"><b>NB (sesuai PPT):</b> perbaikan nilai hanya untuk <b>nilai produksi</b> (kuantitas dan nilainya).</div>' +
+  '<h2 class="sec-title"><span class="num">∑</span> Rumus Nilai Section Gerinda (NSP TGR)</h2>' +
+  '<p class="sec-sub">Sesuai diagram pada PPT. Variabel NHP = nilai section gerinda; NES adalah notasi nilai pada diagram sumber (arti lengkap variabel tidak dijelaskan pada PPT — jangan diasumsikan).</p>' +
+  '<div class="grid g2">' +
+    '<div class="card"><h3>TMI–RTM</h3><div class="formula mt-1">NSP TGR = <span class="frac"><span class="top">NHP + NES</span><span class="bot">2</span></span></div></div>' +
+    '<div class="card"><h3>TPM–PM</h3><div class="formula mt-1">NSP TGR = <span class="frac"><span class="top">2 × NHP + NES</span><span class="bot">3</span></span></div></div>' +
+  '</div>' +
+  '<div class="note ok"><b>Pisahkan dua hal ini:</b> pembobotan NHP (kompetensi vs produksi) adalah tahap pertama; rumus NSP TGR adalah tahap akhir yang menggabungkan NHP dan NES. Keduanya tidak boleh dicampur — lihat Simulator Nilai untuk latihan hitung bertahap.</div>';
+}
+
+function rSimNilai(){
+  return '' +
+  '<div class="eyebrow">Modul 9 · Bagian E</div><h1 class="page-title">Simulator Nilai Section</h1>' +
+  '<p class="page-sub">Latihan menghitung NHP (pembobotan) dan NSP TGR (rumus akhir) secara terpisah. Ubah angka dan lihat hasilnya langsung.</p>' +
+  '<div class="sim">' +
+    '<h3>Tahap 1 — Pembobotan NHP</h3>' +
+    '<div class="tabs" id="simProdiTabs"><button class="tab active" data-prodi="tpm">TPM–PM</button><button class="tab" data-prodi="tmi">TMI–RTM</button></div>' +
+    '<div class="sim-grid" id="simNilaiInputs">' +
+      '<div class="field" data-f="komp"><label>Nilai Kompetensi (0–100)</label><input type="number" id="inKomp" min="0" max="100" step="0.5" value="80"><div class="hint">Bobot 70% pada TPM–PM</div></div>' +
+      '<div class="field" data-f="prod"><label>Nilai Produksi (0–100)</label><input type="number" id="inProd" min="0" max="100" step="0.5" value="75"><div class="hint" data-hint>Bobot 30% pada TPM–PM</div></div>' +
+    '</div>' +
+    '<div class="sim-result" id="outNhp"><div class="row"><span>Perhitungan NHP</span><b id="nhpCalc">NHP = 0,7 × 80 + 0,3 × 75 = 78,5</b></div><div style="margin-top:10px"><span class="big" id="nhpVal">78,5</span></div></div>' +
+    '<hr class="divider">' +
+    '<h3>Tahap 2 — Rumus NSP TGR</h3>' +
+    '<div class="sim-grid mt-1">' +
+      '<div class="field"><label>NHP (terisi otomatis — boleh diubah)</label><input type="number" id="inNhp" min="0" max="100" step="0.5" value="78.5"></div>' +
+      '<div class="field"><label>NES <span class="small muted">(notasi nilai pada PPT)</span></label><input type="number" id="inNes" min="0" max="100" step="0.5" value="80"></div>' +
+    '</div>' +
+    '<div class="sim-result" id="outNsp"><div class="row"><span>Rumus TPM–PM</span><b id="nspCalc">NSP TGR = (2 × 78,5 + 80) / 3 = 79</b></div><div style="margin-top:10px"><span class="big" id="nspVal">79</span></div></div>' +
+    '<div class="note" style="margin-bottom:0"><b>Pembatasan:</b> simulator ini alat latihan berhitung, bukan sistem nilai akademik resmi. Arti variabel NES tidak dijelaskan pada sumber — gunakan nilai yang diberikan instruktur.</div>' +
+  '</div>';
+}
+
+/* ---------- Kompensasi ---------- */
+function komTable(ranges, batas){
+  return '<div class="table-scroll" style="border:none;box-shadow:none"><table class="tbl" style="min-width:0"><tbody>' +
+    ranges.map(r => '<tr><td style="font-weight:600;color:var(--soft)">'+r.label+'</td><td class="val" style="text-align:right;white-space:nowrap;color:'+(r.t==='free'?'var(--ok)':r.t==='minus'?'var(--warn)':'var(--danger)')+'">'+r.jam+'</td></tr>').join('') +
+    '</tbody></table></div>' + (batas ? '<p class="small mt-1" style="line-height:1.6;color:var(--soft)">'+batas+'</p>' : '');
+}
+function rKomGd1(){
+  const k = KOMPENSASI.gd1;
+  return '' +
+  '<div class="eyebrow">Modul 10 · Bagian A</div><h1 class="page-title">Kompensasi Mesin Great D1</h1>' +
+  '<p class="page-sub">Ketentuan latihan dan produksi pahat R16 dari kamar alat — sesuai PPT.</p>' +
+  '<div class="grid g2">' +
+    '<div class="card glow-top"><h3>LATIHAN</h3><p class="small muted">Pahat dari kamar alat R16</p>'+komTable(k.ranges, k.batas)+'</div>' +
+    '<div class="card glow-top"><h3>PRODUKSI</h3><p class="small muted">Pahat dari kamar alat R16</p>'+komTable(k.ranges, k.batas)+'</div>' +
+  '</div>' +
+  '<div class="note"><b>Sama untuk latihan dan produksi:</b> bebas jika pengurangan kurang dari 0,3 mm; 0,3–0,8 mm dan 0,8–1 mm sama-sama −1 jam; batas tebal/lebar/panjang 1 mm; lebih dari 1 mm −5 jam berlaku kelipatannya.</div>' +
+  '<button class="btn" data-goto="sim-kom">Coba Simulator Kompensasi →</button>';
+}
+function rKomGreif(){
+  const k = KOMPENSASI.greif;
+  return '' +
+  '<div class="eyebrow">Modul 10 · Bagian B</div><h1 class="page-title">Kompensasi Mesin Greif</h1>' +
+  '<p class="page-sub">Ketentuan <b>latihan</b> (pahat dari instruktur R20) berbeda dengan <b>produksi</b> (pahat dari kamar alat R16) — sesuai PPT.</p>' +
+  '<div class="card glow-top"><h3>LATIHAN — Pahat dari Instruktur R20</h3>'+komTable(k.latihanRanges, k.latihanBatas)+'</div>' +
+  '<div class="card glow-top mt-2"><h3>PRODUKSI — Pahat dari Kamar Alat R16</h3>'+komTable(k.prodRanges, k.prodBatas)+'</div>' +
+  '<div class="note warn"><b>Perhatikan:</b> pada latihan terdapat dua batas berbeda — panjang 2 mm dan lebar 1,5 mm. Untuk pengurangan lebar di rentang 1,5–2 mm, ketentuan rentang (−1 jam) dan ketentuan batas lebar (−7 jam) saling bertumpuk pada sumber; konfirmasikan kepada instruktur. Detailnya ditangani transparan pada Simulator Kompensasi.</div>' +
+  '<button class="btn" data-goto="sim-kom">Coba Simulator Kompensasi →</button>';
+}
+function rKomVitax(){
+  const k = KOMPENSASI.vitax;
+  return '' +
+  '<div class="eyebrow">Modul 10 · Bagian C</div><h1 class="page-title">Kompensasi Mesin Vitax</h1>' +
+  '<p class="page-sub">Ketentuan berbeda untuk twist drill latihan dan produksi — sesuai PPT.</p>' +
+  '<div class="grid g2">' +
+    '<div class="card glow-top"><h3>LATIHAN</h3><p class="small muted">Twistdrill dari instruktur</p>'+komTable(k.latihanRanges, null)+'</div>' +
+    '<div class="card glow-top"><h3>PRODUKSI</h3><p class="small muted">Twistdrill dari kamar alat</p>'+komTable(k.prodRanges, k.prodBatas)+'</div>' +
+  '</div>' +
+  '<div class="note ok"><b>Latihan bebas kompensasi</b> — twist drill latihan dari instruktur boleh dihabiskan. Untuk produksi: pengurangan 5 mm pertama bebas; setelah itu per 3 mm −1 jam.</div>' +
+  '<button class="btn" data-goto="sim-kom">Coba Simulator Kompensasi →</button>';
+}
+
+function rSimKom(){
+  const cmp = '' +
+  '<div class="table-scroll mt-2"><table class="tbl"><thead><tr><th>Mesin & Jenis</th><th>Benda kerja</th><th>Bebas kompensasi</th><th>Minus jam</th><th>Batas pengurangan</th></tr></thead><tbody>' +
+  '<tr><td class="val">Great D1 — Latihan</td><td>Pahat kamar alat R16</td><td>&lt; 0,3 mm</td><td>0,3–1 mm → −1 jam</td><td>Tebal/lebar/panjang 1 mm · lebih → −5 jam (kelipatan)</td></tr>' +
+  '<tr><td class="val">Great D1 — Produksi</td><td>Pahat kamar alat R16</td><td>&lt; 0,3 mm</td><td>0,3–1 mm → −1 jam</td><td>Tebal/lebar/panjang 1 mm · lebih → −5 jam (kelipatan)</td></tr>' +
+  '<tr><td class="val">Greif — Latihan</td><td>Pahat instruktur R20</td><td>&lt; 0,5 mm</td><td>0,5–2 mm → −1 jam</td><td>Panjang 2 mm, lebar 1,5 mm · lebih → −7 jam</td></tr>' +
+  '<tr><td class="val">Greif — Produksi</td><td>Pahat kamar alat R16</td><td>&lt; 0,3 mm</td><td>0,3–1 mm → −1 jam</td><td>Tebal/lebar/panjang 1 mm · lebih → −5 jam (kelipatan)</td></tr>' +
+  '<tr><td class="val">Vitax — Latihan</td><td>Twistdrill instruktur</td><td>Semua (boleh dihabiskan)</td><td>—</td><td>—</td></tr>' +
+  '<tr><td class="val">Vitax — Produksi</td><td>Twistdrill kamar alat</td><td>5 mm pertama</td><td>Lebih dari 5 mm: per 3 mm → −1 jam</td><td>—</td></tr>' +
+  '</tbody></table></div>';
+  return '' +
+  '<div class="eyebrow">Modul 10 · Bagian D</div><h1 class="page-title">Simulator Kompensasi</h1>' +
+  '<p class="page-sub">Pilih mesin dan jenis pekerjaan, masukkan ukuran awal dan akhir, lalu lihat hasil pengurangan beserta ketentuan kompensasinya.</p>' +
+  '<div class="sim">' +
+    '<div class="sim-grid">' +
+      '<div class="field"><label>Mesin</label><select id="kmMesin"><option value="gd1">Great D1</option><option value="greif">Greif</option><option value="vitax">Vitax</option></select></div>' +
+      '<div class="field"><label>Jenis pekerjaan</label><select id="kmJenis"><option value="latihan">Latihan</option><option value="produksi">Produksi</option></select></div>' +
+      '<div class="field" id="kmDimWrap"><label>Dimensi yang diukur</label><select id="kmDim"><option value="tebal">Tebal</option><option value="lebar">Lebar</option><option value="panjang">Panjang</option></select><div class="hint">Penting untuk batas Greif (panjang 2 mm, lebar 1,5 mm)</div></div>' +
+      '<div class="field"><label>Ukuran awal (mm)</label><input type="number" id="kmAwal" value="20" step="0.01" min="0"></div>' +
+      '<div class="field"><label>Ukuran akhir (mm)</label><input type="number" id="kmAkhir" value="19.7" step="0.01" min="0"></div>' +
+    '</div>' +
+    '<div class="sim-result" id="kmOut"></div>' +
+  '</div>' +
+  '<h2 class="sec-title"><span class="num">⇄</span> Perbandingan aturan ketiga mesin</h2>' + cmp +
+  '<div class="note warn"><b>Transparansi perhitungan:</b> pada PPT tidak dijelaskan detail pembulatan kelipatan dan status batas (inklusif/eksklusif). Simulator menampilkan asumsi perhitungan secara terbuka dan memberi tanda bila hasil perlu <b>konfirmasi instruktur</b> sebelum dipakai sebagai nilai resmi.</div>';
+}
+
+function rPerhatian(){
+  const cards = PERHATIAN.map(p =>
+    '<div class="card"><div class="cicon" style="color:var(--'+p.c+')"><svg viewBox="0 0 24 24">'+ICONS[p.i]+'</svg></div><p class="body-p" style="margin:0">'+p.t+'</p></div>').join('');
+  return '' +
+  '<div class="eyebrow">Modul 11</div><h1 class="page-title">Hal-Hal yang Perlu Diperhatikan</h1>' +
+  '<p class="page-sub">Pengingat penting selama praktik di section tool grinding — sesuai PPT.</p>' +
+  '<div class="grid g3">'+cards+'</div>' +
+  '<h2 class="sec-title"><span class="num">✓</span> Checklist persiapan praktik</h2>' +
+  '<div class="card">'+checklistHtml('prep', [
+    'APD lengkap (wearpack, safety shoes, kacamata, masker)',
+    'Cek batu gerinda di <b>awal</b> — jika gempil, lapor',
+    'Siapkan alat sesuai alur (hairline, parallel block, bevel transfer, angle gauge)',
+    'Catat ukuran awal benda kerja',
+    '<b>Lapor start</b> kepada instruktur'
+  ])+'</div>' +
+  '<h2 class="sec-title"><span class="num">✓</span> Checklist pemeriksaan sesudah / selama kegiatan</h2>' +
+  '<div class="card">'+checklistHtml('post', [
+    'Cek batu gerinda di <b>akhir</b> — jika gempil, lapor',
+    'Wajib lapor ketika meninggalkan mesin',
+    'Matikan mesin, lampu, blower, kipas saat istirahat & pulang',
+    'Air minum diletakkan pada tempatnya',
+    'Isi & kumpulkan logbook hari Jumat akhir minggu (isi lengkap)',
+    'Selesaikan nilai praktik maksimal <b>1 bulan</b> setelah praktik berakhir'
+  ])+'</div>' +
+  '<div class="hero mt-3" style="text-align:center"><div><div class="eyebrow" style="justify-content:center">Motto Section</div>' +
+  '<h1 style="font-size:clamp(1.4rem,3vw,2rem)">GERINDA ITU GAYENG <span class="grad" style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">— FULL SENYUM</span></h1></div></div>';
+}
+
+function rGaleri(){
+  return '' +
+  '<div class="eyebrow">Modul 12</div><h1 class="page-title">Galeri Pembelajaran</h1>' +
+  '<p class="page-sub">Koleksi foto teknis dari kedua PPT. Klik untuk memperbesar; gunakan tombol ± / roda mouse untuk zoom, geser untuk pan.</p>' +
+  '<div class="gal-filter" id="galFilter"></div><div class="gal-grid" id="galGrid"></div>';
+}
+
+function rKuis(){
+  return '' +
+  '<div class="eyebrow">Modul 13</div><h1 class="page-title">Evaluasi Pembelajaran</h1>' +
+  '<p class="page-sub">Kuis pilihan ganda untuk menguji pemahaman materi section tool grinding. <b>Kuis ini alat latihan — bukan sistem nilai akademik resmi.</b></p>' +
+  '<div id="quizApp"></div>';
+}
+
+/* ===================== INIT PER HALAMAN ===================== */
+const INIT = {
+  beranda(){},
+  instruktur(){},
+  aturan(){}, k3(){},
+  capaian(){},
+  pengenalan(root){ bindGrindSim(root); },
+  'gd1-intro'(){},
+  'gd1-spek'(){},
+  'gd1-bagian'(root){ bindHotspot(root); },
+  'gd1-sumbu'(root){ bindSumbuSim(root); },
+  'gd1-batu'(){},
+  'gd1-alat'(){},
+  'gd1-perk'(root){ if (LS.get('acc-open', null)) {} },
+  'mesin-section'(){},
+  'alur-vitax'(root){
+    const steps = ALUR_VITAX.langkah.map((l,i) => ({t:'Tahap '+(i+1), d:l}));
+    $('#st-container', root).innerHTML = stepperHtml('vitax', steps, ALUR_VITAX.foto);
+    bindStepper(root, 'vitax', steps, ALUR_VITAX.foto);
+    bindFlow(root);
+  },
+  'alur-gd1'(root){
+    const steps = ALUR_GD1.langkah.map((l,i) => ({t:'Tahap '+(i+1), d:l}));
+    $('#st-container', root).innerHTML = stepperHtml('gd1', steps, ALUR_GD1.foto);
+    bindStepper(root, 'gd1', steps, ALUR_GD1.foto);
+    bindFlow(root);
+  },
+  'alur-greif'(root){
+    const steps = ALUR_GREIF.langkah.map((l,i) => ({t:'Tahap '+(i+1), d:l}));
+    $('#st-container', root).innerHTML = stepperHtml('greif', steps, ALUR_GREIF.foto);
+    bindStepper(root, 'greif', steps, ALUR_GREIF.foto);
+    bindFlow(root);
+  },
+  toleransi(){},
+  bobot(){},
+  'sim-nilai'(root){ initSimNilai(root); },
+  'kom-gd1'(){}, 'kom-greif'(){}, 'kom-vitax'(){},
+  'sim-kom'(root){ initSimKom(root); },
+  perhatian(){},
+  galeri(root){ initGaleri(root); },
+  kuis(root){ initQuiz(root); }
+};
+
+/* ---------- Simulator nilai ---------- */
+function fmt(n){ return (Math.round(n * 100) / 100).toString().replace('.', ','); }
+function initSimNilai(root){
+  let prodi = 'tpm';
+  const inK = $('#inKomp', root), inP = $('#inProd', root), inNhp = $('#inNhp', root), inNes = $('#inNes', root);
+  function calcNhp(){
+    const k = parseFloat(inK.value), p = parseFloat(inP.value);
+    if (isNaN(k) || isNaN(p)) return null;
+    const nhp = prodi === 'tpm' ? (0.7 * k + 0.3 * p) : p;
+    $('#nhpCalc', root).textContent = prodi === 'tpm'
+      ? 'NHP = 0,7 × ' + fmt(k) + ' + 0,3 × ' + fmt(p) + ' = ' + fmt(nhp)
+      : 'NHP = Nilai Produksi = ' + fmt(nhp);
+    $('#nhpVal', root).textContent = fmt(nhp);
+    inNhp.value = Math.round(nhp * 100) / 100;
+    calcNsp();
+  }
+  function calcNsp(){
+    const nhp = parseFloat(inNhp.value), nes = parseFloat(inNes.value);
+    if (isNaN(nhp) || isNaN(nes)) return;
+    const nsp = prodi === 'tpm' ? (2 * nhp + nes) / 3 : (nhp + nes) / 2;
+    $('#nspCalc', root).textContent = prodi === 'tpm'
+      ? 'NSP TGR = (2 × ' + fmt(nhp) + ' + ' + fmt(nes) + ') / 3 = ' + fmt(nsp)
+      : 'NSP TGR = (' + fmt(nhp) + ' + ' + fmt(nes) + ') / 2 = ' + fmt(nsp);
+    $('#nspVal', root).textContent = fmt(nsp);
+  }
+  $('#simProdiTabs', root).addEventListener('click', e => {
+    const b = e.target.closest('[data-prodi]'); if (!b) return;
+    prodi = b.getAttribute('data-prodi');
+    $$('#simProdiTabs .tab', root).forEach(t => t.classList.toggle('active', t === b));
+    $('[data-f="komp"]', root).style.display = prodi === 'tpm' ? '' : 'none';
+    $('[data-hint]', root).textContent = prodi === 'tpm' ? 'Bobot 30% pada TPM–PM' : 'TMI–RTM: NHP = 100% Nilai Produksi';
+    calcNhp();
+  });
+  [inK, inP].forEach(el => el.addEventListener('input', calcNhp));
+  [inNhp, inNes].forEach(el => el.addEventListener('input', calcNsp));
+  calcNhp();
+}
+
+/* ---------- Simulator kompensasi ---------- */
+function initSimKom(root){
+  const mesin = $('#kmMesin', root), jenis = $('#kmJenis', root), dim = $('#kmDim', root);
+  const awal = $('#kmAwal', root), akhir = $('#kmAkhir', root), out = $('#kmOut', root), dimWrap = $('#kmDimWrap', root);
+  function badge(t){
+    if (t === 'ok') return 'chip ok';
+    if (t === 'minus') return 'chip warn';
+    if (t === 'amb') return 'chip warn';
+    return 'chip danger';
+  }
+  function hitung(){
+    const m = mesin.value, j = jenis.value, d = dim.value;
+    const a = parseFloat(awal.value), b = parseFloat(akhir.value);
+    if (isNaN(a) || isNaN(b)){ out.innerHTML = '<p class="small muted">Masukkan ukuran awal dan akhir.</p>'; return; }
+    const red = Math.round((a - b) * 1000) / 1000;
+    if (red < 0){ out.innerHTML = '<p style="color:var(--danger);font-weight:600">Ukuran akhir lebih BESAR dari ukuran awal — pengurangan tidak terhitung. Pada penggerindaan, ukuran berkurang; periksa kembali input.</p>'; return; }
+    dimWrap.style.display = (m === 'greif' && j === 'latihan') ? '' : 'none';
+    let res;
+    if (m === 'gd1'){
+      if (red < 0.3) res = { jam:'FREE', t:'ok', ket:'Pengurangan kurang dari 0,3 mm — bebas kompensasi. (Latihan & produksi sama.)' };
+      else if (red <= 1) res = { jam:'−1 jam', t:'minus', ket:'Pengurangan ' + fmt(red) + ' mm berada pada rentang 0,3–1 mm → minus 1 jam. (Latihan & produksi sama.)' };
+      else { const k = Math.ceil(red); res = { jam:'−' + (5*k) + ' jam', t:'bad', ket:'Pengurangan ' + fmt(red) + ' mm melebihi batas 1 mm → −5 jam × kelipatan. Kelipatan dihitung dibulatkan ke atas: ⌈' + fmt(red) + '⌉ = ' + k + ' → −' + (5*k) + ' jam.', warn:'Detail pembulatan kelipatan tidak dijelaskan pada PPT — konfirmasi instruktur sebelum digunakan sebagai nilai resmi.' }; }
+    } else if (m === 'greif'){
+      if (j === 'latihan'){
+        if (red < 0.5) res = { jam:'FREE', t:'ok', ket:'Pengurangan kurang dari 0,5 mm — bebas kompensasi (pahat latihan dari instruktur R20).' };
+        else if (red <= 2 && !(d === 'lebar' && red > 1.5)) res = { jam:'−1 jam', t:'minus', ket:'Pengurangan ' + fmt(red) + ' mm (dimensi ' + d + ') pada rentang 0,5–2 mm → minus 1 jam.' };
+        else if (red <= 2 && d === 'lebar' && red > 1.5) res = { jam:'−1 jam / −7 jam', t:'amb', ket:'Pengurangan ' + fmt(red) + ' mm: rentang 0,5–2 mm → −1 jam, NAMUN batas pengurangan lebar 1,5 mm dengan ketentuan lebih dari batas → −7 jam. Kedua ketentuan bertumpuk pada PPT.', warn:'Kasus tumpang tindih 1,5–2 mm untuk lebar — konfirmasi instruktur.' };
+        else res = { jam:'−7 jam', t:'bad', ket:'Pengurangan ' + fmt(red) + ' mm melebihi batas ' + (d === 'lebar' ? 'lebar 1,5 mm' : 'panjang 2 mm') + ' → minus 7 jam.' };
+      } else {
+        if (red < 0.3) res = { jam:'FREE', t:'ok', ket:'Produksi (pahat kamar alat R16): kurang dari 0,3 mm — bebas kompensasi.' };
+        else if (red <= 1) res = { jam:'−1 jam', t:'minus', ket:'Produksi: pengurangan 0,3–1 mm → minus 1 jam.' };
+        else { const k = Math.ceil(red); res = { jam:'−' + (5*k) + ' jam', t:'bad', ket:'Produksi: melebihi batas 1 mm → −5 jam × kelipatan (⌈' + fmt(red) + '⌉ = ' + k + ') → −' + (5*k) + ' jam.', warn:'Detail pembulatan kelipatan tidak dijelaskan pada PPT — konfirmasi instruktur.' }; }
+      }
+    } else {
+      if (j === 'latihan') res = { jam:'FREE', t:'ok', ket:'Twistdrill latihan dari instruktur — FREE kompensasi (boleh dihabiskan).' };
+      else if (red <= 5) res = { jam:'FREE', t:'ok', ket:'Pengurangan 5 mm pertama — bebas kompensasi (twistdrill produksi dari kamar alat).' };
+      else { const ex = red - 5, k = Math.ceil(ex / 3); res = { jam:'−' + k + ' jam', t:'bad', ket:'Pengurangan ' + fmt(red) + ' mm melebihi 5 mm → kelebihan ' + fmt(ex) + ' mm; per 3 mm-nya −1 jam (dibulatkan ke atas: ⌈' + fmt(ex) + '/3⌉ = ' + k + ') → −' + k + ' jam.', warn:'Pembulatan "per 3 mm-nya" tidak dijelaskan pada PPT — konfirmasi instruktur.' }; }
+    }
+    out.innerHTML =
+      '<div class="row"><span>Pengurangan</span><b>' + fmt(red) + ' mm</b></div>' +
+      '<div class="row"><span>Keterangan rentang</span><b style="text-align:right;max-width:70%">' + res.ket + '</b></div>' +
+      '<div style="margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="small muted">Jam minus:</span><span class="' + badge(res.t) + '" style="font-size:1.02rem">' + res.jam + '</span></div>' +
+      (res.warn ? '<p class="small mt-1" style="color:var(--warn);line-height:1.55">⚠ ' + res.warn + '</p>' : '');
+  }
+  [mesin, jenis, dim, awal, akhir].forEach(el => el.addEventListener('input', hitung));
+  [mesin, jenis, dim].forEach(el => el.addEventListener('change', hitung));
+  hitung();
+}
+
+/* ---------- Galeri ---------- */
+function initGaleri(root){
+  const groups = GALERI.map(g => g.g);
+  const filter = $('#galFilter', root), grid = $('#galGrid', root);
+  let cur = 'Semua';
+  function items(){
+    return GALERI.filter(g => cur === 'Semua' || g.g === cur).flatMap(g => g.items.map(i => ({src: IMG + i[0], cap: i[1] + ' — ' + g.g})));
+  }
+  function render(){
+    filter.innerHTML = ['Semua'].concat(groups).map(g => '<button class="tab'+(g===cur?' active':'')+'" data-g="'+g+'">'+g+'</button>').join('');
+    grid.innerHTML = items().map(it =>
+      '<div class="gal-item" data-src="'+it.src+'" data-cap="'+it.cap+'"><img src="'+it.src+'" alt="'+it.cap+'" loading="lazy"><span class="cap">'+it.cap+'</span></div>').join('');
+  }
+  filter.addEventListener('click', e => {
+    const b = e.target.closest('[data-g]'); if (!b) return;
+    cur = b.getAttribute('data-g'); render();
+  });
+  grid.addEventListener('click', e => {
+    const it = e.target.closest('.gal-item'); if (!it) return;
+    Lightbox.open(it.getAttribute('data-src'), it.getAttribute('data-cap'), items());
+  });
+  render();
+}
+
+/* ---------- Kuis ---------- */
+function initQuiz(root){
+  const app = $('#quizApp', root);
+  const CATS = Array.from(new Set(QUIZ.map(q => q.c)));
+  let state = null;
+  function start(){
+    state = { i: 0, score: 0, answered: false, order: shuffle(QUIZ.map((_, i) => i)), log: QUIZ.map(() => null) };
+    renderQ();
+  }
+  function renderQ(){
+    const qi = state.order[state.i];
+    const q = QUIZ[qi];
+    const opts = q.o.map((o, oi) => ({o, oi}));
+    app.innerHTML =
+      '<div class="quiz-head"><span class="q-cat">'+q.c+'</span><span class="small muted">Soal '+(state.i+1)+' / '+state.order.length+' · Skor: '+state.score+'</span></div>' +
+      '<div class="progress-track mb-2"><div class="progress-fill" style="width:'+Math.round((state.i/state.order.length)*100)+'%"></div></div>' +
+      '<div class="card"><h3 style="font-size:1.06rem;line-height:1.5">'+q.q+'</h3><div class="mt-2">' +
+      opts.map((x, k) => '<button class="q-opt" data-oi="'+x.oi+'"><span class="abc">'+'ABCD'[k]+'</span><span>'+x.o+'</span></button>').join('') +
+      '</div><div id="qAfter"></div>' +
+      '<div class="flex mt-2"><button class="btn sm" id="qStop">Akhiri & lihat hasil</button></div></div>';
+    $$('.q-opt', app).forEach(b => b.onclick = () => answer(+b.getAttribute('data-oi')));
+    $('#qStop', app).onclick = finish;
+  }
+  function answer(oi){
+    if (state.answered) return;
+    state.answered = true;
+    const qi = state.order[state.i];
+    const q = QUIZ[qi];
+    const ok = oi === q.a;
+    if (ok) state.score++;
+    state.log[qi] = ok;
+    $$('.q-opt', app).forEach(b => {
+      const v = +b.getAttribute('data-oi');
+      b.disabled = true;
+      if (v === q.a) b.classList.add('correct');
+      else if (v === oi) b.classList.add('wrong');
+    });
+    $('#qAfter', app).innerHTML =
+      '<div class="q-explain'+(ok?'':' w')+'"><b>'+(ok?'✓ Benar!':'✗ Belum tepat — jawaban: '+q.o[q.a]+'</b>')+'</b><br>'+q.w+'</div>' +
+      '<div class="flex"><button class="btn primary sm" id="qNext">'+(state.i === state.order.length-1 ? 'Lihat Hasil' : 'Soal Berikutnya →')+'</button></div>';
+    $('#qNext', app).onclick = () => {
+      if (state.i < state.order.length - 1){ state.i++; state.answered = false; renderQ(); }
+      else finish();
+    };
+  }
+  function finish(){
+    const done = state.log.filter(x => x !== null);
+    const pct = Math.round(done.filter(Boolean).length / done.length * 100);
+    const perCat = CATS.map(c => {
+      const idx = QUIZ.map((q, i) => ({q, i})).filter(x => x.q.c === c && state.log[x.i] !== null);
+      const benar = idx.filter(x => state.log[x.i]).length;
+      return { c, benar, total: idx.length };
+    }).filter(x => x.total > 0);
+    app.innerHTML =
+      '<div class="card score-hero"><div class="eyebrow" style="justify-content:center">Ringkasan Hasil</div>' +
+      '<div class="big">'+pct+'</div><p class="muted">Skor '+state.score+' dari '+done.length+' soal dijawab ('+done.length+' dari '+QUIZ.length+' soal tersedia)</p>' +
+      '<p style="margin-top:6px;font-weight:700;color:'+(pct>=80?'var(--ok)':pct>=60?'var(--warn)':'var(--danger)')+'">'+(pct>=80?'Hebat! Materi dikuasai dengan baik.':pct>=60?'Cukup baik — tinjau kembali materi yang salah.':'Ayo pelajari kembali materinya, lalu ulangi kuis.')+'</p>' +
+      '<div class="cat-bars">'+perCat.map(x =>
+        '<div class="cb"><span>'+x.c+'</span><span class="track"><span class="fill" style="display:block;width:'+Math.round(x.benar/x.total*100)+'%"></span></span><b>'+x.benar+'/'+x.total+'</b></div>').join('')+'</div>' +
+      '<div class="flex mt-3" style="justify-content:center"><button class="btn primary" id="qRetry">⟲ Ulangi Kuis</button><button class="btn" data-goto="pengenalan">Kembali ke Materi</button></div>' +
+      '<p class="small muted mt-2">Kuis adalah latihan pembelajaran dan bukan sistem nilai akademik resmi.</p></div>';
+    $('#qRetry', app).onclick = start;
+  }
+  app.innerHTML =
+    '<div class="card score-hero"><div class="cicon" style="margin:0 auto 14px"><svg viewBox="0 0 24 24">'+ICONS.quiz+'</svg></div>' +
+    '<h3 style="font-size:1.2rem">'+QUIZ.length+' soal pilihan ganda</h3>' +
+    '<p class="muted" style="max-width:52ch;margin:10px auto 0">Mencakup: aturan section, K3, pengenalan mesin, spesifikasi Great D1, fungsi komponen, batu gerinda, perlengkapan, alur proses, toleransi, penilaian, dan kompensasi. Jawaban dibahas langsung setelah menjawab.</p>' +
+    '<div class="chips" style="justify-content:center">'+CATS.map(c => '<span class="chip">'+c+'</span>').join('')+'</div>' +
+    '<button class="btn primary mt-2" id="qStart">Mulai Kuis →</button></div>';
+  $('#qStart', app).onclick = start;
+}
+
+/* ===================== REGISTRI HALAMAN ===================== */
+const PAGES = [
+  { id:'beranda',        g:'Beranda',              t:'Beranda',                          icon:'home',      render:rBeranda },
+  { id:'instruktur',     g:'Profil & Aturan',      t:'Profil Instruktur',                icon:'user',      render:rInstruktur },
+  { id:'aturan',         g:'Profil & Aturan',      t:'Aturan Section',                   icon:'clipboard', render:rAturan },
+  { id:'k3',             g:'Profil & Aturan',      t:'APD & Keselamatan (K3)',           icon:'shield',    render:rK3 },
+  { id:'capaian',        g:'Program & Capaian',    t:'Capaian Pembelajaran',             icon:'target',    render:rCapaian },
+  { id:'pengenalan',     g:'Dasar Penggerindaan',  t:'Pengenalan Mesin Gerinda',         icon:'book',      render:rPengenalan },
+  { id:'gd1-intro',      g:'Mesin Great D1',       t:'Great D1 · Pengenalan',            icon:'cog',       render:rGd1Intro },
+  { id:'gd1-spek',       g:'Mesin Great D1',       t:'Great D1 · Spesifikasi',           icon:'ruler',     render:rGd1Spek },
+  { id:'gd1-bagian',     g:'Mesin Great D1',       t:'Great D1 · Bagian Mesin',          icon:'wrench',    render:rGd1Bagian },
+  { id:'gd1-sumbu',      g:'Mesin Great D1',       t:'Great D1 · Sumbu & Pergerakan',    icon:'wheel',     render:rGd1Sumbu },
+  { id:'gd1-batu',       g:'Mesin Great D1',       t:'Great D1 · Batu Gerinda',          icon:'gem',       render:rGd1Batu },
+  { id:'gd1-alat',       g:'Mesin Great D1',       t:'Great D1 · Jenis Alat Potong',     icon:'spark',     render:rGd1Alat },
+  { id:'gd1-perk',       g:'Mesin Great D1',       t:'Great D1 · Perlengkapan',          icon:'clipboard', render:rGd1Perk },
+  { id:'mesin-section',  g:'Mesin Section',        t:'Mesin-Mesin Tool Grinding',        icon:'cog',       render:rMesinSection },
+  { id:'alur-vitax',     g:'Alur Praktik',         t:'Alur Mesin Vitax',                 icon:'flow',      render:()=>alurPage('vitax','Vitax','Vitax',ALUR_VITAX) },
+  { id:'alur-gd1',       g:'Alur Praktik',         t:'Alur Mesin Great D1',              icon:'flow',      render:()=>alurPage('gd1','Great D1','Great D1',ALUR_GD1) },
+  { id:'alur-greif',     g:'Alur Praktik',         t:'Alur Mesin Greif',                 icon:'flow',      render:()=>alurPage('greif','Greif','Greif',ALUR_GREIF) },
+  { id:'toleransi',      g:'Penilaian',            t:'Toleransi & Form Penilaian',       icon:'chart',     render:rToleransi },
+  { id:'bobot',          g:'Penilaian',            t:'Bobot & Rumus Nilai',              icon:'percent',   render:rBobot },
+  { id:'sim-nilai',      g:'Penilaian',            t:'Simulator Nilai',                  icon:'calc',      render:rSimNilai },
+  { id:'kom-gd1',        g:'Kompensasi',           t:'Kompensasi Great D1',              icon:'clock',     render:rKomGd1 },
+  { id:'kom-greif',      g:'Kompensasi',           t:'Kompensasi Greif',                 icon:'clock',     render:rKomGreif },
+  { id:'kom-vitax',      g:'Kompensasi',           t:'Kompensasi Vitax',                 icon:'clock',     render:rKomVitax },
+  { id:'sim-kom',        g:'Kompensasi',           t:'Simulator Kompensasi',             icon:'calc',      render:rSimKom },
+  { id:'perhatian',      g:'Panduan Praktik',      t:'Perlu Diperhatikan',               icon:'alert',     render:rPerhatian },
+  { id:'galeri',         g:'Panduan Praktik',      t:'Galeri Pembelajaran',              icon:'image',     render:rGaleri },
+  { id:'kuis',           g:'Evaluasi',             t:'Evaluasi (Kuis)',                  icon:'quiz',      render:rKuis }
+];
+
+/* ===================== SPA ===================== */
+const App = {
+  cur: -1,
+  visited: LS.get('visited', []),
+  init(){
+    this.buildSidebar();
+    this.buildSelects();
+    this.setupSearch();
+    this.bindChrome();
+    this.go(0, 1, true);
+  },
+  buildSidebar(){
+    const groups = [];
+    PAGES.forEach((p, i) => {
+      let g = groups.find(x => x.g === p.g);
+      if (!g){ g = { g: p.g, items: [] }; groups.push(g); }
+      g.items.push({ ...p, i });
+    });
+    const collapsed = LS.get('collapsed', []);
+    $('#sideScroll').innerHTML = groups.map((gr, gi) =>
+      '<div class="side-group'+(collapsed.includes(gi)?' collapsed':'')+'" data-gi="'+gi+'">' +
+      '<button type="button" data-sg-toggle aria-expanded="'+(!collapsed.includes(gi))+'">'+gr.g+'<span class="group-count">'+gr.items.length+'</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>' +
+      '<div class="side-items">' + gr.items.map(p =>
+        '<button class="side-link" data-gi="'+p.i+'" title="'+p.t+'">'+ico(p.icon)+'<span>'+p.t+'</span><span class="done-dot hide"></span></button>').join('') +
+      '</div></div>').join('');
+    $('#sideScroll').addEventListener('click', e => {
+      const tg = e.target.closest('[data-sg-toggle]');
+      if (tg){ tg.parentElement.classList.toggle('collapsed');
+        tg.setAttribute('aria-expanded', String(!tg.parentElement.classList.contains('collapsed')));
+        LS.set('collapsed', $$('.side-group').map((el, i) => el.classList.contains('collapsed') ? i : -1).filter(i => i >= 0));
+        return; }
+      const link = e.target.closest('.side-link');
+      if (link) this.go(+link.getAttribute('data-gi'));
+    });
+  },
+  setupSearch(){
+    const input = $('#moduleSearch');
+    const count = $('#searchCount');
+    const search = () => {
+      const keyword = input.value.trim().toLocaleLowerCase('id-ID');
+      let matched = 0;
+      $$('.side-group').forEach(group => {
+        let groupMatched = 0;
+        $$('.side-link', group).forEach(link => {
+          const visible = (link.textContent || '').toLocaleLowerCase('id-ID').includes(keyword)
+            || (group.querySelector('[data-sg-toggle]').textContent || '').toLocaleLowerCase('id-ID').includes(keyword);
+          link.hidden = !visible;
+          if (visible) groupMatched++;
+        });
+        group.hidden = groupMatched === 0;
+        if (keyword && groupMatched) {
+          group.classList.remove('collapsed');
+          group.querySelector('[data-sg-toggle]').setAttribute('aria-expanded', 'true');
+        }
+        matched += groupMatched;
+      });
+      count.textContent = keyword ? (matched ? matched+' materi ditemukan' : 'Tidak ada materi yang sesuai') : '';
+      count.classList.toggle('active', Boolean(keyword));
+    };
+    input.addEventListener('input', search);
+    const showSearch = () => {
+      if (matchMedia('(max-width:860px)').matches) document.body.classList.add('drawer-open');
+      requestAnimationFrame(() => input.focus());
+    };
+    $('#btnQuickFind').onclick = showSearch;
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault(); showSearch(); return;
+      }
+      if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey
+        && !e.target.matches('input,textarea,select') && !$('#lightbox').classList.contains('open')) {
+        e.preventDefault(); showSearch();
+      }
+      if (e.key === 'Escape' && document.body.classList.contains('drawer-open')) {
+        document.body.classList.remove('drawer-open'); $('#btnMenu').focus();
+      }
+    });
+  },
+  buildSelects(){
+    const groups = [];
+    PAGES.forEach((p, i) => {
+      let g = groups.find(x => x.g === p.g);
+      if (!g){ g = { g: p.g, items: [] }; groups.push(g); }
+      g.items.push({ ...p, i });
+    });
+    const opts = groups.map(gr =>
+      '<optgroup label="'+gr.g+'">' + gr.items.map(p => '<option value="'+p.i+'">'+p.t+'</option>').join('') + '</optgroup>').join('');
+    $('#selHeader').innerHTML = opts;
+    $('#selBottom').innerHTML = opts;
+    $('#selHeader').addEventListener('change', e => this.go(+e.target.value));
+    $('#selBottom').addEventListener('change', e => this.go(+e.target.value));
+  },
+  bindChrome(){
+    $('#btnPrev').onclick = () => this.go(this.cur - 1, -1);
+    $('#btnNext').onclick = () => this.go(this.cur + 1, 1);
+    document.addEventListener('keydown', e => {
+      if ($('#lightbox').classList.contains('open')) return;
+      if (e.target.matches('input,select,textarea')) return;
+      if (e.key === 'ArrowLeft') this.go(this.cur - 1, -1);
+      if (e.key === 'ArrowRight') this.go(this.cur + 1, 1);
+    });
+    /* panel delegation */
+    const panel = $('#panel');
+    panel.addEventListener('click', e => {
+      const z = e.target.closest('[data-zoom]');
+      if (z){ Lightbox.open(z.getAttribute('src'), z.getAttribute('data-cap') || z.alt); return; }
+      const g = e.target.closest('[data-goto]');
+      if (g){ const idx = PAGES.findIndex(p => p.id === g.getAttribute('data-goto')); if (idx >= 0) this.go(idx); return; }
+      const acc = e.target.closest('[data-acc]');
+      if (acc){ acc.parentElement.classList.toggle('open'); return; }
+    });
+    panel.addEventListener('keydown', e => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-goto][role="button"]')) {
+        e.preventDefault(); e.target.click();
+      }
+    });
+    /* drawer */
+    $('#btnMenu').onclick = () => document.body.classList.add('drawer-open');
+    $('#drawerOverlay').onclick = () => document.body.classList.remove('drawer-open');
+    /* theme */
+    const savedTheme = LS.get('theme', 'dark');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    $('#btnTheme').onclick = () => {
+      const h = document.documentElement;
+      const next = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      h.setAttribute('data-theme', next);
+      LS.set('theme', next);
+    };
+    /* fullscreen */
+    $('#btnFull').onclick = () => {
+      const d = document.documentElement;
+      if (!document.fullscreenElement){ if (d.requestFullscreen) d.requestFullscreen().catch(()=>{}); }
+      else if (document.exitFullscreen) document.exitFullscreen();
+    };
+    /* pengaturan tampilan */
+    $('#btnFs').onclick = e => { e.stopPropagation(); $('#fsMenu').classList.toggle('open'); };
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#fsMenu') && !e.target.closest('#btnFs')) $('#fsMenu').classList.remove('open');
+    });
+    $$('#fsMenu [data-fs]').forEach(b => b.onclick = () => {
+      const v = b.getAttribute('data-fs');
+      document.documentElement.setAttribute('data-fs', v);
+      LS.set('fs', v);
+    });
+    const savedFs = LS.get('fs', '1');
+    document.documentElement.setAttribute('data-fs', savedFs);
+    const chk = $('#chkMotion');
+    chk.checked = LS.get('motion', true);
+    const applyMotion = () => {
+      document.documentElement.setAttribute('data-anim', chk.checked ? 'on' : 'off');
+      LS.set('motion', chk.checked);
+    };
+    chk.onchange = applyMotion; applyMotion();
+  },
+  go(idx, dir, first){
+    if (idx < 0 || idx >= PAGES.length) return;
+    if (idx === this.cur && !first) return;
+    dir = dir || (idx > this.cur ? 1 : -1);
+    this.cur = idx;
+    const page = PAGES[idx];
+    const panel = $('#panel'), view = $('#panelView');
+    /* render konten baru lalu kembalikan scroll internal ke atas */
+    view.innerHTML = page.render();
+    const heroMachine = view.querySelector('.hero-photo img');
+    if (heroMachine) {
+      heroMachine.addEventListener('error', () => heroMachine.classList.add('image-unavailable'), {once:true});
+      if (heroMachine.complete && heroMachine.naturalWidth === 0) heroMachine.classList.add('image-unavailable');
+    }
+    if (idx > 0) {
+      const context = document.createElement('div');
+      context.className = 'page-context';
+      const group = document.createElement('span');
+      group.className = 'page-context-group'; group.textContent = page.g;
+      const divider = document.createElement('span');
+      divider.className = 'page-context-divider'; divider.textContent = '/';
+      const module = document.createElement('span');
+      module.className = 'page-context-module'; module.textContent = 'MODUL '+String(idx+1).padStart(2,'0')+' / '+PAGES.length;
+      context.append(group,divider,module);
+      view.prepend(context);
+    }
+    panel.scrollTop = 0;
+    panel.classList.remove('in-f','in-b');
+    void panel.offsetWidth;
+    panel.classList.add(dir > 0 ? 'in-f' : 'in-b');
+    /* tandai dikunjungi */
+    if (!this.visited.includes(page.id)){ this.visited.push(page.id); LS.set('visited', this.visited); }
+    /* sinkronkan UI */
+    $$('.side-link').forEach(l => {
+      const on = +l.getAttribute('data-gi') === idx;
+      l.classList.toggle('active', on);
+      if (on) l.setAttribute('aria-current', 'page'); else l.removeAttribute('aria-current');
+      l.querySelector('.done-dot').classList.toggle('hide', !this.visited.includes(PAGES[+l.getAttribute('data-gi')].id));
+    });
+    $('#selHeader').value = idx; $('#selBottom').value = idx;
+    $('#btnPrev').disabled = idx === 0;
+    $('#btnNext').disabled = idx === PAGES.length - 1;
+    $('#navPosLbl').textContent = 'Modul ' + (idx+1) + ' / ' + PAGES.length + ' — ' + page.t;
+    const pct = Math.round(this.visited.length / PAGES.length * 100);
+    $('#sideProgressTxt').textContent = pct + '%';
+    $('#sideProgressDetail').textContent = this.visited.length + '/' + PAGES.length;
+    $('#sideProgressFill').style.width = pct + '%';
+    $('#navProgressFill').style.width = Math.round((idx+1) / PAGES.length * 100) + '%';
+    /* inisialisasi khusus halaman */
+    bindChecklist(view);
+    bindTabs(view);
+    if (INIT[page.id]) INIT[page.id](view);
+    /* tutup drawer di HP */
+    if (document.body.classList.contains('drawer-open')) document.body.classList.remove('drawer-open');
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  bindLightbox();
+  App.init();
+});
+
+</script>
+</body>
+</html>
